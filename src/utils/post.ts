@@ -17,7 +17,7 @@ export const getTags = async () => {
 	const posts = await getCollection('blog')
 	const tags = new Set()
 	posts.forEach((post) => {
-		post.data.tags.forEach((tag) => {
+		post.data.tags.forEach((tag: string) => {
 			tags.add(tag.toLowerCase())
 		})
 	})
@@ -29,7 +29,7 @@ export const getPostByTag = async (tag: string) => {
 	const posts = await getPosts()
 	const lowercaseTag = tag.toLowerCase()
 	return posts.filter((post) => {
-		return post.data.tags.some((postTag) => postTag.toLowerCase() === lowercaseTag)
+		return post.data.tags.some((postTag: string) => postTag.toLowerCase() === lowercaseTag)
 	})
 }
 
