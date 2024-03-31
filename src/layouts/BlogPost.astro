@@ -17,6 +17,8 @@ const { data, readTime, headings, id } = Astro.props
 const { title, description, pubDate, heroImage, tags } = data
 
 const articleDate = pubDate.toISOString()
+
+import pic from '../assets/images/1.png'
 ---
 
 <BaseLayout
@@ -50,7 +52,7 @@ const articleDate = pubDate.toISOString()
 			{
 				heroImage && (
 					<Image
-						src={heroImage}
+						src={pic}
 						width={1000}
 						height={500}
 						quality={100}

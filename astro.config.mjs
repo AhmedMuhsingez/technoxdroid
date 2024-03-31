@@ -15,14 +15,20 @@ export default defineConfig({
 			wrap: true
 		}
 	},
+	image: {
+		service: {
+			entrypoint: 'astro/assets/services/noop'
+		}
+	},
+
 	integrations: [
 		mdx({
 			syntaxHighlight: 'shiki',
 			shikiConfig: {
 				experimentalThemes: {
 					light: 'vitesse-light',
-					dark: 'material-theme-palenight',
-				  },
+					dark: 'material-theme-palenight'
+				},
 				wrap: true
 			},
 			drafts: true
