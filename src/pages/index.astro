@@ -4,24 +4,32 @@ import ListPosts from '@/components/ListPosts'
 import TitlePage from '@/components/TitlePage'
 import BaseLayout from '@/layouts/BaseLayout'
 import { getPosts } from '@/utils'
+import data from 'src/utils/fetchArticles'
 
 const MAX_POSTS = 5 // max number of posts to show on the home page
 const posts = await getPosts(MAX_POSTS)
+// HOME PAGE
 ---
 
 <BaseLayout title='Home'>
-	<TitlePage title='Blog Title' />
+	<!-- <TitlePage title='Blog Title' />
 	<ListCategories />
 
 	<div>
 		<h2 class='text-lg font-medium tracking-wide text-end'>Latest Posts</h2>
 		<ListPosts FirstBig={true} posts={posts} />
-	</div>
+	</div> -->
+
+	<!-- <h1>{data}</h1> -->
 </BaseLayout>
 
 <script>
 	import { animate } from 'motion'
+	import data from 'src/utils/fetchArticles'
 	const showAnimations = localStorage.getItem('animations') === 'true'
+	{
+		console.log(data.data.map((item) => item.attributes.title))
+	}
 
 	if (showAnimations) {
 		animate(
