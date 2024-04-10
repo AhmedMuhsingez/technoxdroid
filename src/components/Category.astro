@@ -5,9 +5,7 @@ const { name = 'جميع المقالات', activeCategory, categorySlug } = Ast
 const currentPath = Astro.url.pathname
 // const unsluglifyNameCategory = sluglify(name.toLowerCase())
 
-const isActive =
-	activeCategory?.toLocaleLowerCase() === categorySlug ||
-	(currentPath === '/' && name === 'View All')
+const isActive = activeCategory === categorySlug || (currentPath === '/' && name === 'View All')
 ---
 
 <a

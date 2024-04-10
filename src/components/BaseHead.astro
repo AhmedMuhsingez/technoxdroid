@@ -66,52 +66,57 @@ import { AstroFont } from 'astro-font'
 
 <!-- RSS auto-discovery -->
 <link rel='alternate' type='application/rss+xml' title={siteConfig.name} href='/rss.xml' />
-
-<AstroFont
+<link rel='preconnect' href='https://fonts.googleapis.com' />
+<link rel='preconnect' href='https://fonts.gstatic.com' crossorigin />
+<link
+	href='https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap'
+	rel='stylesheet'
+/>
+<!-- <AstroFont
 	config={[
 		{
 			preload: false,
 			display: 'swap',
-			name: 'Manrope',
-			fallback: 'sans-serif',
+			name: 'cairo',
+			fallback: 'serif',
 			src: [
 				{
 					weight: '200',
 					style: 'normal',
-					path: join(process.cwd(), 'public', 'fonts', 'Manrope-ExtraLight.woff2')
+					path: join(process.cwd(), 'public', 'fonts', 'cairo.ttf')
 				},
 				{
 					weight: '300',
 					style: 'normal',
-					path: join(process.cwd(), 'public', 'fonts', 'Manrope-Light.woff2')
+					path: join(process.cwd(), 'public', 'fonts', 'cairo.ttf')
 				},
 				{
 					weight: '400',
 					style: 'normal',
-					path: join(process.cwd(), 'public', 'fonts', 'Manrope-Regular.woff2')
+					path: join(process.cwd(), 'public', 'fonts', 'cairo.ttf')
 				},
 				{
 					weight: '500',
 					style: 'normal',
-					path: join(process.cwd(), 'public', 'fonts', 'Manrope-Medium.woff2')
+					path: join(process.cwd(), 'public', 'fonts', 'cairo.ttf')
 				},
 				{
 					weight: '600',
 					style: 'normal',
-					path: join(process.cwd(), 'public', 'fonts', 'Manrope-SemiBold.woff2')
+					path: join(process.cwd(), 'public', 'fonts', 'cairo.ttf')
 				},
 				{
 					weight: '700',
 					preload: true,
 					style: 'normal',
-					path: join(process.cwd(), 'public', 'fonts', 'Manrope-Bold.woff2')
+					path: join(process.cwd(), 'public', 'fonts', 'cairo.ttf')
 				},
 				{
 					weight: '800',
 					style: 'normal',
-					path: join(process.cwd(), 'public', 'fonts', 'Manrope-ExtraBold.woff2')
+					path: join(process.cwd(), 'public', 'fonts', 'cairo.ttf')
 				}
 			]
 		}
 	]}
-/>
+/> -->

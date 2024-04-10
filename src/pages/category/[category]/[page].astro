@@ -21,7 +21,7 @@ export async function getStaticPaths({ paginate }: any) {
 			params: {
 				category: category.attributes.slug
 			},
-			pageSize: siteConfig.paginationSize,
+			// pageSize: siteConfig.paginationSize,
 			props: {
 				categoryName: category.attributes.name
 			}
@@ -29,15 +29,12 @@ export async function getStaticPaths({ paginate }: any) {
 	})
 }
 const params = Astro.params
-const props = Astro.props
-const { page } = Astro.props
-// const posts = page.data
-//Active Category comes from this component
+const { page, ...props } = Astro.props
 ---
 
 <BaseLayout title={props.categoryName}>
 	<TitlePage title={props.categoryName} />
 	<ListCategories activeCategory={params.category} />
-	<!-- <ListPosts posts={page.data} />
-	<Pagination page={page} /> -->
+	<ListPosts posts={page.data} />
+	<Pagination page={page} />
 </BaseLayout>
