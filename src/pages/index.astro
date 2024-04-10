@@ -28,7 +28,7 @@ const posts = await getPosts(MAX_POSTS)
 	import data from 'src/utils/fetchArticles'
 	const showAnimations = localStorage.getItem('animations') === 'true'
 	{
-		console.log(data.data.map((item) => item.attributes.title))
+		console.log(data.data.map((d) => d.attributes.title))
 	}
 
 	if (showAnimations) {
