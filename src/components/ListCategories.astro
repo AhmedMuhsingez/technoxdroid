@@ -15,7 +15,7 @@ const categoriesData = await fetchCategories()
 		categoriesData.data.map((category) => (
 			<Category
 				name={category.attributes.name}
-				activeCategory={category.attributes.slug}
+				activeCategory={activeCategory}
 				categorySlug={category.attributes.slug}
 			/>
 		))

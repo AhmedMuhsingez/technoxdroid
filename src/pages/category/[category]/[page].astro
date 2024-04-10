@@ -3,48 +3,41 @@ import BaseLayout from '@/layouts/BaseLayout'
 import ListPosts from '@/components/ListPosts'
 import ListCategories from '@/components/ListCategories'
 import TitlePage from '@/components/TitlePage'
-import { sluglify, unsluglify, getCategories, getPosts } from '@/utils'
 import { siteConfig } from '@/data/site.config'
 import Pagination from '@/components/Pagination'
 import { fetchArticles, fetchCategories } from 'src/utils/fetchApiData'
 export async function getStaticPaths({ paginate }: any) {
-	// const categories = await getCategories()
-	// const allPosts = await getPosts()
-
-	//Original slug is the category name with.toLowerCase()
-
 	const categoriesData = await fetchCategories()
-
 	const allArticles = (await fetchArticles()).map((article) => {
 		return article
 	})
-	//https://asd.com/api/articles/9?populate[0]=category
 
 	return categoriesData.data.flatMap((category) => {
-		const unsluglifyNameCategory = category.attributes.name
-
 		const filteredArticles = allArticles.filter(
-			(res) => res.attributes.category === unsluglifyNameCategory
+			(article) => article.attributes.category === category.attributes.name
 		)
 
 		return paginate(filteredArticles, {
 			params: {
 				category: category.attributes.slug
 			},
-			pageSize: siteConfig.paginationSize
+			pageSize: siteConfig.paginationSize,
+			props: {
+				categoryName: category.attributes.name
+			}
 		})
 	})
 }
 const params = Astro.params
+const props = Astro.props
 const { page } = Astro.props
-
-const unsluglifyNameCategory = unsluglify(params.category!.toLowerCase())
-const posts = page.data
+// const posts = page.data
+//Active Category comes from this component
 ---
 
-<BaseLayout title={params.category}>
-	<TitlePage title={unsluglifyNameCategory} />
+<BaseLayout title={props.categoryName}>
+	<TitlePage title={props.categoryName} />
 	<ListCategories activeCategory={params.category} />
-	<ListPosts posts={posts} />
-	<!-- <Pagination page={page} /> -->
+	<!-- <ListPosts posts={page.data} />
+	<Pagination page={page} /> -->
 </BaseLayout>
