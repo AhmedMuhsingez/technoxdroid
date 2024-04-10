@@ -6,20 +6,30 @@ import TitlePage from '@/components/TitlePage'
 import { sluglify, unsluglify, getCategories, getPosts } from '@/utils'
 import { siteConfig } from '@/data/site.config'
 import Pagination from '@/components/Pagination'
-
+import { fetchArticles, fetchCategories } from 'src/utils/fetchApiData'
 export async function getStaticPaths({ paginate }: any) {
-	const categories = await getCategories()
-	const allPosts = await getPosts()
+	// const categories = await getCategories()
+	// const allPosts = await getPosts()
 
-	return categories.flatMap((category: string) => {
-		const unsluglifyNameCategory = unsluglify(category!.toLowerCase())
-		const filteredPosts = allPosts.filter(
-			(post) => post.data.category.toLowerCase() === unsluglifyNameCategory
+	//Original slug is the category name with.toLowerCase()
+
+	const categoriesData = await fetchCategories()
+
+	const allArticles = (await fetchArticles()).map((article) => {
+		return article
+	})
+	//https://asd.com/api/articles/9?populate[0]=category
+
+	return categoriesData.data.flatMap((category) => {
+		const unsluglifyNameCategory = category.attributes.name
+
+		const filteredArticles = allArticles.filter(
+			(res) => res.attributes.category === unsluglifyNameCategory
 		)
 
-		return paginate(filteredPosts, {
+		return paginate(filteredArticles, {
 			params: {
-				category: sluglify(category.toLowerCase())
+				category: category.attributes.slug
 			},
 			pageSize: siteConfig.paginationSize
 		})
@@ -36,5 +46,5 @@ const posts = page.data
 	<TitlePage title={unsluglifyNameCategory} />
 	<ListCategories activeCategory={params.category} />
 	<ListPosts posts={posts} />
-	<Pagination page={page} />
+	<!-- <Pagination page={page} /> -->
 </BaseLayout>

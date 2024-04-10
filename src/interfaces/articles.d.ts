@@ -11,6 +11,7 @@ interface ArticleAttributes {
 	slug: string
 	title: string
 	updatedAt: string
+	category: string
 }
 
 interface ArticleData {
@@ -19,6 +20,8 @@ interface ArticleData {
 }
 
 interface Article {
+	attributes: any
+	[x: string]: any
 	data: ArticleData[]
 	meta: {
 		pagination: Pagination

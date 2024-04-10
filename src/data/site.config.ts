@@ -1,6 +1,6 @@
 interface SiteConfig {
 	author: string
-	title: string
+	name: string
 	description: string
 	lang: string
 	ogLocale: string
@@ -10,7 +10,7 @@ interface SiteConfig {
 
 export const siteConfig: SiteConfig = {
 	author: 'TechnoDroid', // Site author
-	title: 'TechnoDroid', // Site title.
+	name: 'TechnoDroid', // Site name.
 	description: '', // Description to display in the meta tags
 	lang: '',
 	ogLocale: 'en_GB',
