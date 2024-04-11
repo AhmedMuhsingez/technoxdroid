@@ -2,13 +2,18 @@
 import type { CollectionEntry } from 'astro:content'
 import PostCard from '@/components/PostCard'
 import { cn } from '@/utils'
+import { fetchArticles } from 'src/utils/fetchApiData'
+import { Debug } from 'astro:components'
 
 type Props = {
-	posts: CollectionEntry<'blog'>[]
+	// posts: CollectionEntry<'blog'>[]
 	FirstBig?: boolean
 }
 
-const { posts, FirstBig = false } = Astro.props
+const { FirstBig = false } = Astro.props
+const allArticles = (await fetchArticles()).map((article) => {
+	return article
+})
 ---
 
 <section
@@ -18,17 +23,21 @@ const { posts, FirstBig = false } = Astro.props
 	)}
 >
 	{
-		posts.map(async (post) => {
-			const { remarkPluginFrontmatter } = await post.render()
+		allArticles.map(async (article) => {
+			const id = article.id
+			const articleData = article.attributes
 
 			return (
 				<PostCard
-					id={post.id}
-					data={post.data}
-					slug={post.slug}
-					readTime={remarkPluginFrontmatter.minutesRead}
+					id={id}
+					title={articleData.title}
+					description={articleData.description}
+					pubDate={articleData.createdAt}
+					category={articleData.category.data.attributes.name}
+					slug={articleData.slug}
 				/>
 			)
 		})
 	}
+	<Debug test={allArticles} />
 </section>

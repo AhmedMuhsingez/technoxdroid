@@ -14,7 +14,7 @@ export async function getStaticPaths({ paginate }: any) {
 
 	return categoriesData.data.flatMap((category) => {
 		const filteredArticles = allArticles.filter(
-			(article) => article.attributes.category === category.attributes.name
+			(article) => article.attributes.category.data.attributes.name === category.attributes.name
 		)
 
 		return paginate(filteredArticles, {
@@ -35,6 +35,6 @@ const { page, ...props } = Astro.props
 <BaseLayout title={props.categoryName}>
 	<TitlePage title={props.categoryName} />
 	<ListCategories activeCategory={params.category} />
-	<ListPosts posts={page.data} />
+	<!-- <ListPosts posts={page.data} /> -->
 	<Pagination page={page} />
 </BaseLayout>

@@ -1,6 +1,5 @@
 ---
 import { cn } from '@/utils'
-
 const { name = 'جميع المقالات', activeCategory, categorySlug } = Astro.props
 const currentPath = Astro.url.pathname
 import { Debug } from 'astro:components'
@@ -17,6 +16,4 @@ const isActive = name !== 'جميع المقالات' ? activeCategory === categ
 	)}
 >
 	{name}
-
-	<Debug currentPathIs={name} />
 </a>

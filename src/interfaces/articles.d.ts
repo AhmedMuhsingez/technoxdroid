@@ -1,9 +1,12 @@
+//Article Res
+
 interface Pagination {
 	page: number
 	pageCount: number
 	pageSize: number
 	total: number
 }
+
 interface ArticleAttributes {
 	createdAt: string // Assuming ISO 8601 date format
 	description: string
@@ -11,7 +14,8 @@ interface ArticleAttributes {
 	slug: string
 	title: string
 	updatedAt: string
-	category: string
+	category: CategoryResponse
+	cover: ImageResponse
 }
 
 interface ArticleData {
@@ -26,4 +30,55 @@ interface Article {
 	meta: {
 		pagination: Pagination
 	}
+}
+
+//Category Res
+interface CategoryAttributes {
+	name: string
+	slug: string
+	description: string | null
+	createdAt: string // Assuming ISO 8601 date format
+	updatedAt: string // Assuming ISO 8601 date format
+}
+
+interface CategoryData {
+	id: number
+	attributes: CategoryAttributes
+}
+
+interface CategoryResponse {
+	data: CategoryData
+}
+
+//Cover Res
+
+interface ImageFormat {
+	ext: string
+	url: string
+	hash: string
+	mime: string
+	name: string
+	path: string | null
+	size: number
+	width: number
+	height: number
+	sizeInBytes: number
+}
+
+interface ImageAttributes {
+	name: string
+	alternativeText: string | null
+	caption: string | null
+	width: number
+	height: number
+	formats: {
+		large: ImageFormat
+		small: ImageFormat
+		medium: ImageFormat
+		thumbnail: ImageFormat
+	}
+}
+
+interface ImageResponse {
+	attributes: ImageAttributes
 }
