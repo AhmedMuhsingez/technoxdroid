@@ -3,9 +3,13 @@ import ListCategories from '@/components/ListCategories'
 import ListPosts from '@/components/ListPosts'
 import TitlePage from '@/components/TitlePage'
 import BaseLayout from '@/layouts/BaseLayout'
+import { fetchArticles } from 'src/utils/fetchApiData'
 // const MAX_POSTS = 5 // max number of posts to show on the home page
 
 // Home page compoenet
+const allArticles = (await fetchArticles()).map((article) => {
+	return article
+})
 ---
 
 <BaseLayout title='الصفحة الرئيسية'>
@@ -14,7 +18,7 @@ import BaseLayout from '@/layouts/BaseLayout'
 
 	<div>
 		<h2 class='text-lg font-medium tracking-wide text-end'>آخر المقالات</h2>
-		<ListPosts FirstBig={true} />
+		<ListPosts FirstBig={true} allArticles={allArticles} />
 	</div>
 </BaseLayout>
 

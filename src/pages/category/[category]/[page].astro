@@ -16,6 +16,7 @@ export async function getStaticPaths({ paginate }: any) {
 
 	return categoriesData.data.flatMap((category) => {
 		const filteredArticles = allArticles.filter(
+			//Filter all articles, WHERE ()...
 			(article) => article.attributes.category.data.attributes.name === category.attributes.name
 		)
 
@@ -26,7 +27,8 @@ export async function getStaticPaths({ paginate }: any) {
 			// pageSize: siteConfig.paginationSize,
 			props: {
 				categoryName: category.attributes.name,
-				filteredArticles: filteredArticles
+				filteredArticles: filteredArticles,
+				allArticles: allArticles
 			}
 		})
 	})
@@ -42,5 +44,7 @@ const { ...props } = Astro.props
 	<ListCategories activeCategory={params.category} />
 	<ListPosts filteredArticles={props.filteredArticles} />
 	<!-- <Pagination page={page} /> -->
-	<!-- <Debug postsAre={props.filteredArticles} /> -->
+
+	<Debug allArticles={props.allArticles} />
+	<Debug filtered={props.filteredArticles} />
 </BaseLayout>

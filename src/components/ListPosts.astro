@@ -2,17 +2,15 @@
 import PostCard from '@/components/PostCard'
 import { cn } from '@/utils'
 import { Debug } from 'astro:components'
-import { fetchArticles } from 'src/utils/fetchApiData'
 
 type Props = {
 	FirstBig?: boolean
-	filteredArticles: Article[]
+	filteredArticles?: ArticleData[]
+	allArticles?: ArticleData[]
 }
 
-const { FirstBig = false, filteredArticles } = Astro.props
-// const allArticles = (await fetchArticles()).map((article) => {
-// 	return article
-// })
+const { FirstBig = false, filteredArticles, allArticles } = Astro.props
+const articlesToShow = filteredArticles ? filteredArticles : allArticles
 
 // This is the component of the ALL ARTICLES category in the home page
 ---
@@ -24,7 +22,7 @@ const { FirstBig = false, filteredArticles } = Astro.props
 	)}
 >
 	{
-		filteredArticles.map(async (article) => {
+		articlesToShow?.map(async (article) => {
 			const id = article.id
 			const articleData = article.attributes
 			return (
