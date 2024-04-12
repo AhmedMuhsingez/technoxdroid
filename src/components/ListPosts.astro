@@ -1,12 +1,10 @@
 ---
-import type { CollectionEntry } from 'astro:content'
 import PostCard from '@/components/PostCard'
 import { cn } from '@/utils'
 import { fetchArticles } from 'src/utils/fetchApiData'
 import { Debug } from 'astro:components'
 
 type Props = {
-	// posts: CollectionEntry<'blog'>[]
 	FirstBig?: boolean
 }
 
@@ -35,6 +33,7 @@ const allArticles = (await fetchArticles()).map((article) => {
 					pubDate={articleData.createdAt}
 					category={articleData.category.data.attributes.name}
 					slug={articleData.slug}
+					heroImage={articleData.cover.data?.attributes.formats.medium.url}
 				/>
 			)
 		})

@@ -80,5 +80,5 @@ interface ImageAttributes {
 }
 
 interface ImageResponse {
-	attributes: ImageAttributes
+	data: { attributes: ImageAttributes }
 }

@@ -13,7 +13,7 @@ import fetchApi from 'src/lib/strapi'
 export const fetchArticles = async () => {
 	const articles = await fetchApi<Article>({
 		endpoint: 'articles',
-		query: { populate: 'category' }
+		query: { populate: ['category', 'cover'].join(',') }
 	})
 	return articles.data
 }
