@@ -2,20 +2,18 @@
 import ListCategories from '@/components/ListCategories'
 import ListPosts from '@/components/ListPosts'
 import TitlePage from '@/components/TitlePage'
-import { siteConfig } from '@/data/site.config'
 import BaseLayout from '@/layouts/BaseLayout'
-const MAX_POSTS = 5 // max number of posts to show on the home page
-// const posts = await getPosts(MAX_POSTS)
+// const MAX_POSTS = 5 // max number of posts to show on the home page
 
 // Home page compoenet
 ---
 
 <BaseLayout title='الصفحة الرئيسية'>
-	<TitlePage title={siteConfig.name} />
+	<TitlePage title={'تكنودرويد'} />
 	<ListCategories />
 
 	<div>
-		<h2 class='text-lg font-medium tracking-wide text-end'>Latest Posts</h2>
+		<h2 class='text-lg font-medium tracking-wide text-end'>آخر المقالات</h2>
 		<ListPosts FirstBig={true} />
 	</div>
 </BaseLayout>

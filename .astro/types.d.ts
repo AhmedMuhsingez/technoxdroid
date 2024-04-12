@@ -184,58 +184,7 @@ declare module 'astro:content' {
 	>;
 
 	type ContentEntryMap = {
-		"blog": {
-"-.mdx": {
-	id: "-.mdx";
-  slug: "-";
-  body: string;
-  collection: "blog";
-  data: InferEntrySchema<"blog">
-} & { render(): Render[".mdx"] };
-"astro copy 2.mdx": {
-	id: "astro copy 2.mdx";
-  slug: "astro-copy-2";
-  body: string;
-  collection: "blog";
-  data: InferEntrySchema<"blog">
-} & { render(): Render[".mdx"] };
-"astro copy 3.mdx": {
-	id: "astro copy 3.mdx";
-  slug: "astro-copy-3";
-  body: string;
-  collection: "blog";
-  data: InferEntrySchema<"blog">
-} & { render(): Render[".mdx"] };
-"astro copy 4.mdx": {
-	id: "astro copy 4.mdx";
-  slug: "astro-copy-4";
-  body: string;
-  collection: "blog";
-  data: InferEntrySchema<"blog">
-} & { render(): Render[".mdx"] };
-"astro.mdx": {
-	id: "astro.mdx";
-  slug: "astro";
-  body: string;
-  collection: "blog";
-  data: InferEntrySchema<"blog">
-} & { render(): Render[".mdx"] };
-"create-astro-component.mdx": {
-	id: "create-astro-component.mdx";
-  slug: "create-astro-component";
-  body: string;
-  collection: "blog";
-  data: InferEntrySchema<"blog">
-} & { render(): Render[".mdx"] };
-"macbook.mdx": {
-	id: "macbook.mdx";
-  slug: "macbook";
-  body: string;
-  collection: "blog";
-  data: InferEntrySchema<"blog">
-} & { render(): Render[".mdx"] };
-};
-
+		
 	};
 
 	type DataEntryMap = {
@@ -244,5 +193,5 @@ declare module 'astro:content' {
 
 	type AnyEntryMap = ContentEntryMap & DataEntryMap;
 
-	type ContentConfig = typeof import("../src/content/config");
+	type ContentConfig = never;
 }

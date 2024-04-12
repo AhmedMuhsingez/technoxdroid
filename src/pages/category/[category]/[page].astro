@@ -6,6 +6,8 @@ import TitlePage from '@/components/TitlePage'
 import { siteConfig } from '@/data/site.config'
 import Pagination from '@/components/Pagination'
 import { fetchArticles, fetchCategories } from 'src/utils/fetchApiData'
+import { Debug } from 'astro:components'
+
 export async function getStaticPaths({ paginate }: any) {
 	const categoriesData = await fetchCategories()
 	const allArticles = (await fetchArticles()).map((article) => {
@@ -23,18 +25,22 @@ export async function getStaticPaths({ paginate }: any) {
 			},
 			// pageSize: siteConfig.paginationSize,
 			props: {
-				categoryName: category.attributes.name
+				categoryName: category.attributes.name,
+				filteredArticles: filteredArticles
 			}
 		})
 	})
 }
 const params = Astro.params
-const { page, ...props } = Astro.props
+const { ...props } = Astro.props
+
+//This is the component for each page of the categories in the main page
 ---
 
 <BaseLayout title={props.categoryName}>
 	<TitlePage title={props.categoryName} />
 	<ListCategories activeCategory={params.category} />
-	<!-- <ListPosts posts={page.data} /> -->
-	<Pagination page={page} />
+	<ListPosts filteredArticles={props.filteredArticles} />
+	<!-- <Pagination page={page} /> -->
+	<!-- <Debug postsAre={props.filteredArticles} /> -->
 </BaseLayout>

@@ -7,7 +7,7 @@ module.exports = {
 	theme: {
 		extend: {
 			colors: {
-				white: '#f8f9fa'
+				white: '#f0f2f5'
 			},
 			fontFamily: {
 				body: ['cairo', 'Manrope', ...defaultTheme.fontFamily.sans]
