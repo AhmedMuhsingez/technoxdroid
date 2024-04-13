@@ -22,3 +22,11 @@ export const fetchCategories = async () => {
 	const categories = await fetchApi<Categories>({ endpoint: 'categories' })
 	return categories
 }
+
+export const fetchArticlesData = async () => {
+	const articles = await fetchApi<ArticlesFullDetails>({
+		endpoint: 'articles',
+		query: { populate: '*' }
+	})
+	return articles.data
+}
