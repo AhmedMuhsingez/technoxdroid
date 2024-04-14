@@ -43,6 +43,7 @@ const { ...props } = Astro.props
 	<TitlePage title={props.categoryName} />
 	<ListCategories activeCategory={params.category} />
 	<ListPosts filteredArticles={props.filteredArticles} />
+
 	<!-- <Pagination page={page} /> -->
 
 	<Debug allArticles={props.allArticles} />

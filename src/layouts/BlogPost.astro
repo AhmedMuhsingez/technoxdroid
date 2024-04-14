@@ -3,6 +3,8 @@ import BaseLayout from '@/layouts/BaseLayout'
 import Tag from '@/components/Tag'
 import type { MarkdownHeading } from 'astro'
 import { Image } from 'astro:assets'
+import { map } from 'astro/zod'
+import { Debug } from 'astro:components'
 
 type Props = {
 	data: ArticleAttributes
@@ -12,8 +14,7 @@ type Props = {
 }
 
 const { data, id } = Astro.props
-// const { title, description, pubDate, heroImage, tags, } = data
-const { title, description, publishedAt, cover } = data
+const { title, description, publishedAt, cover, Tags } = data
 const coverImage = cover.data.attributes.formats.large.url
 ---
 
@@ -36,7 +37,7 @@ const coverImage = cover.data.attributes.formats.large.url
 			</div>
 
 			<div class='flex flex-wrap justify-center items-center gap-2 gap-y-4 md:gap-5'>
-				<!-- {tags.map((tag: string) => <Tag tag={tag} />)} -->
+				{Tags && Tags.map((tag) => <Tag tag={tag} />)}
 			</div>
 		</header>
 

@@ -52,6 +52,7 @@ interface ArticleAttributes {
 		__component: string
 		body: string
 	}[]
+	Tags: string[]
 }
 
 interface ArticleData {
