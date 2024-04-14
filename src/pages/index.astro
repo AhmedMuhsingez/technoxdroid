@@ -3,7 +3,6 @@ import ListCategories from '@/components/ListCategories'
 import ListPosts from '@/components/ListPosts'
 import TitlePage from '@/components/TitlePage'
 import BaseLayout from '@/layouts/BaseLayout'
-import { Debug } from 'astro:components'
 import { fetchArticles } from 'src/utils/fetchApiData'
 // const MAX_POSTS = 5 // max number of posts to show on the home page
 
@@ -18,7 +17,7 @@ const allArticles = (await fetchArticles()).map((article) => {
 	<ListCategories />
 
 	<div>
-		<h2 class='text-lg font-medium tracking-wide text-end'>آخر المقالات</h2>
+		<!-- <h2 class='text-lg font-medium tracking-wide'>آخر المقالات</h2> -->
 		<ListPosts FirstBig={true} allArticles={allArticles} />
 	</div>
 </BaseLayout>

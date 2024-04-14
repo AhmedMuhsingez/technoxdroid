@@ -6,7 +6,6 @@ import TitlePage from '@/components/TitlePage'
 import { siteConfig } from '@/data/site.config'
 import Pagination from '@/components/Pagination'
 import { fetchArticles, fetchCategories } from 'src/utils/fetchApiData'
-import { Debug } from 'astro:components'
 
 export async function getStaticPaths({ paginate }: any) {
 	const categoriesData = await fetchCategories()
@@ -45,7 +44,4 @@ const { ...props } = Astro.props
 	<ListPosts filteredArticles={props.filteredArticles} />
 
 	<!-- <Pagination page={page} /> -->
-
-	<Debug allArticles={props.allArticles} />
-	<Debug filtered={props.filteredArticles} />
 </BaseLayout>
