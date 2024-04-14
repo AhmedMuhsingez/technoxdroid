@@ -1,19 +1,15 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout'
 import Tag from '@/components/Tag'
-import type { MarkdownHeading } from 'astro'
 import { Image } from 'astro:assets'
-import { map } from 'astro/zod'
-import { Debug } from 'astro:components'
 
 type Props = {
 	data: ArticleAttributes
-	id: any
 	// headings: MarkdownHeading[]
 	// readTime: string
 }
 
-const { data, id } = Astro.props
+const { data } = Astro.props
 const { title, description, publishedAt, cover, Tags } = data
 const coverImage = cover.data.attributes.formats.large.url
 ---
@@ -41,22 +37,20 @@ const coverImage = cover.data.attributes.formats.large.url
 			</div>
 		</header>
 
-		<BaseLayout>
-			{
-				(
-					<Image
-						src={coverImage}
-						width={1000}
-						height={500}
-						quality={100}
-						format='jpg'
-						loading='eager'
-						class='rounded-md w-full max-h-[300px]  md:max-h-[500px] my-8 object-cover'
-						alt={`img of ${title}`}
-					/>
-				)
-			}
-		</BaseLayout>
+		{
+			(
+				<Image
+					src={coverImage}
+					width={1000}
+					height={500}
+					quality={100}
+					format='jpg'
+					loading='eager'
+					class='rounded-md w-full max-h-[300px]  md:max-h-[500px] my-8 object-cover'
+					alt={`img of ${title}`}
+				/>
+			)
+		}
 
 		<hr />
 
