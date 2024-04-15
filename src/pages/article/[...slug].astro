@@ -41,8 +41,7 @@ export async function getStaticPaths() {
 
 	return allArticles.map((article) => ({
 		params: { slug: article.attributes.slug },
-		props: article,
-		revalidate: 60
+		props: article
 	}))
 }
 const article = Astro.props.attributes
