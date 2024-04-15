@@ -6,6 +6,7 @@ import MenuIcon from './icons/MenuIcon.astro'
 import Search from '@/components/Search'
 import TagIcon from './icons/TagIcon.astro'
 import ToggleTheme from './ToggleTheme.astro'
+import SearchIcon from './icons/SearchIcon.astro'
 
 // ADD YOUR SOCIAL NETWORKS HERE
 const SOCIALNETWORKS = [
@@ -28,11 +29,9 @@ const SOCIALNETWORKS = [
 
 	<div
 		id='astro-header-drawer'
-		class='shadow rounded-lg md:bg-transparent dark:md:bg-transparent bg-white dark:bg-[#0a0910] dark:border-solid dark:border-[white] dark:border-2 md:border-none md:shadow-none md:rounded-none md:border-none md:h-auto md:static absolute transition-transform duration-300 ease-in translate-x-96 md:translate-x-0 top-12 left-18 px-4 pt-6 pb-4 md:p-0 h-[100px] w-[200px] z-50'
+		class='shadow rounded-lg md:bg-transparent dark:md:bg-transparent bg-white dark:bg-[#0a0910] dark:border-solid dark:border-[white] dark:lg:border-none dark:md:border-none dark:border-2 md:shadow-none md:rounded-none md:border-none md:h-auto md:static absolute transition-transform duration-300 ease-in translate-x-96 md:translate-x-0 top-12 left-18 px-4 pt-6 pb-4 md:p-0 h-[100px] w-[200px] z-50'
 	>
-		<nav
-			class='flex h-full flex-col gap-12 text-left md:flex-row md:w-full md:gap-5 justify-center'
-		>
+		<nav class='flex h-full flex-col gap-12 text-left md:flex-row md:gap-5 justify-center'>
 			<!-- <div
 				class='flex flex-col gap-4 md:flex-row md:border-r-2 border-black pr-4 dark:border-white'
 			>
@@ -42,6 +41,8 @@ const SOCIALNETWORKS = [
 			</div> -->
 
 			<div class='flex justify-center items-center md:justify-end gap-3 md:p-0'>
+				<SearchIcon />
+
 				{
 					SOCIALNETWORKS.map((network) => (
 						<HeaderLink class='' href={network.url} target='_blank' aria-label={network.name}>
@@ -54,14 +55,10 @@ const SOCIALNETWORKS = [
 	</div>
 
 	<div class='flex items-center gap-3 md:pl-3' transition:persist='navbar'>
-		<div>
-			<Search />
-		</div>
-		<ToggleTheme />
 		<button id='astro-header-drawer-button' type='button' class='md:ml-6 md:hidden'>
 			<MenuIcon />
-			<span class='sr-only'>Show Menu</span>
 		</button>
+		<ToggleTheme />
 	</div>
 </header>
 <script>
