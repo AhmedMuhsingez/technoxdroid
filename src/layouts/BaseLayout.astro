@@ -5,6 +5,7 @@ import Footer from '@/components/Footer'
 import ProviderTheme from '@/components/ProviderTheme'
 import ProviderAnimations from '@/components/ProviderAnimations'
 import TwSizeIndicator from '@/components/TwSizeIndicator'
+import ScrollCircle from '@/components/ScrollCircle'
 const { title, description, image, articleDate } = Astro.props
 ---
 
@@ -19,6 +20,7 @@ const { title, description, image, articleDate } = Astro.props
 		>
 			<Header />
 			<slot />
+			<ScrollCircle />
 			<Footer />
 		</main>
 		<TwSizeIndicator />

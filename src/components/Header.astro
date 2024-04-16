@@ -8,6 +8,7 @@ import TagIcon from './icons/TagIcon.astro'
 import ToggleTheme from './ToggleTheme.astro'
 import SearchIcon from './icons/SearchIcon.astro'
 import Profile from './icons/Profile.astro'
+import { siteConfig } from '@/data/site.config'
 
 // ADD YOUR SOCIAL NETWORKS HERE
 const SOCIALNETWORKS = [
@@ -26,7 +27,7 @@ const SOCIALNETWORKS = [
 	},
 	{
 		name: 'Profile',
-		url: './profile',
+		url: `${siteConfig.liveWebAddress}/profile`,
 		icon: Profile,
 		target: ''
 	}
