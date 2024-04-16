@@ -19,7 +19,6 @@ const titleSeparator = '•'
 const siteTitle = `${title} ${titleSeparator} ${siteConfig.name}`
 
 import { join } from 'path'
-import { AstroFont } from 'astro-font'
 ---
 
 <!-- Global Metadata -->
@@ -72,51 +71,3 @@ import { AstroFont } from 'astro-font'
 	href='https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap'
 	rel='stylesheet'
 />
-<!-- <AstroFont
-	config={[
-		{
-			preload: false,
-			display: 'swap',
-			name: 'cairo',
-			fallback: 'serif',
-			src: [
-				{
-					weight: '200',
-					style: 'normal',
-					path: join(process.cwd(), 'public', 'fonts', 'cairo.ttf')
-				},
-				{
-					weight: '300',
-					style: 'normal',
-					path: join(process.cwd(), 'public', 'fonts', 'cairo.ttf')
-				},
-				{
-					weight: '400',
-					style: 'normal',
-					path: join(process.cwd(), 'public', 'fonts', 'cairo.ttf')
-				},
-				{
-					weight: '500',
-					style: 'normal',
-					path: join(process.cwd(), 'public', 'fonts', 'cairo.ttf')
-				},
-				{
-					weight: '600',
-					style: 'normal',
-					path: join(process.cwd(), 'public', 'fonts', 'cairo.ttf')
-				},
-				{
-					weight: '700',
-					preload: true,
-					style: 'normal',
-					path: join(process.cwd(), 'public', 'fonts', 'cairo.ttf')
-				},
-				{
-					weight: '800',
-					style: 'normal',
-					path: join(process.cwd(), 'public', 'fonts', 'cairo.ttf')
-				}
-			]
-		}
-	]}
-/> -->
