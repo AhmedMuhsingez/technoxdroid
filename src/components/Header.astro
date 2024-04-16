@@ -7,19 +7,28 @@ import Search from '@/components/Search'
 import TagIcon from './icons/TagIcon.astro'
 import ToggleTheme from './ToggleTheme.astro'
 import SearchIcon from './icons/SearchIcon.astro'
+import Profile from './icons/Profile.astro'
 
 // ADD YOUR SOCIAL NETWORKS HERE
 const SOCIALNETWORKS = [
 	{
 		name: 'Github',
 		url: 'https://github.com/AhmedMuhsingez',
-		icon: GithubIcon
+		icon: GithubIcon,
+		target: '_blank'
 	},
 
 	{
 		name: 'Twitter',
 		url: 'https://www.facebook.com/TechnoxDroid',
-		icon: TwitterIcon
+		icon: TwitterIcon,
+		target: '_blank'
+	},
+	{
+		name: 'Profile',
+		url: './profile',
+		icon: Profile,
+		target: ''
 	}
 ]
 ---
@@ -45,7 +54,12 @@ const SOCIALNETWORKS = [
 
 				{
 					SOCIALNETWORKS.map((network) => (
-						<HeaderLink class='' href={network.url} target='_blank' aria-label={network.name}>
+						<HeaderLink
+							class=''
+							href={network.url}
+							target={network.target}
+							aria-label={network.name}
+						>
 							<span>{<network.icon />} </span>
 						</HeaderLink>
 					))
