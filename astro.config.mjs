@@ -38,7 +38,5 @@ export default defineConfig({
 		tailwind()
 	],
 	output: 'server',
-	adapter: vercel({
-		isr: true
-	})
+	adapter: vercel()
 })
