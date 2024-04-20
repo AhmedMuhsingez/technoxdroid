@@ -37,6 +37,6 @@ export default defineConfig({
 		sitemap(),
 		tailwind()
 	],
-	output: 'server',
+	output: 'static',
 	adapter: vercel()
 })
