@@ -920,36 +920,6 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@pagefind/darwin-arm64@1.0.4":
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/@pagefind/darwin-arm64/-/darwin-arm64-1.0.4.tgz#01cf61eeeb5ed3f2ce42a9cddfa6826fa30164c2"
-  integrity sha512-2OcthvceX2xhm5XbgOmW+lT45oLuHqCmvFeFtxh1gsuP5cO8vcD8ZH8Laj4pXQFCcK6eAdSShx+Ztx/LsQWZFQ==
-
-"@pagefind/darwin-x64@1.0.4":
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/@pagefind/darwin-x64/-/darwin-x64-1.0.4.tgz#7d8a63503c8ad39fb10faefa6838162b6845d4e7"
-  integrity sha512-xkdvp0D9Ld/ZKsjo/y1bgfhTEU72ITimd2PMMQtts7jf6JPIOJbsiErCvm37m/qMFuPGEq/8d+fZ4pydOj08HQ==
-
-"@pagefind/default-ui@^1.0.4":
-  version "1.0.4"
-  resolved "https://registry.npmjs.org/@pagefind/default-ui/-/default-ui-1.0.4.tgz"
-  integrity sha512-edkcaPSKq67C49Vehjo+LQCpT615v4d7JRhfGzFPccePvdklaL+VXrfghN/uIfsdoG+HoLI1PcYy2iFcB9CTkw==
-
-"@pagefind/linux-arm64@1.0.4":
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/@pagefind/linux-arm64/-/linux-arm64-1.0.4.tgz#d755a104125eaac32201b1359e3cd575a6382674"
-  integrity sha512-jGBrcCzIrMnNxLKVtogaQyajVfTAXM59KlBEwg6vTn8NW4fQ6nuFbbhlG4dTIsaamjEM5e8ZBEAKZfTB/qd9xw==
-
-"@pagefind/linux-x64@1.0.4":
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/@pagefind/linux-x64/-/linux-x64-1.0.4.tgz#f8992b9a46d382d698c85cfa8c2e909d8e5b79ba"
-  integrity sha512-LIn/QcvcEtLEBqKe5vpSbSC2O3fvqbRCWOTIklslqSORisCsvzsWbP6j+LYxE9q0oWIfkdMoWV1vrE/oCKRxHg==
-
-"@pagefind/windows-x64@1.0.4":
-  version "1.0.4"
-  resolved "https://registry.npmjs.org/@pagefind/windows-x64/-/windows-x64-1.0.4.tgz"
-  integrity sha512-QlBCVeZfj9fc9sbUgdOz76ZDbeK4xZihOBAFqGuRJeChfM8pnVeH9iqSnXgO3+m9oITugTf7PicyRUFAG76xeQ==
-
 "@pkgjs/parseargs@^0.11.0":
   version "0.11.0"
   resolved "https://registry.npmjs.org/@pkgjs/parseargs/-/parseargs-0.11.0.tgz"
@@ -4657,17 +4627,6 @@ p-try@^2.0.0:
   version "2.2.0"
   resolved "https://registry.npmjs.org/p-try/-/p-try-2.2.0.tgz"
   integrity sha512-R4nPAVTAU0B9D35/Gk3uJf/7XYbQcyohSKdvAxIRSNghFl4e71hVoGnBNQz9cWaXxO2I10KTC+3jMdvvoKw6dQ==
-
-pagefind@^1.0.3:
-  version "1.0.4"
-  resolved "https://registry.npmjs.org/pagefind/-/pagefind-1.0.4.tgz"
-  integrity sha512-oRIizYe+zSI2Jw4zcMU0ebDZm27751hRFiSOBLwc1OIYMrsZKk+3m8p9EVaOmc6zZdtqwwdilNUNxXvBeHcP9w==
-  optionalDependencies:
-    "@pagefind/darwin-arm64" "1.0.4"
-    "@pagefind/darwin-x64" "1.0.4"
-    "@pagefind/linux-arm64" "1.0.4"
-    "@pagefind/linux-x64" "1.0.4"
-    "@pagefind/windows-x64" "1.0.4"
 
 parent-module@^1.0.0:
   version "1.0.1"
