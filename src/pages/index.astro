@@ -10,6 +10,7 @@ import { fetchArticles } from 'src/utils/fetchApiData'
 const allArticles = (await fetchArticles()).map((article) => {
 	return article
 })
+export const prerender = true
 ---
 
 <BaseLayout title='الصفحة الرئيسية'>
