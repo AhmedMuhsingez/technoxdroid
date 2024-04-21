@@ -3,7 +3,7 @@ import mdx from '@astrojs/mdx'
 import sitemap from '@astrojs/sitemap'
 import tailwind from '@astrojs/tailwind'
 import { remarkReadingTime } from './src/utils/readTime.ts'
-import vercel from '@astrojs/vercel/static'
+import vercel from '@astrojs/vercel/serverless'
 
 // https://astro.build/config
 export default defineConfig({
@@ -37,6 +37,6 @@ export default defineConfig({
 		sitemap(),
 		tailwind()
 	],
-	output: 'static',
-	adapter: vercel({ isr: true })
+	output: 'server',
+	adapter: vercel()
 })
