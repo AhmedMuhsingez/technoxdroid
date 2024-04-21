@@ -12,6 +12,8 @@ const { FirstBig = false, filteredArticles, allArticles } = Astro.props
 const articlesToShow = filteredArticles ? filteredArticles : allArticles
 
 // This is the component of the ALL ARTICLES category in the home page
+
+export const prerender = true
 ---
 
 <section
