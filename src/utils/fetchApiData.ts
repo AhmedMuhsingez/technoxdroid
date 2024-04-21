@@ -10,7 +10,7 @@ import fetchApi from 'src/lib/strapi'
 // 	return articles
 // }
 
-export const prerender = true
+// export const prerender = false
 
 export const fetchArticles = async () => {
 	const articles = await fetchApi<Article>({

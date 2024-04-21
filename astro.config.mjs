@@ -7,6 +7,9 @@ import vercel from '@astrojs/vercel/serverless'
 
 // https://astro.build/config
 export default defineConfig({
+	output: 'server',
+	adapter: vercel(),
+
 	site: 'https://technoxdroid.com/', // Write here your website url
 	markdown: {
 		remarkPlugins: [remarkReadingTime],
@@ -36,7 +39,5 @@ export default defineConfig({
 		}),
 		sitemap(),
 		tailwind()
-	],
-	output: 'server',
-	adapter: vercel()
+	]
 })
