@@ -3,6 +3,8 @@ import BlogPost from '@/layouts/BlogPost'
 import { Debug } from 'astro:components'
 import fetchApi from 'src/lib/strapi'
 
+export const prerender = true
+
 const { slug } = Astro.params
 let articleSlug = !slug ? 'index' : slug
 
