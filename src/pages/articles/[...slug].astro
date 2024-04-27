@@ -10,6 +10,7 @@ const article = await fetchApi<SingleArticleData>({
 	endpoint: `articles/${articleSlug}`,
 	query: { populate: '*' }
 })
+export const prerender = true
 ---
 
 <BlogPost data={article.data.attributes}>
