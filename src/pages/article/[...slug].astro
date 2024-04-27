@@ -1,20 +1,22 @@
 ---
 import BlogPost from '@/layouts/BlogPost'
-import { fetchArticlesData } from 'src/utils/fetchApiData'
+import fetchApi from 'src/lib/strapi'
+export const prerender = false
 
-export const prerender = true
-export async function getStaticPaths() {
-	const allArticles = await fetchArticlesData()
+const { slug } = Astro.params
+let articleSlug = !slug ? 'index' : slug
 
-	return allArticles.map((article) => ({
-		params: { slug: article.attributes.slug },
-		props: article
-	}))
+const fetchSingleArticle = async () => {
+	const article = await fetchApi<ArticleAttributes>({
+		endpoint: `/article/${articleSlug}`,
+		query: { populate: '*' }
+	})
+	return article
 }
-const article = Astro.props.attributes
+const articleData = await fetchSingleArticle()
 ---
 
-<BlogPost data={article}>
+<BlogPost data={articleData}>
 	<!-- post -->
 	<article class='max-w-full w-full'>
 		<div class='prose prose-lg md:prose-xl dark:prose-invert mb-12 min-w-full'>

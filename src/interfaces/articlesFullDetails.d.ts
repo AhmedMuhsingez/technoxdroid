@@ -63,3 +63,7 @@ interface ArticleData {
 interface ArticlesFullDetails {
 	data: ArticleData[]
 }
+
+interface SingleArticleData {
+	data: ArticleData
+}
