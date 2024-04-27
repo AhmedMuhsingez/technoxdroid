@@ -1,0 +1,24 @@
+---
+import BlogPost from '@/layouts/BlogPost'
+import { Debug } from 'astro:components'
+import fetchApi from 'src/lib/strapi'
+
+const { slug } = Astro.params
+let articleSlug = !slug ? 'index' : slug
+
+const article = await fetchApi<SingleArticleData>({
+	endpoint: `articles/${articleSlug}`,
+	query: { populate: '*' }
+})
+---
+
+<BlogPost data={article.data.attributes}>
+	<!-- <article class='max-w-full w-full'> --><!-- <div class='prose prose-lg md:prose-xl dark:prose-invert mb-12 min-w-full'>
+			<Content components={{ pre: Code, SButton }} />
+		</div>
+		<ArticleView /> related posts --><!-- </article> -->
+</BlogPost>
+<!-- <h3>
+	{article.data.id}
+	<Debug data={article} />
+</h3> -->

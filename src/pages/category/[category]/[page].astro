@@ -30,8 +30,7 @@ export async function getStaticPaths({ paginate }: any) {
 				categoryName: category.attributes.name,
 				filteredArticles: filteredArticles,
 				allArticles: allArticles
-			},
-			revalidate: 60
+			}
 		})
 	})
 }

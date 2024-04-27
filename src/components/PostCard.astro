@@ -7,7 +7,7 @@ const { id, title, description, pubDate, heroImage, category, slug } = Astro.pro
 ---
 
 <article class='grid grid-rows-[300px_auto] md:grid-rows-[300px_220px] min-h-full group'>
-	<a class='relative overflow-hidden' href={`/article/${slug}/`}>
+	<a class='relative overflow-hidden' href={`/articles/${id}/`}>
 		{
 			heroImage && (
 				<Image
@@ -40,7 +40,7 @@ const { id, title, description, pubDate, heroImage, category, slug } = Astro.pro
 	>
 		<div class='flex flex-col gap-3'>
 			<div class='flex flex-col gap-2'>
-				<a class='text-2xl font-semibold -tracking-wider' href={`/article/${slug}/`}>
+				<a class='text-2xl font-semibold -tracking-wider' href={`/articles/${id}/`}>
 					{title}
 				</a>
 			</div>
@@ -52,7 +52,7 @@ const { id, title, description, pubDate, heroImage, category, slug } = Astro.pro
 
 		<footer class='flex justify-between items-center'>
 			<a
-				href={`/article/${slug}/`}
+				href={`/articles/${id}/`}
 				class='flex justify-center items-center dark:text-white rounded-full hover:translate-x-1 transition-transform duration-150 ease-in-out font-semibold gap-1 group'
 				aria-label={`go to ${title}`}
 			>
