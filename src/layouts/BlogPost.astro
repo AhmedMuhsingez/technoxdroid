@@ -10,7 +10,7 @@ type Props = {
 const { data } = Astro.props
 const { title, description, publishedAt, cover, Tags } = data
 const coverImage = cover.data.attributes.formats.large.url
-export const prerender = true
+// export const prerender = true
 ---
 
 <BaseLayout title={title} description={description} image={coverImage} articleDate={publishedAt}>
