@@ -5,7 +5,9 @@ const { activeCategory } = Astro.props
 const categoriesData = await fetchCategories()
 ---
 
-<div class='relative flex flex-wrap min-w-full gap-5'>
+<div
+	class='flex gap-5 animate-scaleToLeftAndBack overflow whitespace-nowrap overflow-x-auto no-scrollbar'
+>
 	<Category />
 	{
 		categoriesData.data.map((category) => (

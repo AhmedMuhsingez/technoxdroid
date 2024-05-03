@@ -14,6 +14,15 @@ module.exports = {
 			},
 			gridTemplateColumns: {
 				list: 'repeat(auto-fill, minmax(400px, max-content))'
+			},
+			keyframes: {
+				scaleToLeftAndBack: {
+					'0%, 100%': { transform: 'translateX(0)' },
+					'50%': { transform: 'translateX(-50px)' }
+				}
+			},
+			animation: {
+				scaleToLeftAndBack: 'scaleToLeftAndBack 1s ease-in-out forwards'
 			}
 		}
 	},
