@@ -23,7 +23,8 @@ export default async function fetchApi<T>({
 		endpoint = endpoint.slice(1)
 	}
 
-	const url = new URL(`https://technodroid-dashboard-38b3922bb6c2.herokuapp.com/api/${endpoint}`) //should remove the explicit url and add it as a parameter from env
+	// const url = new URL(`/api/${endpoint}`) //should remove the explicit url and add it as a parameter from env
+	const url = new URL(`${import.meta.env.API_URL + endpoint}`)
 
 	if (query) {
 		Object.entries(query).forEach(([key, value]) => {
