@@ -1,8 +1,8 @@
 ---
 import { cn } from '@/utils'
-const { name = 'جميع المقالات', activeCategory, categorySlug } = Astro.props
+const { name = 'جميع المقالات', categorySlug } = Astro.props
 const currentPath = Astro.url.pathname
-
+let activeCategory = Astro.params.category
 const isActive = name !== 'جميع المقالات' ? activeCategory === categorySlug : currentPath === '/'
 ---
 
@@ -13,15 +13,13 @@ const isActive = name !== 'جميع المقالات' ? activeCategory === categ
 		isActive &&
 			`border-black border-b-2 text-black z-10  dark:border-white dark:text-white dark:border-opacity-100 border-opacity-100 activeCategory`
 	)}
+	id={isActive ? 'activeCategory' : ''}
 >
 	{name}
 </a>
 <script>
-	document.addEventListener('DOMContentLoaded', function () {
-		function scrollIntoView() {
-			const activeCategory = document.querySelector('.activeCategory')
-			activeCategory?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' })
-		}
-		setTimeout(scrollIntoView, 2000) // scrollIntoView()
+	document.addEventListener('astro:after-swap', () => {
+		const activeCategory = document.getElementById('activeCategory')
+		activeCategory?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' })
 	})
 </script>

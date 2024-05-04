@@ -1,7 +1,7 @@
 ---
 import Category from '@/components/Category'
 import { fetchCategories } from 'src/utils/fetchApiData'
-const { activeCategory } = Astro.props
+// const { activeCategory } = Astro.props
 const categoriesData = await fetchCategories()
 const homePage = Astro.url.pathname === '/'
 ---
@@ -12,13 +12,10 @@ const homePage = Astro.url.pathname === '/'
 	<Category />
 	{
 		categoriesData.data.map((category) => (
-			<Category
-				name={category.attributes.name}
-				activeCategory={activeCategory}
-				categorySlug={category.attributes.slug}
-			/>
+			<Category name={category.attributes.name} categorySlug={category.attributes.slug} />
 		))
 	}
+
 	<!-- <div
 		class='hidden sm:block absolute bottom-0 w-full border-b-2 -z-40 dark:border-gray-600 max-w-full'
 	>

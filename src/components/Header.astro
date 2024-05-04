@@ -31,7 +31,7 @@ const SOCIALNETWORKS = [
 const isAllArticles = Astro.url.pathname === '/'
 ---
 
-<header class='flex items-center h-12 font-semibold justify-between'>
+<header class='relative flex items-center h-12 font-semibold justify-between'>
 	<div class='flex items-center'>
 		<a class='mt-2 ml-4' href='/'>{isAllArticles ? <Logo /> : <ArrowLeft />}</a>
 		<span class='text-3xl'>تكنودرويد</span>
@@ -65,11 +65,7 @@ const isAllArticles = Astro.url.pathname === '/'
 				<!-- </div> -->
 			</nav>
 		</div>
-		<button
-			id='astro-header-drawer-button'
-			type='button'
-			class='md:ml-6 md:hidden sm:visible lg:hidden'
-		>
+		<button id='astro-header-drawer-button' type='button' class='md:ml-6 md:hidden'>
 			<MenuIcon />
 		</button>
 	</>
