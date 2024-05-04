@@ -3,10 +3,11 @@ import Category from '@/components/Category'
 import { fetchCategories } from 'src/utils/fetchApiData'
 const { activeCategory } = Astro.props
 const categoriesData = await fetchCategories()
+const homePage = Astro.url.pathname === '/'
 ---
 
 <div
-	class='flex gap-5 animate-scaleToLeftAndBack overflow whitespace-nowrap overflow-x-auto no-scrollbar'
+	class=`${homePage ? 'animate-scaleToLeftAndBack': ''} gap-5 flex overflow whitespace-nowrap overflow-x-auto no-scrollbar`
 >
 	<Category />
 	{
@@ -18,6 +19,8 @@ const categoriesData = await fetchCategories()
 			/>
 		))
 	}
-
-	<div class='hidden sm:block absolute w-full bottom-0 border-b-2 -z-40 dark:border-gray-600'></div>
+	<!-- <div
+		class='hidden sm:block absolute bottom-0 w-full border-b-2 -z-40 dark:border-gray-600 max-w-full'
+	>
+	</div> -->
 </div>
