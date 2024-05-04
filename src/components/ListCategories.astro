@@ -1,7 +1,6 @@
 ---
 import Category from '@/components/Category'
 import { fetchCategories } from 'src/utils/fetchApiData'
-// const { activeCategory } = Astro.props
 const categoriesData = await fetchCategories()
 const homePage = Astro.url.pathname === '/'
 ---

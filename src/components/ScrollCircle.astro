@@ -1,23 +1,24 @@
----
+<!-- ---
 const handleSroll = () => {}
 ---
 
 <button
 	id='a'
-	class='light:text-black fixed bottom-0 right-0 border-solid border-2 border-sky-500 m-8 p-2 rounded-full a showBtn'
+	class='light:text-black fixed bottom-0 right-0 border-solid border-2 border-sky-500 m-8 p-1 rounded-full a showBtn'
 	>↑</button
 >
 
 <script>
 	// Find our component DOM on the page using ID.
 	const a = document.querySelector('#a')
-	a?.addEventListener('click', () => {
-		window.scrollTo({ top: 0, behavior: 'smooth' })
-	})
+
+	// const handleClick = a?.addEventListener('click', () => {
+	// 	window.scrollTo({ top: 0, behavior: 'smooth' })
+	// })
 
 	var rootElement = document.documentElement //the whole page itself
 
-	function handleScroll() {
+	function showScroll() {
 		// Do something on scroll
 		var scrollTotal = rootElement.scrollHeight - rootElement.clientHeight
 		if (rootElement.scrollTop / scrollTotal > 0.8) {
@@ -29,7 +30,15 @@ const handleSroll = () => {}
 		}
 	}
 
-	document.addEventListener('scroll', handleScroll)
+	// document.addEventListener('scroll', handleScroll)
+
+	document.addEventListener('astro:after-swap', () => {
+		showScroll()
+		const scrollable = document.getElementsByClassName('a')[0]
+		scrollable?.addEventListener('click', () => {
+			window.scrollTo({ top: 0, behavior: 'smooth' })
+		})
+	})
 </script>
 
 <style>
@@ -43,4 +52,4 @@ const handleSroll = () => {}
 		opacity: 1;
 		transform: translateY(0);
 	}
-</style>
+</style> -->
