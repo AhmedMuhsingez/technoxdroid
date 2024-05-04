@@ -62,7 +62,9 @@ const isAllArticles = Astro.url.pathname === '/'
 							</HeaderLink>
 						))
 					}
-					<ToggleTheme />
+					<div class='flex items-center gap-3 md:pl-3' transition:persist='navbar'>
+						<ToggleTheme />
+					</div>
 				</div>
 				<!-- <div class='flex items-center gap-3 md:pl-3' transition:persist='navbar'> -->
 				<!-- </div> -->
@@ -76,19 +78,19 @@ const isAllArticles = Astro.url.pathname === '/'
 			<MenuIcon />
 		</button>
 	</>
-</header>
-<script>
-	document.addEventListener('click', (event) => {
-		const menu = document.getElementById('astro-header-drawer')
-		const menuButton = document.getElementById('astro-header-drawer-button')
-		const isClickInside =
-			menu?.contains(event.target as HTMLDivElement) ||
-			menuButton?.contains(event.target as HTMLButtonElement)
+	<script>
+		document.addEventListener('click', (event) => {
+			const menu = document.getElementById('astro-header-drawer')
+			const menuButton = document.getElementById('astro-header-drawer-button')
+			const isClickInside =
+				menu?.contains(event.target as HTMLDivElement) ||
+				menuButton?.contains(event.target as HTMLButtonElement)
 
-		if (isClickInside) {
-			menu?.classList.toggle('translate-x-96')
-		} else {
-			menu?.classList.add('translate-x-96')
-		}
-	})
-</script>
+			if (isClickInside) {
+				menu?.classList.toggle('translate-x-96')
+			} else {
+				menu?.classList.add('translate-x-96')
+			}
+		})
+	</script>
+</header>
