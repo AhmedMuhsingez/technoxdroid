@@ -34,6 +34,7 @@
 	"dependencies": {
 		"@astrojs/vercel": "^7.5.4",
 		"astro": "4.7.1",
+		"date-fns": "^3.6.0",
 		"sharp": "^0.33.3"
 	},
 	"devDependencies": {

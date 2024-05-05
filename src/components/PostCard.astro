@@ -21,15 +21,14 @@ const { id, title, description, pubDate, heroImage, category, slug } = Astro.pro
 			)
 		}
 
-		<div class='z-30 absolute bottom-0 w-full h-20'>
-			<div class='-z-10 absolute bottom-0 glass w-full min-h-full'></div>
-			<div class='flex items-center justify-between gap-x-1 text-white px-6 py-4'>
+		<div class='z-30 absolute bottom-0 w-full'>
+			<div
+				class='flex items-center justify-between gap-x-1 text-white px-6 py-4 -z-10 absolute bottom-0 glass w-full min-h-full'
+			>
+				<span class='pb-5'>{category}</span>
 				<div class='flex flex-col gap-1 items-center justify-center'>
-					<!-- <FormattedDate date={pubDate} /> -->
-					<!-- <span class='text-sm'> {readTime}</span> -->
+					<FormattedDate date={pubDate} />
 				</div>
-
-				<span class='pb-4'>{category}</span>
 			</div>
 		</div>
 	</a>

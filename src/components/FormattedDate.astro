@@ -1,17 +1,18 @@
 ---
+import { format, parseISO, formatDistanceToNow } from 'date-fns'
 export interface Props {
-	date: Date
+	date: string
 }
-
 const { date } = Astro.props
+const publishDate = date
+const sinceTime = formatDistanceToNow(new Date(date))
 ---
 
-<time class='text-sm font-bold text-opacity-60' datetime={date.toISOString()}>
-	{
-		date.toLocaleDateString('en-us', {
-			year: 'numeric',
-			month: 'short',
-			day: 'numeric'
-		})
-	}
-</time>
+<div class='text-sm font-bold text-opacity-60 flex flex-col'>
+	<span class='flex w-full'>
+		{format(parseISO(publishDate), 'yyyy, MMMM dd')}
+	</span>
+	<span class='flex w-full justify-end font-normal'>
+		{sinceTime}
+	</span>
+</div>
