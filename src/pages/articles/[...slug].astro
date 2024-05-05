@@ -1,38 +1,37 @@
 ---
 import BlogPost from '@/layouts/BlogPost'
-import { Debug } from 'astro:components'
 import fetchApi from 'src/lib/strapi'
+import { marked } from 'marked'
+import * as DOMPurify from 'dompurify'
 
 const { slug } = Astro.params
-// let articleSlug = !slug ? 'index' : slug
-
-// const article = await fetchApi<SingleArticleData>({
-// 	endpoint: `articles/${articleSlug}`,
-// 	query: { populate: '*' }
-// })
 let article: SingleArticleData
-
 try {
 	article = await fetchApi<SingleArticleData>({
 		endpoint: 'articles/' + slug,
-		// wrappedByKey: 'data',
-		// wrappedByList: true,
 		query: {
-			// 'filters[slug][$eq]': slug || ''
 			populate: '*'
 		}
 	})
 } catch (error) {
 	return Astro.redirect('/404')
 }
+
+const markdownBlocks = article.data.attributes.blocks
+
+const markdownContent = markdownBlocks.map((res) => {
+	// return DOMPurify.sanitize(marked.parse(res.body))
+	const singleBlock = marked.parse(res.body)
+	// const response = DOMPurify.sanitize(singleBlock)
+	return singleBlock
+})
 ---
 
 <BlogPost data={article.data.attributes} />
-<!-- <h3>
-	<Debug data={article} />
-</h3> -->
 
-<!-- <article class='max-w-full w-full'> --><!-- <div class='prose prose-lg md:prose-xl dark:prose-invert mb-12 min-w-full'>
-			<Content components={{ pre: Code, SButton }} />
-		</div>
-		<ArticleView /> related posts --><!-- </article> -->
+<article class='max-w-full w-full' set:html={markdownContent}>
+	<!-- <div class='prose prose-lg md:prose-xl dark:prose-invert mb-12 min-w-full'> -->
+	<!-- <Content components={{ pre: Code, SButton }} /> -->
+	<!-- </div> -->
+	<!-- <ArticleView /> related posts -->
+</article>

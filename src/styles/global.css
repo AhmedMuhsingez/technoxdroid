@@ -42,6 +42,10 @@
 .forceRTL {
 	direction: rtl;
 }
+.forceLTR {
+	direction: ltr;
+}
+
 @layer utilities {
 	.no-scrollbar::-webkit-scrollbar {
 		display: none; /* Hide scrollbar for Chrome, Safari and Opera */

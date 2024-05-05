@@ -10,19 +10,19 @@ export default defineConfig({
 	output: 'server',
 	adapter: vercel(),
 	site: 'https://technoxdroid.com/',
-	markdown: {
-		remarkPlugins: [remarkReadingTime],
-		drafts: true,
-		shikiConfig: {
-			theme: 'material-theme-palenight',
-			wrap: true
-		}
-	},
-	image: {
-		service: {
-			entrypoint: 'astro/assets/services/noop'
-		}
-	},
+	// markdown: {
+	// 	remarkPlugins: [remarkReadingTime],
+	// 	drafts: true,
+	// 	shikiConfig: {
+	// 		theme: 'material-theme-palenight',
+	// 		wrap: true
+	// 	}
+	// },
+	// image: {
+	// 	service: {
+	// 		entrypoint: 'astro/assets/services/noop'
+	// 	}
+	// },
 	integrations: [
 		mdx({
 			syntaxHighlight: 'shiki',

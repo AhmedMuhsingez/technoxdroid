@@ -8,11 +8,11 @@ const publishDate = date
 const sinceTime = formatDistanceToNow(new Date(date))
 ---
 
-<div class='text-sm font-bold text-opacity-60 flex flex-col'>
+<div class='text-sm font-bold text-opacity-60 flex flex-col forceLTR'>
 	<span class='flex w-full'>
 		{format(parseISO(publishDate), 'yyyy, MMMM dd')}
 	</span>
-	<span class='flex w-full justify-end font-normal'>
+	<span class='flex w-full font-normal'>
 		{sinceTime}
 	</span>
 </div>
