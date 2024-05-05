@@ -7,8 +7,22 @@ module.exports = {
 	theme: {
 		extend: {
 			colors: {
-				white: '#f0f2f5'
+				background: {
+					dark: '#18181a',
+					light: '#f0f2f5'
+				},
+				paper: {
+					dark: '#242527'
+				}
 			},
+			boxShadow: {
+				lightCard: '0px 4px 16px -8px rgba(0,0,0,0.5)',
+				lightCardHover: '0px 6px 16px -12px rgba(0,0,0,0.5)',
+
+				darkCard: '2px 4px 6px 0px rgba(0,0,0,0.6)',
+				darkCardHover: '2px 8px 6px -8px rgba(0,0,0,1)'
+			},
+
 			fontFamily: {
 				body: ['cairo', ...defaultTheme.fontFamily.sans]
 			},
