@@ -27,11 +27,11 @@ const markdownContent = markdownBlocks.map((res) => {
 })
 ---
 
-<BlogPost data={article.data.attributes} />
-
-<article class='max-w-full w-full' set:html={markdownContent}>
-	<!-- <div class='prose prose-lg md:prose-xl dark:prose-invert mb-12 min-w-full'> -->
-	<!-- <Content components={{ pre: Code, SButton }} /> -->
-	<!-- </div> -->
-	<!-- <ArticleView /> related posts -->
-</article>
+<BlogPost data={article.data.attributes}>
+	<article class='max-w-full w-full' set:html={markdownContent}>
+		<!-- <div class='prose prose-lg md:prose-xl dark:prose-invert mb-12 min-w-full'> -->
+		<!-- <Content components={{ pre: Code, SButton }} /> -->
+		<!-- </div> -->
+		<!-- <ArticleView /> related posts -->
+	</article>
+</BlogPost>
