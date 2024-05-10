@@ -22,16 +22,11 @@ const markdownBlocks = article.data.attributes.blocks
 const markdownContent = markdownBlocks.map((res) => {
 	// return DOMPurify.sanitize(marked.parse(res.body))
 	const singleBlock = marked.parse(res.body)
-	// const response = DOMPurify.sanitize(singleBlock)
 	return singleBlock
 })
 ---
 
+<!-- <div class='prose prose-lg md:prose-xl dark:prose-invert mb-12 min-w-full'> --><!-- <Content components={{ pre: Code, SButton }} /> --><!-- </div> --><!-- <ArticleView /> related posts -->
 <BlogPost data={article.data.attributes}>
-	<article class='max-w-full w-full' set:html={markdownContent}>
-		<!-- <div class='prose prose-lg md:prose-xl dark:prose-invert mb-12 min-w-full'> -->
-		<!-- <Content components={{ pre: Code, SButton }} /> -->
-		<!-- </div> -->
-		<!-- <ArticleView /> related posts -->
-	</article>
+	<article class='max-w-full w-full' set:html={markdownContent} />
 </BlogPost>

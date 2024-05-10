@@ -1,6 +1,5 @@
 ---
 import PostCard from '@/components/PostCard'
-import { cn } from '@/utils'
 
 type Props = {
 	FirstBig?: boolean
@@ -10,6 +9,7 @@ type Props = {
 
 const { FirstBig = false, filteredArticles, allArticles } = Astro.props
 const articlesToShow = filteredArticles ? filteredArticles : allArticles
+const thirdArticle = articlesToShow && articlesToShow[3]
 
 // This is the component of the ALL ARTICLES category in the home page
 
@@ -17,10 +17,8 @@ const articlesToShow = filteredArticles ? filteredArticles : allArticles
 ---
 
 <section
-	class={cn(
-		'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mt-3 md:[&>*:first-child]:col-span-2',
-		FirstBig && `md:[&>*:first-child]:col-span-2`
-	)}
+	class={`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mt-3 md:[&>*:first-child]:col-span-2
+		${FirstBig && 'md:[&>*:first-child]:col-span-2'}`}
 >
 	{
 		articlesToShow?.map(async (article) => {
