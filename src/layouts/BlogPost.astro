@@ -2,6 +2,7 @@
 import BaseLayout from '@/layouts/BaseLayout'
 import Tag from '@/components/Tag'
 import { Image } from 'astro:assets'
+import FormattedDate from '@/components/FormattedDate'
 
 type Props = {
 	data: ArticleAttributes
@@ -10,7 +11,7 @@ type Props = {
 const { data } = Astro.props
 const { title, description, publishedAt, cover, Tags } = data
 const coverImage = cover.data.attributes.formats.large.url
-export const prerender = true
+const publishDate = FormattedDate
 ---
 
 <BaseLayout title={title} description={description} image={coverImage} articleDate={publishedAt}>
@@ -19,12 +20,8 @@ export const prerender = true
 			<div class='flex flex-col gap-2'>
 				<div class='flex items-center justify-center gap-x-1'>
 					<p class='text-center text-sm text-opacity-50'>
-						<!-- Published <FormattedDate date={publishedAt} /> -->
-						<time class='text-sm font-bold text-opacity-60'> Published At {publishedAt}</time>
+						<time class='text-sm font-bold text-opacity-60'> تم النشر في {publishedAt}</time>
 					</p>
-					<!-- <p class='text-center text-sm text-opacity-50 font-bold'>
-						- {publishedAt}
-					</p> READ TIME-->
 				</div>
 				<h1 class='text-center text-4xl md:text-6xl md:pb-2.5 font-semibold'>
 					{title}
@@ -53,7 +50,7 @@ export const prerender = true
 
 		<hr />
 
-		<div>
+		<div class='pt-4'>
 			<slot />
 		</div>
 	</article>

@@ -21,7 +21,8 @@ const markdownBlocks = article.data.attributes.blocks
 
 const markdownContent = markdownBlocks.map((res) => {
 	// return DOMPurify.sanitize(marked.parse(res.body))
-	const singleBlock = marked.parse(res.body)
+	const singleBlock = marked.parse(res.body.replace(/\n/gi, '<br />'))
+
 	return singleBlock
 })
 ---
