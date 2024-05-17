@@ -14,11 +14,8 @@ const allArticles = (await fetchArticles()).map((article) => {
 <BaseLayout title='الصفحة الرئيسية'>
 	<TitlePage title={'جميع المقالات'} />
 	<ListCategories />
-
-	<div>
-		<!-- <h2 class='text-lg font-medium tracking-wide'>آخر المقالات</h2> -->
-		<ListPosts FirstBig={true} allArticles={allArticles} />
-	</div>
+	<!-- <h2 class='text-lg font-medium tracking-wide'>آخر المقالات</h2> -->
+	<ListPosts FirstBig={true} allArticles={allArticles} />
 </BaseLayout>
 
 <script>
