@@ -6,7 +6,7 @@ const homePage = Astro.url.pathname === '/'
 ---
 
 <div
-	class=`${homePage ? 'sm:animate-scaleToLeftAndBack': ''} gap-5 flex overflow whitespace-nowrap overflow-x-auto no-scrollbar`
+	class=`${homePage ? 'max-[720px]:animate-scaleToLeftAndBack': ''} gap-5 flex overflow whitespace-nowrap overflow-x-auto no-scrollbar`
 >
 	<Category />
 	{
