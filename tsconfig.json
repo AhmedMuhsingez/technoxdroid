@@ -1,19 +1,38 @@
 {
-	"extends": "astro/tsconfigs/strict",
-	"compilerOptions": {
-		"strictNullChecks": true,
-		"noImplicitAny": false, //shows a warning instead of an error on type checking
-		"baseUrl": ".",
-		"verbatimModuleSyntax": true,
-		"paths": {
-			"@/components/*": ["src/components/*.astro"],
-			"@/layouts/*": ["src/layouts/*.astro"],
-			"@/utils": ["src/utils/index.ts"],
-			"@/data/*": ["src/data/*"],
-			"@/site-config": ["src/data/site.config.ts"],
-			"@/styles": ["src/styles/"]
-		},
-		"module": "esnext"
-	},
-	"exclude": ["node_modules", "**/node_modules/*", ".vscode", "dist"]
+  "extends": "astro/tsconfigs/strict",
+  "compilerOptions": {
+    "strictNullChecks": true,
+    "noImplicitAny": false,
+    "baseUrl": ".",
+    "verbatimModuleSyntax": true,
+    "paths": {
+      "@/components/*": [
+        "src/components/*.astro"
+      ],
+      "@/layouts/*": [
+        "src/layouts/*.astro"
+      ],
+      "@/utils": [
+        "src/utils/index.ts"
+      ],
+      "@/data/*": [
+        "src/data/*"
+      ],
+      "@/site-config": [
+        "src/data/site.config.ts"
+      ],
+      "@/styles": [
+        "src/styles/"
+      ]
+    },
+    "module": "esnext",
+    "jsx": "react-jsx",
+    "jsxImportSource": "react"
+  },
+  "exclude": [
+    "node_modules",
+    "**/node_modules/*",
+    ".vscode",
+    "dist"
+  ]
 }
