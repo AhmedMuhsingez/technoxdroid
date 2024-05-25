@@ -1,9 +1,11 @@
 import { Swiper, SwiperSlide } from 'swiper/react'
-import 'swiper/css/effect-fade'
+import 'swiper/css'
 import './styles.css'
-import { EffectFade, Autoplay } from 'swiper/modules'
-import { Scrollbar } from 'swiper/modules'
+import 'swiper/css/effect-fade'
 import 'swiper/css/scrollbar'
+import { Scrollbar } from 'swiper/modules'
+import { EffectFade, Autoplay } from 'swiper/modules'
+
 import { useRef } from 'react'
 
 export default function App() {
@@ -40,7 +42,7 @@ export default function App() {
 					<img src='https://swiperjs.com/demos/images/nature-2.jpg' />
 				</SwiperSlide>
 				<div className='autoplay-progress' slot='container-end'>
-					<svg viewBox='0 0 48 48' ref={progressCircle} fill='currentColor'>
+					<svg viewBox='0 0 48 48' ref={progressCircle}>
 						<circle cx='24' cy='24' r='20'></circle>
 					</svg>
 					<span ref={progressContent}></span>
