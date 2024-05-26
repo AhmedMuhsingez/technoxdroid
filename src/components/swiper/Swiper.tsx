@@ -24,7 +24,7 @@ export default function App() {
 				effect={'fade'}
 				modules={[EffectFade, Scrollbar, Autoplay]}
 				className='mySwiper'
-				style={{ borderRadius: '8px', width: '100%', maxHeight: '85vh', minHeight: '50vh' }}
+				style={{ borderRadius: '8px', width: '100%', maxHeight: '85vh', minHeight: '55vh' }}
 				scrollbar={{ hide: true }}
 				autoplay={{ delay: 4500, disableOnInteraction: false }}
 				onAutoplayTimeLeft={onAutoplayTimeLeft}
