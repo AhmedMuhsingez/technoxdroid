@@ -23,8 +23,8 @@ export default function App() {
 				spaceBetween={30}
 				effect={'fade'}
 				modules={[EffectFade, Scrollbar, Autoplay]}
-				className='mySwiper h-full md:h-screen-1/2'
-				style={{ borderRadius: '8px', width: '100%', height: '85vh' }}
+				className='mySwiper'
+				style={{ borderRadius: '8px', width: '100%', maxHeight: '85vh' }}
 				scrollbar={{ hide: true }}
 				autoplay={{ delay: 4500, disableOnInteraction: false }}
 				onAutoplayTimeLeft={onAutoplayTimeLeft}
