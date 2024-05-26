@@ -22,25 +22,20 @@ export default function App() {
 			<Swiper
 				spaceBetween={30}
 				effect={'fade'}
-				// navigation={true}
 				modules={[EffectFade, Scrollbar, Autoplay]}
-				className='mySwiper'
-				style={{ borderRadius: '8px', height: '85vh', width: '100%' }}
-				scrollbar={{
-					hide: true
-				}}
-				autoplay={{
-					delay: 4500,
-					disableOnInteraction: false
-				}}
+				className='mySwiper h-full md:h-screen-1/2'
+				style={{ borderRadius: '8px', width: '100%', height: '85vh' }}
+				scrollbar={{ hide: true }}
+				autoplay={{ delay: 4500, disableOnInteraction: false }}
 				onAutoplayTimeLeft={onAutoplayTimeLeft}
 			>
 				<SwiperSlide>
-					<img src='https://swiperjs.com/demos/images/nature-1.jpg' />
+					<img src='https://swiperjs.com/demos/images/nature-1.jpg' style={{ height: '100%' }} />
 				</SwiperSlide>
 				<SwiperSlide>
-					<img src='https://swiperjs.com/demos/images/nature-2.jpg' />
+					<img src='https://swiperjs.com/demos/images/nature-2.jpg' style={{ height: '100%' }} />
 				</SwiperSlide>
+
 				<div className='autoplay-progress' slot='container-end'>
 					<svg viewBox='0 0 48 48' ref={progressCircle}>
 						<circle cx='24' cy='24' r='20'></circle>
