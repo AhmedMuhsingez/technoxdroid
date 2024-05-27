@@ -8,7 +8,12 @@ import { EffectFade, Autoplay } from 'swiper/modules'
 
 import { useRef } from 'react'
 
-export default function App() {
+interface Props {
+	allArticles: ArticleData[]
+}
+export default function App(props: Props) {
+	const { allArticles } = props
+
 	const progressCircle = useRef(null)
 	const progressContent = useRef(null)
 	const onAutoplayTimeLeft = (s, time, progress) => {
@@ -30,10 +35,16 @@ export default function App() {
 				onAutoplayTimeLeft={onAutoplayTimeLeft}
 			>
 				<SwiperSlide>
-					<img src='https://swiperjs.com/demos/images/nature-1.jpg' style={{ height: '100%' }} />
+					<img
+						src='https://swiperjs.com/demos/images/nature-1.jpg'
+						style={{ height: '100%', objectFit: 'cover' }}
+					/>
 				</SwiperSlide>
 				<SwiperSlide>
-					<img src='https://swiperjs.com/demos/images/nature-2.jpg' style={{ height: '100%' }} />
+					<img
+						src='https://swiperjs.com/demos/images/nature-2.jpg'
+						style={{ height: '100%', objectFit: 'cover' }}
+					/>
 				</SwiperSlide>
 
 				<div className='autoplay-progress' slot='container-end'>
