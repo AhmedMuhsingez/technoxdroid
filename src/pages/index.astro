@@ -10,10 +10,12 @@ import { fetchArticles } from 'src/utils/fetchApiData'
 const allArticles = (await fetchArticles()).map((article) => {
 	return article
 })
+
+const swiperContent = allArticles.slice(0, 4)
 ---
 
 <BaseLayout title='الصفحة الرئيسية'>
-	<Swiper client:load allArticles={allArticles} />
+	<Swiper client:load swiperContent={swiperContent} />
 	<TitlePage title={'جميع المقالات'} />
 
 	<ListCategories />

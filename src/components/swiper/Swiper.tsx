@@ -1,4 +1,5 @@
 import { Swiper, SwiperSlide } from 'swiper/react'
+import '../../styles/global.css'
 import 'swiper/css'
 import './styles.css'
 import 'swiper/css/effect-fade'
@@ -9,10 +10,10 @@ import { EffectFade, Autoplay } from 'swiper/modules'
 import { useRef } from 'react'
 
 interface Props {
-	allArticles: ArticleData[]
+	swiperContent: ArticleData[]
 }
 export default function App(props: Props) {
-	const { allArticles } = props
+	const { swiperContent } = props
 
 	const progressCircle = useRef(null)
 	const progressContent = useRef(null)
@@ -22,6 +23,45 @@ export default function App(props: Props) {
 		// @ts-ignore
 		progressContent.current.textContent = `${Math.ceil(time / 1000)}s`
 	}
+
+	const swiperData = swiperContent.map((article) => {
+		const picture = article.attributes.cover.data.attributes.formats.medium.url
+		const title = article.attributes.title
+		const details = article.attributes.description
+
+		return (
+			<SwiperSlide key={article.id}>
+				<img src={picture} style={{ height: '100%', objectFit: 'cover' }} />
+				<div
+					className='flex flex-col justify-center items-center'
+					style={{
+						color: 'white',
+						background: 'linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(255,255,255,0) 100%);',
+						width: '100%',
+						position: 'absolute',
+						bottom: 0,
+						height: '30%',
+						zIndex: 98
+					}}
+				>
+					<a
+						href={`/articles/${article.id}`}
+						style={{
+							fontSize: '1.25rem',
+							textAlign: 'center',
+							marginBottom: '1rem',
+							cursor: 'pointer'
+						}}
+					>
+						{title}
+					</a>
+					<a style={{ fontSize: '1rem', cursor: 'pointer' }} href={`/articles/${article.id}`}>
+						{details}
+					</a>
+				</div>
+			</SwiperSlide>
+		)
+	})
 	return (
 		<>
 			<Swiper
@@ -34,19 +74,7 @@ export default function App(props: Props) {
 				autoplay={{ delay: 4500, disableOnInteraction: false }}
 				onAutoplayTimeLeft={onAutoplayTimeLeft}
 			>
-				<SwiperSlide>
-					<img
-						src='https://swiperjs.com/demos/images/nature-1.jpg'
-						style={{ height: '100%', objectFit: 'cover' }}
-					/>
-				</SwiperSlide>
-				<SwiperSlide>
-					<img
-						src='https://swiperjs.com/demos/images/nature-2.jpg'
-						style={{ height: '100%', objectFit: 'cover' }}
-					/>
-				</SwiperSlide>
-
+				{swiperData}
 				<div className='autoplay-progress' slot='container-end'>
 					<svg viewBox='0 0 48 48' ref={progressCircle}>
 						<circle cx='24' cy='24' r='20'></circle>
