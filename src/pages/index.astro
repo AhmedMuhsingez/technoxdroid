@@ -3,16 +3,21 @@ import ListCategories from '@/components/ListCategories'
 import ListPosts from '@/components/ListPosts'
 import TitlePage from '@/components/TitlePage'
 import BaseLayout from '@/layouts/BaseLayout'
+import Swiper from 'src/components/swiper/Swiper'
 import { fetchArticles } from 'src/utils/fetchApiData'
 
 // Home page compoenet
 const allArticles = (await fetchArticles()).map((article) => {
 	return article
 })
+
+const swiperContent = allArticles.slice(0, 4)
 ---
 
 <BaseLayout title='الصفحة الرئيسية'>
+	<Swiper client:load swiperContent={swiperContent} />
 	<TitlePage title={'جميع المقالات'} />
+
 	<ListCategories />
 	<!-- <h2 class='text-lg font-medium tracking-wide'>آخر المقالات</h2> -->
 	<ListPosts FirstBig={true} allArticles={allArticles} />
