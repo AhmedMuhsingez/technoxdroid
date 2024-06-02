@@ -1,35 +1,3 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-@layer base {
-	/* body {
-		transition: background-color 0.5s ease;
-	} */
-
-	.prose code {
-		@apply text-base;
-	}
-
-	/* prose styles here */
-	.prose h1,
-	h2,
-	h3,
-	h4,
-	h5,
-	h6 {
-		@apply text-zinc-800 dark:text-zinc-100   !important;
-	}
-
-	html.dark .shiki,
-	html.dark .shiki span {
-		color: var(--shiki-dark) !important;
-		background-color: theme(colors.gray.900) !important;
-	}
-}
-#app {
-	height: 100%;
-}
 html,
 body {
 	position: relative;
