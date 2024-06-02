@@ -46,13 +46,13 @@ export default function App(props: Props) {
 				>
 					<a
 						href={`/articles/${article.id}`}
-						className='md:text-3xl text-lg text-center mb-2 cursor-pointer'
+						className='md:text-3xl text-md text-center mb-2 cursor-pointer'
 					>
 						{title}
 					</a>
 					<a
 						href={`/articles/${article.id}`}
-						className='md:text-lg text-md text-center mb-10 md:mb-2 cursor-pointer'
+						className='md:text-lg text-sm text-center mb-10 md:mb-2 cursor-pointer'
 					>
 						{details}
 					</a>
