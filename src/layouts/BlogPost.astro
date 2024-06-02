@@ -11,7 +11,7 @@ type Props = {
 const { data } = Astro.props
 const { title, description, publishedAt, cover, Tags } = data
 const coverImage = cover.data.attributes.formats.large.url
-const publishDate = FormattedDate
+// const publishDate = FormattedDate
 ---
 
 <BaseLayout title={title} description={description} image={coverImage} articleDate={publishedAt}>
@@ -20,13 +20,12 @@ const publishDate = FormattedDate
 			<div class='flex flex-col gap-2'>
 				<div class='flex items-center justify-center gap-x-1'>
 					<p class='text-center text-sm text-opacity-50'>
-						<time class='text-sm font-bold text-opacity-60'> تم النشر في {publishedAt}</time>
+						<time class='text-sm font-bold text-opacity-60'>
+							تم النشر في <FormattedDate date={publishedAt} insidePost={true} /></time
+						>
 					</p>
 				</div>
-				<h1
-					class='text-center text-4xl md:text-6xl md:pb-2.5 font-semibold'
-					style={{ lineHeight: 1.4 }}
-				>
+				<h1 class='text-center text-4xl md:text-6xl font-semibold' style={{ lineHeight: 1.4 }}>
 					{title}
 				</h1>
 			</div>
@@ -46,7 +45,7 @@ const publishDate = FormattedDate
 					format='jpg'
 					loading='eager'
 					class='rounded-md w-full max-h-[300px]  md:max-h-[500px] my-8 object-cover'
-					alt={`img of ${title}`}
+					alt={`صورة ${title}`}
 				/>
 			)
 		}

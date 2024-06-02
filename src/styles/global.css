@@ -27,6 +27,9 @@
 		background-color: theme(colors.gray.900) !important;
 	}
 }
+* {
+	user-select: none;
+}
 
 .glass {
 	background: rgba(57, 56, 56, 0.52);

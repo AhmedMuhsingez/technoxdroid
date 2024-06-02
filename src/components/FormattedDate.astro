@@ -2,8 +2,9 @@
 import { format, parseISO, formatDistanceToNow } from 'date-fns'
 export interface Props {
 	date: string
+	insidePost?: boolean
 }
-const { date } = Astro.props
+const { date, insidePost } = Astro.props
 const publishDate = date
 const sinceTime = formatDistanceToNow(new Date(date))
 ---
@@ -12,7 +13,5 @@ const sinceTime = formatDistanceToNow(new Date(date))
 	<span class='flex w-full'>
 		{format(parseISO(publishDate), 'yyyy, MMMM dd')}
 	</span>
-	<span class='flex w-full font-normal'>
-		{sinceTime}
-	</span>
+	{!insidePost && <span class='flex w-full font-normal'>{sinceTime}</span>}
 </div>
