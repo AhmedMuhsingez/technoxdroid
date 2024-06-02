@@ -46,7 +46,7 @@ export default function App(props: Props) {
 				>
 					<a
 						href={`/articles/${article.id}`}
-						className='md:text-3xl text-md text-center mb-2 cursor-pointer'
+						className='md:text-2xl text-md text-center mb-2 cursor-pointer'
 					>
 						{title}
 					</a>
@@ -65,7 +65,7 @@ export default function App(props: Props) {
 			<Swiper
 				spaceBetween={30}
 				effect={'fade'}
-				modules={[EffectFade, Scrollbar]}
+				modules={[EffectFade, Scrollbar, Autoplay]}
 				className='mySwiper'
 				style={{ borderRadius: '8px', width: '100%', maxHeight: '85vh', minHeight: '55vh' }}
 				scrollbar={{ hide: true }}
