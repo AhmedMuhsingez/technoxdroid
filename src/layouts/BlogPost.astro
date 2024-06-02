@@ -35,20 +35,16 @@ const coverImage = cover.data.attributes.formats.large.url
 			</div>
 		</header>
 
-		{
-			(
-				<Image
-					src={coverImage}
-					width={1000}
-					height={500}
-					quality={100}
-					format='jpg'
-					loading='eager'
-					class='rounded-md w-full max-h-[300px]  md:max-h-[500px] my-8 object-cover'
-					alt={`صورة ${title}`}
-				/>
-			)
-		}
+		<Image
+			src={coverImage}
+			width={1000}
+			height={500}
+			quality={100}
+			format='jpg'
+			loading='eager'
+			class='rounded-md w-full max-h-[300px] md:max-h-[500px] my-8 object-cover'
+			alt={`صورة ${title}`}
+		/>
 
 		<hr />
 

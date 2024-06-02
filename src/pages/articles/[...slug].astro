@@ -3,6 +3,8 @@ import BlogPost from '@/layouts/BlogPost'
 import fetchApi from 'src/lib/strapi'
 import { marked } from 'marked'
 import * as DOMPurify from 'dompurify'
+import { Debug } from 'astro:components'
+import { documentToHtmlString } from '@contentful/rich-text-html-renderer'
 
 const { slug } = Astro.params
 let article: SingleArticleData
@@ -17,17 +19,17 @@ try {
 	return Astro.redirect('/404')
 }
 
-const markdownBlocks = article.data.attributes.blocks
+const markdownBlock = marked.parse(article.data.attributes.RichTextEditor)
 
-const markdownContent = markdownBlocks.map((res) => {
-	// return DOMPurify.sanitize(marked.parse(res.body))
-	const singleBlock = marked.parse(res.body.replace(/\n/gi, '<br />'))
-
-	return singleBlock
-})
+// const markdownContent = markdownBlocks.map((res) => {
+// 	// return DOMPurify.sanitize(marked.parse(res.body))
+// 	const singleBlock = marked.parse(res.body.replace(/\n/gi, '<br />'))
+// 	return singleBlock
+// })
 ---
 
-<!-- <div class='prose prose-lg md:prose-xl dark:prose-invert mb-12 min-w-full'> --><!-- <Content components={{ pre: Code, SButton }} /> --><!-- </div> --><!-- <ArticleView /> related posts -->
-<BlogPost data={article.data.attributes}>
-	<article class='max-w-full w-full' set:html={markdownContent} />
-</BlogPost>
+<>
+	<BlogPost data={article.data.attributes}>
+		<article class='max-w-full w-full text-md md:text-lg lg:text-xl' set:html={markdownBlock} />
+	</BlogPost>
+</>

@@ -31,6 +31,21 @@
 	user-select: none;
 }
 
+h1 {
+	font-size: 2em;
+	margin-bottom: 0.5em;
+}
+
+h2 {
+	font-size: 1.75em;
+	margin-bottom: 0.5em;
+}
+
+h3 {
+	font-size: 1.5em;
+	margin-bottom: 0.5em;
+}
+
 .glass {
 	background: rgba(57, 56, 56, 0.52);
 	backdrop-filter: blur(13px) saturate(150%);
