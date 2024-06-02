@@ -1,7 +1,7 @@
 import { Swiper, SwiperSlide } from 'swiper/react'
-import '../../styles/global.css'
 import 'swiper/css'
 import './styles.css'
+import '../../styles/global.css'
 import 'swiper/css/effect-fade'
 import 'swiper/css/scrollbar'
 import { Scrollbar } from 'swiper/modules'
@@ -46,16 +46,14 @@ export default function App(props: Props) {
 				>
 					<a
 						href={`/articles/${article.id}`}
-						style={{
-							fontSize: '1.25rem',
-							textAlign: 'center',
-							marginBottom: '1rem',
-							cursor: 'pointer'
-						}}
+						className='md:text-3xl sm:text-md text-center mb-2 cursor-pointer'
 					>
 						{title}
 					</a>
-					<a style={{ fontSize: '1rem', cursor: 'pointer' }} href={`/articles/${article.id}`}>
+					<a
+						href={`/articles/${article.id}`}
+						className='md:text-lg text-sm text-center mb-6 md:mb-2 cursor-pointer'
+					>
 						{details}
 					</a>
 				</div>
@@ -67,7 +65,7 @@ export default function App(props: Props) {
 			<Swiper
 				spaceBetween={30}
 				effect={'fade'}
-				modules={[EffectFade, Scrollbar, Autoplay]}
+				modules={[EffectFade, Scrollbar]}
 				className='mySwiper'
 				style={{ borderRadius: '8px', width: '100%', maxHeight: '85vh', minHeight: '55vh' }}
 				scrollbar={{ hide: true }}
