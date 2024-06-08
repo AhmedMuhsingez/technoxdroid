@@ -29,5 +29,5 @@ const markdownBlock = marked(article.data.attributes.RichTextEditor)
 ---
 
 <BlogPost data={article.data.attributes}>
-	<div set:html={markdownBlock} class='prose dark:prose-invert max-w-none' />
+	<div set:html={markdownBlock} class='prose dark:prose-invert max-w-none prose-p:text-lg' />
 </BlogPost>
