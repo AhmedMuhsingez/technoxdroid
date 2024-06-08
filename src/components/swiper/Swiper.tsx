@@ -31,28 +31,29 @@ export default function App(props: Props) {
 
 		return (
 			<SwiperSlide key={article.id}>
-				<img src={picture} style={{ height: '100%', objectFit: 'cover' }} />
+				<img src={picture} style={{ height: '100%', objectFit: 'cover', filter: 'blur(3px)' }} />
 				<div
 					className='flex flex-col justify-center items-center'
 					style={{
 						color: 'white',
-						background: 'linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(255,255,255,0) 100%)',
+						background: 'linear-gradient(0deg, rgba(0,0,0,1) 20%, rgba(255,255,255,0) 100%)',
+						padding: '8px',
 						width: '100%',
 						position: 'absolute',
 						bottom: 0,
-						height: '30%',
+						height: '35%',
 						zIndex: 98
 					}}
 				>
 					<a
 						href={`/articles/${article.id}`}
-						className='md:text-2xl text-md text-center mb-2 cursor-pointer'
+						className='md:text-2xl text-md font-bold text-center mb-4 cursor-pointer'
 					>
 						{title}
 					</a>
 					<a
 						href={`/articles/${article.id}`}
-						className='md:text-lg text-sm text-center mb-10 md:mb-2 cursor-pointer'
+						className='md:text-lg text-sm text-center mb-10 md:mb-2 cursor-pointer leading-6'
 					>
 						{details}
 					</a>
