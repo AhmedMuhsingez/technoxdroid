@@ -26,8 +26,13 @@ const markdownBlock = marked(article.data.attributes.RichTextEditor)
 // 	const singleBlock = marked.parse(res.body.replace(/\n/gi, '<br />'))
 // 	return singleBlock
 // })
+
+// const imageStyle = 'm-auto'
 ---
 
 <BlogPost data={article.data.attributes}>
-	<div set:html={markdownBlock} class='prose dark:prose-invert max-w-none prose-p:text-lg' />
+	<div
+		set:html={markdownBlock}
+		class={`prose dark:prose-invert max-w-none prose-p:text-lg prose-img:m-auto prose-img:max-h-[720px]`}
+	/>
 </BlogPost>
