@@ -36,7 +36,7 @@ export default function App(props: Props) {
 					className='flex flex-col justify-center items-center'
 					style={{
 						color: 'white',
-						background: 'linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(255,255,255,0) 100%);',
+						background: 'linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(255,255,255,0) 100%)',
 						width: '100%',
 						position: 'absolute',
 						bottom: 0,

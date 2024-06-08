@@ -14,6 +14,7 @@ interface ArticleAttributes {
 	slug: string
 	title: string
 	updatedAt: string
+	RichTextEditor: string
 	category: CategoryResponse
 	cover: ImageResponse
 }

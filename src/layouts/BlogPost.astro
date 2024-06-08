@@ -10,6 +10,7 @@ type Props = {
 
 const { data } = Astro.props
 const { title, description, publishedAt, cover, Tags } = data
+const category = data.category.data.attributes.name
 const coverImage = cover.data.attributes.formats.large.url
 // const publishDate = FormattedDate
 ---
@@ -29,11 +30,15 @@ const coverImage = cover.data.attributes.formats.large.url
 					{title}
 				</h1>
 			</div>
-
-			<div class='flex flex-wrap justify-center items-center gap-2 gap-y-4 md:gap-5'>
-				{Tags && Tags.map((tag) => <Tag tag={tag} />)}
-			</div>
 		</header>
+
+		<div class='flex flex-wrap justify-center items-center gap-2 gap-y-4 md:gap-5'>
+			<div
+				class='cursor-no-drop select-none bg-indigo-600 font-semibold text-white dark:bg-indigo-900 dark:text-white shadow text-sm w-fit px-2 py-1 md:px-5 md:py-2 rounded-full'
+			>
+				{category}
+			</div>
+		</div>
 
 		<Image
 			src={coverImage}
