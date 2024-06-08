@@ -12,8 +12,9 @@ export default defineConfig({
 	output: 'server',
 	adapter: vercel(),
 	site: 'https://technoxdroid.com/',
+
 	markdown: {
-		remarkPlugins: [remarkReadingTime],
+		// remarkPlugins: [remarkReadingTime],
 		drafts: true,
 		shikiConfig: {
 			theme: 'material-theme-palenight',
@@ -26,17 +27,17 @@ export default defineConfig({
 		}
 	},
 	integrations: [
-		mdx({
-			syntaxHighlight: 'shiki',
-			shikiConfig: {
-				experimentalThemes: {
-					light: 'vitesse-light',
-					dark: 'material-theme-palenight'
-				},
-				wrap: true
-			},
-			drafts: true
-		}),
+		// mdx({
+		// 	syntaxHighlight: 'shiki',
+		// 	shikiConfig: {
+		// 		experimentalThemes: {
+		// 			light: 'vitesse-light',
+		// 			dark: 'material-theme-palenight'
+		// 		},
+		// 		wrap: true
+		// 	},
+		// 	drafts: true
+		// }),
 		sitemap(),
 		tailwind(),
 		react()

@@ -30,7 +30,7 @@
 * {
 	user-select: none;
 }
-
+/* 
 h1 {
 	font-size: 2em;
 	margin-bottom: 0.5em;
@@ -44,7 +44,7 @@ h2 {
 h3 {
 	font-size: 1.5em;
 	margin-bottom: 0.5em;
-}
+} */
 
 .glass {
 	background: rgba(57, 56, 56, 0.52);

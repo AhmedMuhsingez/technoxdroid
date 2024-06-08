@@ -4,7 +4,7 @@ import fetchApi from 'src/lib/strapi'
 import { marked } from 'marked'
 import * as DOMPurify from 'dompurify'
 import { Debug } from 'astro:components'
-import { documentToHtmlString } from '@contentful/rich-text-html-renderer'
+import Markdown from 'react-markdown'
 
 const { slug } = Astro.params
 let article: SingleArticleData
@@ -19,7 +19,7 @@ try {
 	return Astro.redirect('/404')
 }
 
-const markdownBlock = marked.parse(article.data.attributes.RichTextEditor)
+const markdownBlock = marked(article.data.attributes.RichTextEditor)
 
 // const markdownContent = markdownBlocks.map((res) => {
 // 	// return DOMPurify.sanitize(marked.parse(res.body))
@@ -30,6 +30,10 @@ const markdownBlock = marked.parse(article.data.attributes.RichTextEditor)
 
 <>
 	<BlogPost data={article.data.attributes}>
-		<article class='max-w-full w-full text-md md:text-lg lg:text-xl' set:html={markdownBlock} />
+		<!-- <Markdown> -->
+		<div set:html={markdownBlock} class='prose dark:prose-invert max-w-none' />
+		<!-- {markdownBlock}
+		</Markdown> -->
 	</BlogPost>
+	<!-- <Debug data={markdownBlock} /> -->
 </>
