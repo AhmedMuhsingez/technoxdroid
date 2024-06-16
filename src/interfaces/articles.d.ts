@@ -2,8 +2,8 @@
 
 interface Pagination {
 	page: number
-	pageCount: number
 	pageSize: number
+	pageCount: number
 	total: number
 }
 

@@ -3,6 +3,7 @@ interface Props {
 	query?: Record<string, string>
 	wrappedByKey?: string
 	wrappedByList?: boolean
+	// pagination?: Pagination
 }
 
 /**
@@ -23,7 +24,6 @@ export default async function fetchApi<T>({
 		endpoint = endpoint.slice(1)
 	}
 
-	// const url = new URL(`/api/${endpoint}`) //should remove the explicit url and add it as a parameter from env
 	const url = new URL(`${import.meta.env.API_URL + endpoint}`)
 
 	if (query) {

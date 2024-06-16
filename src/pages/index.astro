@@ -7,7 +7,7 @@ import Swiper from 'src/components/swiper/Swiper'
 import { fetchArticles } from 'src/utils/fetchApiData'
 
 // Home page compoenet
-const allArticles = (await fetchArticles()).map((article) => {
+const allArticles = (await fetchArticles(1, 1)).map((article) => {
 	return article
 })
 
