@@ -7,14 +7,14 @@ import Swiper from 'src/components/swiper/Swiper'
 import { fetchArticles } from 'src/utils/fetchApiData'
 
 // Home page compoenet
-const allArticles = (await fetchArticles(1, 1)).map((article) => {
+const allArticles = (await fetchArticles(1, 4)).map((article) => {
 	return article
 })
 
 const swiperContent = allArticles.slice(0, 4)
 ---
 
-<BaseLayout title='الصفحة الرئيسية'>
+<BaseLayout title=''>
 	<Swiper client:load swiperContent={swiperContent} />
 	<TitlePage title={'جميع المقالات'} />
 

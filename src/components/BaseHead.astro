@@ -17,6 +17,7 @@ const socialImageURL = new URL(ogImage ? ogImage : '/open-graph.png', Astro.url)
 const titleSeparator = '•'
 
 const siteTitle = `${title} ${titleSeparator} ${siteConfig.name}`
+const homepage = Astro.url.pathname === '/'
 ---
 
 <!-- Global Metadata -->
@@ -29,7 +30,7 @@ const siteTitle = `${title} ${titleSeparator} ${siteConfig.name}`
 <link rel='canonical' href={canonicalURL} />
 
 <!-- Primary Meta Tags -->
-<title>{siteTitle}</title>
+<title>{homepage ? siteConfig.name : siteTitle}</title>
 
 <!-- ViewTransitions  -->
 <ViewTransitions />

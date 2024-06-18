@@ -33,6 +33,6 @@ const markdownBlock = marked(article.data.attributes.RichTextEditor)
 <BlogPost data={article.data.attributes}>
 	<div
 		set:html={markdownBlock}
-		class={`prose dark:prose-invert max-w-none prose-p:text-lg prose-img:m-auto prose-img:max-h-[720px]`}
+		class={`prose dark:prose-invert max-w-none prose-p:text-lg prose-img:m-auto prose-img:max-h-[720px] prose-blockquote:text-center`}
 	/>
 </BlogPost>

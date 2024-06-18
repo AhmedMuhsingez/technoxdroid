@@ -11,7 +11,7 @@ export const prerender = true
 
 export async function getStaticPaths({ paginate }: any) {
 	const categoriesData = await fetchCategories()
-	const allArticles = (await fetchArticles()).map((article) => {
+	const allArticles = (await fetchArticles(1, 4)).map((article) => {
 		return article
 	})
 
@@ -45,5 +45,5 @@ const { ...props } = Astro.props
 	<ListCategories activeCategory={params.category} />
 	<ListPosts filteredArticles={props.filteredArticles} />
 
-	<!-- <Pagination page={page} /> -->
+	<!-- <Pagination /> -->
 </BaseLayout>
