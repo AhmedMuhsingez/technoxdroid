@@ -1,6 +1,7 @@
 ---
 import ListCategories from '@/components/ListCategories'
 import ListPosts from '@/components/ListPosts'
+import NewPagination from '@/components/NewPagination'
 import TitlePage from '@/components/TitlePage'
 import BaseLayout from '@/layouts/BaseLayout'
 import Swiper from 'src/components/swiper/Swiper'
@@ -21,6 +22,7 @@ const swiperContent = allArticles.slice(0, 4)
 	<ListCategories />
 	<!-- <h2 class='text-lg font-medium tracking-wide'>آخر المقالات</h2> -->
 	<ListPosts FirstBig={true} allArticles={allArticles} />
+	<NewPagination />
 </BaseLayout>
 
 <script>
