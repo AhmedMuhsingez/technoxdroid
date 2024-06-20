@@ -6,7 +6,8 @@ export const fetchArticles = async (page, pageSize) => {
 		query: {
 			populate: ['category', 'cover'].join(','),
 			'pagination[page]': page,
-			'pagination[pageSize]': pageSize
+			'pagination[pageSize]': pageSize,
+			sort: 'createdAt:desc'
 		}
 	})
 	return articles.data
