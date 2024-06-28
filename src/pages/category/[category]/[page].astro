@@ -11,7 +11,8 @@ export const prerender = true
 
 export async function getStaticPaths({ paginate }: any) {
 	const categoriesData = await fetchCategories()
-	const allArticles = (await fetchArticles()).map((article) => {
+
+	const allArticles = (await fetchArticles(1, 6)).data.map((article) => {
 		return article
 	})
 
@@ -25,7 +26,7 @@ export async function getStaticPaths({ paginate }: any) {
 			params: {
 				category: category.attributes.slug
 			},
-			// pageSize: siteConfig.paginationSize,
+			pageSize: siteConfig.paginationSize,
 			props: {
 				categoryName: category.attributes.name,
 				filteredArticles: filteredArticles,
@@ -36,6 +37,7 @@ export async function getStaticPaths({ paginate }: any) {
 }
 const params = Astro.params
 const { ...props } = Astro.props
+const { page } = Astro.props
 
 //This is the component for each page of the categories in the main page
 ---
@@ -45,5 +47,5 @@ const { ...props } = Astro.props
 	<ListCategories activeCategory={params.category} />
 	<ListPosts filteredArticles={props.filteredArticles} />
 
-	<!-- <Pagination /> -->
+	<Pagination page={page} />
 </BaseLayout>

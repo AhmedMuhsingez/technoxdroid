@@ -1,18 +1,20 @@
 ---
 import ListCategories from '@/components/ListCategories'
 import ListPosts from '@/components/ListPosts'
-import NewPagination from '@/components/NewPagination'
 import TitlePage from '@/components/TitlePage'
 import BaseLayout from '@/layouts/BaseLayout'
 import Swiper from 'src/components/swiper/Swiper'
 import { fetchArticles } from 'src/utils/fetchApiData'
+// import NewPagination from './NewPagination'
 
-// Home page compoenet
-const allArticles = (await fetchArticles()).map((article) => {
-	return article
-})
+let currentPage = 1
+let totalPages = 2
 
+const articles = await fetchArticles(currentPage, 5)
+
+const allArticles = articles.data.map((article) => article)
 const swiperContent = allArticles.slice(0, 4)
+// const metaData = articles.meta.pagination
 ---
 
 <BaseLayout title=''>
@@ -20,9 +22,26 @@ const swiperContent = allArticles.slice(0, 4)
 	<TitlePage title={'جميع المقالات'} />
 
 	<ListCategories />
-	<!-- <h2 class='text-lg font-medium tracking-wide'>آخر المقالات</h2> -->
+
 	<ListPosts FirstBig={true} allArticles={allArticles} />
-	<NewPagination />
+	<!-- <NewPagination /> -->
+	<!-- <h2 onclick={increasePage}>next page</h2> -->
+	<div>
+		{
+			currentPage > 1 && (
+				<a style='white text-xl' href={`${currentPage - 1}`}>
+					&laquo; Previous
+				</a>
+			)
+		}
+		{
+			currentPage < totalPages && (
+				<a style='white text-xl' href={`${currentPage + 1}`}>
+					Next &raquo;
+				</a>
+			)
+		}
+	</div>
 </BaseLayout>
 
 <script>

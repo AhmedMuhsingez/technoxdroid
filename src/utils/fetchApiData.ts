@@ -10,7 +10,8 @@ export const fetchArticles = async (page = 1, pageSize = 5, sort = 'createdAt:de
 			sort: sort
 		}
 	})
-	return articles.data
+
+	return articles
 }
 
 export const fetchCategories = async () => {

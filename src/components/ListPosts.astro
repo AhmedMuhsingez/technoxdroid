@@ -1,6 +1,5 @@
 ---
 import PostCard from '@/components/PostCard'
-import { Debug } from 'astro:components'
 
 type Props = {
 	FirstBig?: boolean
@@ -10,7 +9,7 @@ type Props = {
 
 const { FirstBig = false, filteredArticles, allArticles } = Astro.props
 const articlesToShow = filteredArticles ? filteredArticles : allArticles
-const thirdArticle = articlesToShow && articlesToShow[3]
+// const thirdArticle = articlesToShow && articlesToShow[3]
 
 // This is the component of the ALL ARTICLES category in the home page
 
