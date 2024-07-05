@@ -16,7 +16,7 @@ const { FirstBig = false, articles } = Astro.props
 >
 	{
 		articles?.map(async (article) => {
-			const id = article
+			const id = article.id
 			const articleData = article.attributes
 			return (
 				<>
