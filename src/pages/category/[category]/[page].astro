@@ -3,49 +3,41 @@ import BaseLayout from '@/layouts/BaseLayout'
 import ListPosts from '@/components/ListPosts'
 import ListCategories from '@/components/ListCategories'
 import TitlePage from '@/components/TitlePage'
-import { siteConfig } from '@/data/site.config'
 import Pagination from '@/components/Pagination'
 import { fetchArticles, fetchCategories } from 'src/utils/fetchApiData'
 
-export const prerender = true
+let currentPage = 1
+let totalPages = 1
 
-export async function getStaticPaths({ paginate }: any) {
-	const categoriesData = await fetchCategories()
+const categoriesData = await fetchCategories()
+const currentCategory =
+	categoriesData.data.find((category) => category.attributes.slug === Astro.params.category)
+		?.attributes.name || ''
 
-	const allArticles = (await fetchArticles(1, 6)).data.map((article) => {
-		return article
-	})
+const articles = (await fetchArticles(currentPage, 10)).data.map((article) => {
+	return article
+})
 
-	return categoriesData.data.flatMap((category) => {
-		const filteredArticles = allArticles.filter(
-			//Filter all articles, WHERE ()...
-			(article) => article.attributes.category.data.attributes.name === category.attributes.name
+const filteredArticles = categoriesData.data
+	.map((category) => {
+		const currentPath = Astro.url.pathname
+		const categoryName = category.attributes.name
+		const categorySlug = category.attributes.slug
+
+		const matchingArticles = articles.filter(
+			(article) =>
+				article.attributes.category.data.attributes.name === categoryName &&
+				currentPath.includes(categorySlug)
 		)
 
-		return paginate(filteredArticles, {
-			params: {
-				category: category.attributes.slug
-			},
-			pageSize: siteConfig.paginationSize,
-			props: {
-				categoryName: category.attributes.name,
-				filteredArticles: filteredArticles,
-				allArticles: allArticles
-			}
-		})
+		return matchingArticles.length > 0 ? matchingArticles : null // Return null if no matching articles found
 	})
-}
-const params = Astro.params
-const { ...props } = Astro.props
-const { page } = Astro.props
-
-//This is the component for each page of the categories in the main page
+	.filter((articles) => articles !== null) // Filter out null entries from the result
 ---
 
-<BaseLayout title={props.categoryName}>
-	<TitlePage title={props.categoryName} />
-	<ListCategories activeCategory={params.category} />
-	<ListPosts filteredArticles={props.filteredArticles} />
-
-	<Pagination page={page} />
+<BaseLayout title={currentCategory}>
+	<TitlePage title={currentCategory} />
+	<ListCategories categoriesData={categoriesData} />
+	<ListPosts articles={filteredArticles[0]} />
+	<Pagination currentPage={currentPage} totalPages={totalPages} />
 </BaseLayout>

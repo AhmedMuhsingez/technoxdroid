@@ -1,22 +1,17 @@
 ---
 import Category from '@/components/Category'
-import { fetchCategories } from 'src/utils/fetchApiData'
-const categoriesData = await fetchCategories()
 const homePage = Astro.url.pathname === '/'
+const { categoriesData } = Astro.props
 ---
 
 <div
 	class=`${homePage ? 'max-[720px]:animate-scaleToLeftAndBack': ''} gap-5 flex overflow whitespace-nowrap overflow-x-auto no-scrollbar`
 >
 	<Category />
+
 	{
-		categoriesData.data.map((category) => (
+		categoriesData?.data.map((category) => (
 			<Category name={category.attributes.name} categorySlug={category.attributes.slug} />
 		))
 	}
-
-	<!-- <div
-		class='hidden sm:block absolute bottom-0 w-full border-b-2 -z-40 dark:border-gray-600 max-w-full'
-	>
-	</div> -->
 </div>

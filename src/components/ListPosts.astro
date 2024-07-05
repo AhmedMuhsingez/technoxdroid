@@ -3,17 +3,12 @@ import PostCard from '@/components/PostCard'
 
 type Props = {
 	FirstBig?: boolean
-	filteredArticles?: ArticleData[]
-	allArticles?: ArticleData[]
+	articles?: ArticleData[]
 }
 
-const { FirstBig = false, filteredArticles, allArticles } = Astro.props
-const articlesToShow = filteredArticles ? filteredArticles : allArticles
-// const thirdArticle = articlesToShow && articlesToShow[3]
+const { FirstBig = false, articles } = Astro.props
 
-// This is the component of the ALL ARTICLES category in the home page
-
-// export const prerender = true
+const response = articles?.map((article) => article)
 ---
 
 <section
@@ -22,7 +17,7 @@ const articlesToShow = filteredArticles ? filteredArticles : allArticles
 		${FirstBig && 'lg:[&>*:first-child]:col-span-2'}`}
 >
 	{
-		articlesToShow?.map(async (article) => {
+		response?.map(async (article) => {
 			const id = article.id
 			const articleData = article.attributes
 			return (
