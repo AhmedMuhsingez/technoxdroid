@@ -83,3 +83,9 @@ interface ImageAttributes {
 interface ImageResponse {
 	data: { attributes: ImageAttributes }
 }
+
+interface ArticleRes {
+	category: string
+	categoryName: string
+	filteredArticles: ArticleData[]
+}

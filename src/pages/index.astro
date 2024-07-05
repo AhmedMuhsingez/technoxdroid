@@ -4,44 +4,24 @@ import ListPosts from '@/components/ListPosts'
 import TitlePage from '@/components/TitlePage'
 import BaseLayout from '@/layouts/BaseLayout'
 import Swiper from 'src/components/swiper/Swiper'
-import { fetchArticles } from 'src/utils/fetchApiData'
+import { fetchArticles, fetchCategories } from 'src/utils/fetchApiData'
 // import NewPagination from './NewPagination'
 
-let currentPage = 1
-let totalPages = 2
-
-const articles = await fetchArticles(currentPage, 5)
-
+const categoriesData = await fetchCategories()
+const articles = await fetchArticles(1, 5)
 const allArticles = articles.data.map((article) => article)
 const swiperContent = allArticles.slice(0, 4)
-// const metaData = articles.meta.pagination
 ---
 
 <BaseLayout title=''>
 	<Swiper client:load swiperContent={swiperContent} />
 	<TitlePage title={'جميع المقالات'} />
 
-	<ListCategories />
+	<ListCategories categoriesData={categoriesData} />
 
-	<ListPosts FirstBig={true} allArticles={allArticles} />
+	<!-- <ListPosts FirstBig={true} allArticles={allArticles} /> -->
 	<!-- <NewPagination /> -->
 	<!-- <h2 onclick={increasePage}>next page</h2> -->
-	<div>
-		{
-			currentPage > 1 && (
-				<a style='white text-xl' href={`${currentPage - 1}`}>
-					&laquo; Previous
-				</a>
-			)
-		}
-		{
-			currentPage < totalPages && (
-				<a style='white text-xl' href={`${currentPage + 1}`}>
-					Next &raquo;
-				</a>
-			)
-		}
-	</div>
 </BaseLayout>
 
 <script>

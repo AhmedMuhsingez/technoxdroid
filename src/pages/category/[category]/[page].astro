@@ -6,46 +6,44 @@ import TitlePage from '@/components/TitlePage'
 import { siteConfig } from '@/data/site.config'
 import Pagination from '@/components/Pagination'
 import { fetchArticles, fetchCategories } from 'src/utils/fetchApiData'
+import { Debug } from 'astro:components'
+import TechnoDebug from '../../../components/TechnoDebug.astro'
 
-export const prerender = true
+let currentPage = 1
 
-export async function getStaticPaths({ paginate }: any) {
-	const categoriesData = await fetchCategories()
+const categoriesData = await fetchCategories()
 
-	const allArticles = (await fetchArticles(1, 6)).data.map((article) => {
-		return article
-	})
+const allArticles = (await fetchArticles(currentPage, 5)).data.map((article) => {
+	return article
+})
+// const activeCategory = categoriesData.data.map((category) => {
+// 	const isActive = category.attributes.slug === Astro.params.category
 
-	return categoriesData.data.flatMap((category) => {
-		const filteredArticles = allArticles.filter(
-			//Filter all articles, WHERE ()...
-			(article) => article.attributes.category.data.attributes.name === category.attributes.name
-		)
+// 	return isActive ? category.attributes.name : ''
+// })
 
-		return paginate(filteredArticles, {
-			params: {
-				category: category.attributes.slug
-			},
-			pageSize: siteConfig.paginationSize,
-			props: {
-				categoryName: category.attributes.name,
-				filteredArticles: filteredArticles,
-				allArticles: allArticles
-			}
-		})
-	})
-}
-const params = Astro.params
-const { ...props } = Astro.props
-const { page } = Astro.props
-
-//This is the component for each page of the categories in the main page
+// const filteredArticles = categoriesData.data.map((category) => {
+// 	return allArticles.filter(
+// 		(article) => article.attributes.category.data.attributes.name === category.attributes.name
+// 	)
+// 	// return {
+// 	// 	activeCategory: category.attributes.slug,
+// 	// 	categoryName: category.attributes.name,
+// 	// 	filteredArticles
+// 	// }
+// })
 ---
 
-<BaseLayout title={props.categoryName}>
-	<TitlePage title={props.categoryName} />
-	<ListCategories activeCategory={params.category} />
-	<ListPosts filteredArticles={props.filteredArticles} />
-
-	<Pagination page={page} />
+<!-- <BaseLayout title={activeCategory}>
+	<TitlePage title={categoryName} />
+	<ListCategories activeCategory={categoriesData} />
+	<ListPosts filteredArticles={filteredArticles} />
+	<Pagination currentPage={currentPage} totalPages={totalPages} />
+	<div class='forceLTR max-w-screen-md'><Debug props={x} /></div>
+</BaseLayout> -->
+<BaseLayout title={''}>
+	<ListCategories categoriesData={categoriesData} />
+	<!-- <ListPosts filteredArticles={x} /> -->
+	<!-- <Pagination currentPage={currentPage} totalPages={totalPages} /> -->
+	<!-- <TechnoDebug data={categoriesData} /> -->
 </BaseLayout>
