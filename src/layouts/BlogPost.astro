@@ -12,7 +12,6 @@ const { data } = Astro.props
 const { title, description, publishedAt, cover, Tags } = data
 const category = data.category.data.attributes.name
 const coverImage = cover.data.attributes.formats.large.url
-// const publishDate = FormattedDate
 ---
 
 <BaseLayout title={title} description={description} image={coverImage} articleDate={publishedAt}>

@@ -9,6 +9,7 @@ export interface Props {
 	ogImage?: string | undefined
 	articleDate?: string | undefined
 }
+const homepage = Astro.url.pathname === '/'
 
 const { title, description = siteConfig.description, ogImage, articleDate } = Astro.props
 const canonicalURL = new URL(Astro.url.pathname, Astro.site)
@@ -16,8 +17,7 @@ const socialImageURL = new URL(ogImage ? ogImage : '/open-graph.png', Astro.url)
 
 const titleSeparator = '•'
 
-const siteTitle = `${title} ${titleSeparator} ${siteConfig.name}`
-const homepage = Astro.url.pathname === '/'
+const siteTitle = `${title} ${titleSeparator} ${homepage ? siteConfig.name : 'TD'}`
 ---
 
 <!-- Global Metadata -->
