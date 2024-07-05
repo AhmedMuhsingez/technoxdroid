@@ -12,28 +12,24 @@ import TechnoDebug from '../../../components/TechnoDebug.astro'
 let currentPage = 1
 
 const categoriesData = await fetchCategories()
-
-const allArticles = (await fetchArticles(currentPage, 5)).data.map((article) => {
-	return article
-})
-// const activeCategory = categoriesData.data.map((category) => {
-// 	const isActive = category.attributes.slug === Astro.params.category
-// 	return isActive ? category.attributes.name : ''
-// })
 const activeCategory =
 	categoriesData.data.find((category) => category.attributes.slug === Astro.params.category)
 		?.attributes.name || ''
 
-// const filteredArticles = categoriesData.data.map((category) => {
-// 	return allArticles.filter(
-// 		(article) => article.attributes.category.data.attributes.name === category.attributes.name
-// 	)
-// 	// return {
-// 	// 	activeCategory: category.attributes.slug,
-// 	// 	categoryName: category.attributes.name,
-// 	// 	filteredArticles
-// 	// }
-// })
+const articles = (await fetchArticles(currentPage, 5)).data.map((article) => {
+	return article
+})
+
+const filteredArticles = categoriesData.data.map((category) => {
+	return articles.filter(
+		(article) => article.attributes.category.data.attributes.name === category.attributes.name
+	)
+	// return {
+	// 	activeCategory: category.attributes.slug,
+	// 	categoryName: category.attributes.name,
+	// 	filteredArticles
+	// }
+})
 ---
 
 <!-- <BaseLayout title={activeCategory}>
@@ -45,7 +41,7 @@ const activeCategory =
 </BaseLayout> -->
 <BaseLayout title={activeCategory}>
 	<ListCategories categoriesData={categoriesData} />
-	<ListPosts articles={allArticles} />
+	<ListPosts articles={articles} />
 	<!-- <Pagination currentPage={currentPage} totalPages={totalPages} /> -->
 	<!-- <TechnoDebug data={categoriesData} /> -->
 </BaseLayout>

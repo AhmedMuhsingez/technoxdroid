@@ -5,11 +5,13 @@ import TitlePage from '@/components/TitlePage'
 import BaseLayout from '@/layouts/BaseLayout'
 import Swiper from 'src/components/swiper/Swiper'
 import { fetchArticles, fetchCategories } from 'src/utils/fetchApiData'
-// import NewPagination from './NewPagination'
+import Pagination from '@/components/Pagination'
 
 const categoriesData = await fetchCategories()
 
-const articles = await fetchArticles(1, 5)
+let currentPage = 1
+let totalPages = 2
+const articles = await fetchArticles(currentPage, 5)
 const allArticles = articles.data.map((article) => article)
 
 const swiperContent = allArticles.slice(0, 4)
@@ -22,7 +24,7 @@ const swiperContent = allArticles.slice(0, 4)
 	<ListCategories categoriesData={categoriesData} />
 	<ListPosts FirstBig={true} articles={allArticles} />
 
-	<!-- <NewPagination /> -->
+	<Pagination currentPage={currentPage} totalPages={totalPages} />
 	<!-- <h2 onclick={increasePage}>next page</h2> -->
 </BaseLayout>
 
