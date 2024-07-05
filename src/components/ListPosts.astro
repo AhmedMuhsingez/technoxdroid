@@ -3,10 +3,10 @@ import PostCard from '@/components/PostCard'
 
 type Props = {
 	FirstBig?: boolean
-	filteredArticles?: ArticleData[]
+	articles?: ArticleData[]
 }
 
-const { FirstBig = false, filteredArticles } = Astro.props
+const { FirstBig = false, articles } = Astro.props
 ---
 
 <section
@@ -15,7 +15,7 @@ const { FirstBig = false, filteredArticles } = Astro.props
 		${FirstBig && 'lg:[&>*:first-child]:col-span-2'}`}
 >
 	{
-		filteredArticles?.map(async (article) => {
+		articles?.map(async (article) => {
 			const id = article
 			const articleData = article.attributes
 			return (

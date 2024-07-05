@@ -8,8 +8,10 @@ import { fetchArticles, fetchCategories } from 'src/utils/fetchApiData'
 // import NewPagination from './NewPagination'
 
 const categoriesData = await fetchCategories()
+
 const articles = await fetchArticles(1, 5)
 const allArticles = articles.data.map((article) => article)
+
 const swiperContent = allArticles.slice(0, 4)
 ---
 
@@ -18,8 +20,8 @@ const swiperContent = allArticles.slice(0, 4)
 	<TitlePage title={'جميع المقالات'} />
 
 	<ListCategories categoriesData={categoriesData} />
+	<ListPosts FirstBig={true} articles={allArticles} />
 
-	<!-- <ListPosts FirstBig={true} allArticles={allArticles} /> -->
 	<!-- <NewPagination /> -->
 	<!-- <h2 onclick={increasePage}>next page</h2> -->
 </BaseLayout>
