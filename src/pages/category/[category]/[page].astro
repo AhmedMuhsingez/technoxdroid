@@ -18,9 +18,11 @@ const allArticles = (await fetchArticles(currentPage, 5)).data.map((article) => 
 })
 // const activeCategory = categoriesData.data.map((category) => {
 // 	const isActive = category.attributes.slug === Astro.params.category
-
 // 	return isActive ? category.attributes.name : ''
 // })
+const activeCategory =
+	categoriesData.data.find((category) => category.attributes.slug === Astro.params.category)
+		?.attributes.name || ''
 
 // const filteredArticles = categoriesData.data.map((category) => {
 // 	return allArticles.filter(
@@ -41,9 +43,9 @@ const allArticles = (await fetchArticles(currentPage, 5)).data.map((article) => 
 	<Pagination currentPage={currentPage} totalPages={totalPages} />
 	<div class='forceLTR max-w-screen-md'><Debug props={x} /></div>
 </BaseLayout> -->
-<BaseLayout title={''}>
+<BaseLayout title={activeCategory}>
 	<ListCategories categoriesData={categoriesData} />
-	<!-- <ListPosts filteredArticles={x} /> -->
+	<ListPosts articles={allArticles} />
 	<!-- <Pagination currentPage={currentPage} totalPages={totalPages} /> -->
 	<!-- <TechnoDebug data={categoriesData} /> -->
 </BaseLayout>
