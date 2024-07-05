@@ -3,45 +3,41 @@ import BaseLayout from '@/layouts/BaseLayout'
 import ListPosts from '@/components/ListPosts'
 import ListCategories from '@/components/ListCategories'
 import TitlePage from '@/components/TitlePage'
-import { siteConfig } from '@/data/site.config'
 import Pagination from '@/components/Pagination'
 import { fetchArticles, fetchCategories } from 'src/utils/fetchApiData'
-import { Debug } from 'astro:components'
-import TechnoDebug from '../../../components/TechnoDebug.astro'
 
 let currentPage = 1
+let totalPages = 1
 
 const categoriesData = await fetchCategories()
-const activeCategory =
+const currentCategory =
 	categoriesData.data.find((category) => category.attributes.slug === Astro.params.category)
 		?.attributes.name || ''
 
-const articles = (await fetchArticles(currentPage, 5)).data.map((article) => {
+const articles = (await fetchArticles(currentPage, 10)).data.map((article) => {
 	return article
 })
 
-const filteredArticles = categoriesData.data.map((category) => {
-	return articles.filter(
-		(article) => article.attributes.category.data.attributes.name === category.attributes.name
-	)
-	// return {
-	// 	activeCategory: category.attributes.slug,
-	// 	categoryName: category.attributes.name,
-	// 	filteredArticles
-	// }
-})
+const filteredArticles = categoriesData.data
+	.map((category) => {
+		const currentPath = Astro.url.pathname
+		const categoryName = category.attributes.name
+		const categorySlug = category.attributes.slug
+
+		const matchingArticles = articles.filter(
+			(article) =>
+				article.attributes.category.data.attributes.name === categoryName &&
+				currentPath.includes(categorySlug)
+		)
+
+		return matchingArticles.length > 0 ? matchingArticles : null // Return null if no matching articles found
+	})
+	.filter((articles) => articles !== null) // Filter out null entries from the result
 ---
 
-<!-- <BaseLayout title={activeCategory}>
-	<TitlePage title={categoryName} />
-	<ListCategories activeCategory={categoriesData} />
-	<ListPosts filteredArticles={filteredArticles} />
-	<Pagination currentPage={currentPage} totalPages={totalPages} />
-	<div class='forceLTR max-w-screen-md'><Debug props={x} /></div>
-</BaseLayout> -->
-<BaseLayout title={activeCategory}>
+<BaseLayout title={currentCategory}>
+	<TitlePage title={currentCategory} />
 	<ListCategories categoriesData={categoriesData} />
-	<ListPosts articles={articles} />
-	<!-- <Pagination currentPage={currentPage} totalPages={totalPages} /> -->
-	<!-- <TechnoDebug data={categoriesData} /> -->
+	<ListPosts articles={filteredArticles[0]} />
+	<Pagination currentPage={currentPage} totalPages={totalPages} />
 </BaseLayout>

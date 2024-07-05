@@ -4,7 +4,7 @@ const { currentPage, totalPages } = Astro.props
 
 <div>
 	{
-		currentPage > 1 && (
+		totalPages > 5 && currentPage > 1 && (
 			<a style='white text-xl' href={`${'/articles?page=' + (currentPage - 1)}`}>
 				&laquo; Previous
 			</a>
