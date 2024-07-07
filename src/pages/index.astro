@@ -7,14 +7,19 @@ import Swiper from 'src/components/swiper/Swiper'
 import { fetchArticles, fetchCategories } from 'src/utils/fetchApiData'
 import Pagination from '@/components/Pagination'
 
+const page = Astro.url.searchParams.get('page')
+
 const categoriesData = await fetchCategories()
 
-let currentPage = 1
-let totalPages = 2
+let currentPage = page ? Number(page) : 1
+
+let totalPages = 21
+
 const articles = await fetchArticles(currentPage, 5)
 const allArticles = articles.data.map((article) => article)
 
 const swiperContent = allArticles.slice(0, 4)
+console.log(page)
 ---
 
 <BaseLayout title=''>

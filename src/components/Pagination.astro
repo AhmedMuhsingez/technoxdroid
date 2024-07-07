@@ -1,19 +1,19 @@
 ---
 const { currentPage, totalPages } = Astro.props
+import { URLS } from '../constants/urls'
 ---
 
 <div>
 	{
 		totalPages > 5 && currentPage > 1 && (
-			<a style='white text-xl' href={`${'/articles?page=' + (currentPage - 1)}`}>
+			<a style='white text-xl' href={URLS.home.builder({ currentPage: currentPage - 1 })}>
 				&laquo; Previous
 			</a>
 		)
 	}
 	{
 		currentPage < totalPages && (
-			<a style='white text-xl' href='/'>
-				{/* /articles?populate=*?pagination[page]=1&pagination[pageSize]=5 */}
+			<a style='white text-xl' href={URLS.home.builder({ currentPage: currentPage + 1 })}>
 				Next &raquo;
 			</a>
 		)
