@@ -12,16 +12,15 @@ const { currentPage, totalPages } = Astro.props
 	}
 	{
 		currentPage < totalPages && (
-			<a
-				style='white text-xl'
-				href={
-					'articles?populate=*?pagination[page]=' + (currentPage + 1) + '&pagination[pageSize]=5'
-					// 'articles?populate=*?pagination[page]=1&pagination[pageSize]=5'
-				}
-			>
+			<a style='white text-xl' href='/'>
 				{/* /articles?populate=*?pagination[page]=1&pagination[pageSize]=5 */}
 				Next &raquo;
 			</a>
 		)
 	}
 </div>
+<!-- // href={
+	// 	'articles?populate=*?pagination[page]=' + (currentPage + 1) + '&pagination[pageSize]=5'
+	// 	// 'articles?populate=*?pagination[page]=1&pagination[pageSize]=5'
+	// }
+} -->
