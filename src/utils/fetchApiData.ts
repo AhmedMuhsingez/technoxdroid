@@ -11,6 +11,8 @@ export const fetchArticles = async (page = 1, pageSize = 5, sort = 'createdAt:de
 		}
 	})
 
+	// console.log(articles.meta.pagination)
+
 	return articles
 }
 

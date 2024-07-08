@@ -31,6 +31,7 @@ export default async function fetchApi<T>({
 			url.searchParams.append(key, value)
 		})
 	}
+	// console.log(url)
 	const res = await fetch(url.toString())
 	let data = await res.json()
 
