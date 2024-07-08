@@ -1,26 +1,50 @@
 ---
-const { currentPage, totalPages } = Astro.props
+const { pages } = Astro.props
 import { URLS } from '../constants/urls'
+interface Props {
+	pages: {
+		page: number
+		pageSize: number
+		pageCount: number
+		total: number
+	}
+}
+
+const currentPage = pages.page
+const allArticles = pages.total
+const allPagesCount = pages.pageCount
+
+const lastPage = allPagesCount === currentPage
 ---
 
-<div>
+<div class='flex justify-evenly text-xl white'>
 	{
-		totalPages > 5 && currentPage > 1 && (
-			<a style='white text-xl' href={URLS.home.builder({ currentPage: currentPage - 1 })}>
-				&laquo; Previous
+		(
+			<a
+				class={`mx-2 ${currentPage === 1 ? 'text-gray-400 cursor-default' : 'text-black dark:text-white'}`}
+				href={
+					currentPage === 1
+						? 'javascript:void(0)'
+						: URLS.home.builder({ currentPage: currentPage - 1 })
+				}
+			>
+				&laquo; السابق
 			</a>
 		)
 	}
+	<div class='flex'>
+		<div class='mx-2 text-sky-400/100'>{currentPage}</div>
+		<div class='mx-1'>من</div>
+		<div class='mx-2'>{allPagesCount}</div>
+	</div>
 	{
-		currentPage < totalPages && (
-			<a style='white text-xl' href={URLS.home.builder({ currentPage: currentPage + 1 })}>
-				Next &raquo;
+		currentPage < pages.total && (
+			<a
+				class={`mx-2 ${lastPage ? 'text-gray-400 cursor-default' : 'text-black dark:text-white'}`}
+				href={lastPage ? 'javascript:void(0)' : URLS.home.builder({ currentPage: currentPage + 1 })}
+			>
+				التالي &raquo;
 			</a>
 		)
 	}
 </div>
-<!-- // href={
-	// 	'articles?populate=*?pagination[page]=' + (currentPage + 1) + '&pagination[pageSize]=5'
-	// 	// 'articles?populate=*?pagination[page]=1&pagination[pageSize]=5'
-	// }
-} -->
