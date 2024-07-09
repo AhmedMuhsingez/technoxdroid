@@ -26,28 +26,33 @@ const swiperContent = allArticles.slice(0, 4)
 
 <BaseLayout title=''>
 	<Swiper client:load swiperContent={swiperContent} />
-	<TitlePage title={'جميع المقالات'} />
+	<div
+		class='sticky top-0 z-50 bg-[#f0f2f5] dark:bg-[#18181a] px-6 shadow-lightCardHover dark:shadow-darkCard px-6 py-3'
+	>
+		<TitlePage title={'جميع المقالات'} />
+		<div id='separator' class='py-4'></div>
+		<ListCategories categoriesData={categoriesData} />
+	</div>
 
-	<ListCategories categoriesData={categoriesData} />
 	<ListPosts FirstBig={true} articles={allArticles} />
 
 	<Pagination pages={pages} />
+
+	<script>
+		import { animate } from 'motion'
+		const showAnimations = localStorage.getItem('animations') === 'true'
+
+		if (showAnimations) {
+			animate(
+				'.title',
+				{ y: [80, 0], opacity: [0, 1] },
+				{
+					duration: 2.5,
+					opacity: { duration: 3 },
+
+					offset: [0, 0.55, 0.75]
+				}
+			)
+		}
+	</script>
 </BaseLayout>
-
-<script>
-	import { animate } from 'motion'
-	const showAnimations = localStorage.getItem('animations') === 'true'
-
-	if (showAnimations) {
-		animate(
-			'.title',
-			{ y: [80, 0], opacity: [0, 1] },
-			{
-				duration: 2.5,
-				opacity: { duration: 3 },
-
-				offset: [0, 0.55, 0.75]
-			}
-		)
-	}
-</script>

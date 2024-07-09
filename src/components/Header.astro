@@ -32,7 +32,9 @@ const SOCIALNETWORKS = [
 const isAllArticles = Astro.url.pathname === '/'
 ---
 
-<header class='relative flex items-center h-12 font-semibold justify-between'>
+<header
+	class='relative flex items-center font-semibold justify-between sticky top-0 z-50 bg-[#f0f2f5] dark:bg-[#18181a] px-6 shadow-lightCardHover dark:shadow-darkCard'
+>
 	<div class='flex items-center'>
 		<a class='ml-4 flex items-center gap-2 mt-2' href='/'
 			>{isAllArticles ? <Logo /> : <ArrowLeft />}</a
@@ -44,7 +46,7 @@ const isAllArticles = Astro.url.pathname === '/'
 			id='astro-header-drawer'
 			class='shadow rounded-lg md:bg-transparent dark:md:bg-transparent bg-white dark:bg-[#0a0910] dark:border-solid dark:border-[white] dark:lg:border-none dark:md:border-none dark:border-2 md:shadow-none md:rounded-none md:border-none md:h-auto md:static absolute transition-transform duration-300 ease-in translate-x-96 md:translate-x-0 top-12 left-18 px-4 pt-6 pb-4 md:p-0 h-[100px] w-[200px] z-50'
 		>
-			<nav class='flex h-full lg:justify-end justify-center'>
+			<nav class='flex lg:justify-end justify-center'>
 				<div class='flex items-center gap-3 md:p-0'>
 					<!-- <SearchIcon /> -->
 
