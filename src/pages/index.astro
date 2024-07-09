@@ -26,13 +26,13 @@ const swiperContent = allArticles.slice(0, 4)
 
 <BaseLayout title=''>
 	<Swiper client:load swiperContent={swiperContent} />
-	<div
-		class='sticky top-0 z-50 bg-[#f0f2f5] dark:bg-[#18181a] px-6 shadow-lightCardHover dark:shadow-darkCard px-6 py-3'
-	>
-		<TitlePage title={'جميع المقالات'} />
-		<div id='separator' class='py-4'></div>
-		<ListCategories categoriesData={categoriesData} />
-	</div>
+	<!-- <div
+		class='w-full md:sticky top-0 z-50 bg-[#f0f2f5] dark:bg-[#18181a] px-6 shadow-lightCardHover dark:shadow-darkCard px-6 py-3'
+	> -->
+	<TitlePage title={'جميع المقالات'} />
+	<!-- <div id='separator' class='py-4'></div> -->
+	<ListCategories categoriesData={categoriesData} />
+	<!-- </div> -->
 
 	<ListPosts FirstBig={true} articles={allArticles} />
 
