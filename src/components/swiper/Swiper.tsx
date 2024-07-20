@@ -4,25 +4,13 @@ import './styles.css'
 import '../../styles/global.css'
 import 'swiper/css/effect-fade'
 import 'swiper/css/scrollbar'
-import { Scrollbar } from 'swiper/modules'
-import { EffectFade, Autoplay } from 'swiper/modules'
-
-import { useRef } from 'react'
+import { EffectFade, Autoplay, Scrollbar } from 'swiper/modules'
 
 interface Props {
 	swiperContent: ArticleData[]
 }
 export default function App(props: Props) {
 	const { swiperContent } = props
-
-	const progressCircle = useRef(null)
-	const progressContent = useRef(null)
-	const onAutoplayTimeLeft = (s, time, progress) => {
-		// @ts-ignore
-		progressCircle.current.style.setProperty('--progress', 1 - progress)
-		// @ts-ignore
-		progressContent.current.textContent = `${Math.ceil(time / 1000)}s`
-	}
 
 	const swiperData = swiperContent.map((article) => {
 		const picture = article.attributes.cover.data.attributes.formats.medium.url
@@ -66,20 +54,15 @@ export default function App(props: Props) {
 			<Swiper
 				spaceBetween={30}
 				effect={'fade'}
-				modules={[EffectFade, Scrollbar, Autoplay]}
+				modules={[Scrollbar, Autoplay, EffectFade]}
+				scrollbar={{
+					hide: true
+				}}
 				className='mySwiper'
 				style={{ borderRadius: '8px', width: '100%', maxHeight: '85vh', minHeight: '55vh' }}
-				scrollbar={{ hide: true }}
 				autoplay={{ delay: 4500, disableOnInteraction: false }}
-				onAutoplayTimeLeft={onAutoplayTimeLeft}
 			>
 				{swiperData}
-				<div className='autoplay-progress' slot='container-end'>
-					<svg viewBox='0 0 48 48' ref={progressCircle}>
-						<circle cx='24' cy='24' r='20'></circle>
-					</svg>
-					<span ref={progressContent}></span>
-				</div>
 			</Swiper>
 		</>
 	)
