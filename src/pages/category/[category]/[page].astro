@@ -6,43 +6,25 @@ import TitlePage from '@/components/TitlePage'
 import Pagination from '@/components/Pagination'
 import { fetchArticles, fetchCategories } from 'src/utils/fetchApiData'
 
-let currentPage = 1
-
 const categoriesData = await fetchCategories()
 const currentCategory =
 	categoriesData.data.find((category) => category.attributes.slug === Astro.params.category)
 		?.attributes.name || ''
 
-const articles = await fetchArticles(currentPage, 5, 'createdAt:desc', Astro.params.category)
+const page = Astro.url.searchParams.get('page')
+let currentPage = page ? Number(page) : 1
 
-const allArticles = articles.data.map((article) => {
+const articles = await fetchArticles(currentPage, 5, 'createdAt:desc', Astro.params.category)
+const articlesData = articles.data.map((article) => {
 	return article
 })
 
 const pagination = articles.meta.pagination
-
-// const filteredArticles = categoriesData.data
-// 	.map((category) => {
-// 		const currentPath = Astro.url.pathname
-// 		const categoryName = category.attributes.name
-// 		const categorySlug = category.attributes.slug
-// 		const currentArticlesCategory = 'attributes.category.data.attributes.name'
-
-// 		const paginationOfCurrentCategory = allArticles.filter((article) => article.id)
-
-// 		const matchingArticles = allArticles.filter(
-// 			(article) =>
-// 				article + currentArticlesCategory === categoryName && currentPath.includes(categorySlug)
-// 		)
-
-// 		return matchingArticles.length > 0 ? matchingArticles : null // Return null if no matching articles found
-// 	})
-// 	.filter((articles) => articles !== null) // Filter out null entries from the result
 ---
 
 <BaseLayout title={currentCategory}>
 	<TitlePage title={currentCategory} />
 	<ListCategories categoriesData={categoriesData} />
-	<ListPosts articles={allArticles} />
-	<Pagination isCategory={true} pagination={pagination} categorySlug='slug' />
+	<ListPosts articles={articlesData} />
+	<Pagination isCategory={true} pagination={pagination} categorySlug={Astro.params.category} />
 </BaseLayout>

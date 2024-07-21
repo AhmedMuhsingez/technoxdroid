@@ -26,7 +26,7 @@ const homeURL = URLS.home.builder
 					currentPage === 1
 						? 'javascript:void(0)'
 						: isCategory
-							? categoryURL({ currentPage: 1, slug: categorySlug })
+							? categoryURL({ currentPage: currentPage - 1 })
 							: homeURL({ currentPage: currentPage - 1 })
 				}
 			>
@@ -49,7 +49,7 @@ const homeURL = URLS.home.builder
 					lastPage
 						? 'javascript:void(0)'
 						: isCategory
-							? categoryURL({ currentPage: 1, slug: categorySlug })
+							? categoryURL({ currentPage: currentPage + 1 })
 							: homeURL({ currentPage: currentPage + 1 })
 				}
 			>

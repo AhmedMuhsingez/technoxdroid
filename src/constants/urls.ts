@@ -10,12 +10,11 @@ export const URLS = {
 	},
 
 	categories: {
-		builder: ({ currentPage = 1, slug }) => {
-			// return `/category/${slug}/`
+		builder: ({ currentPage = 1 }) => {
 			const param = new URLSearchParams({
 				page: String(currentPage)
 			})
-			return `category/${slug}/?${param.toString()}`
+			return `?${param.toString()}`
 		}
 	}
 }
