@@ -1,7 +1,39 @@
 ---
+import { SOCIAL_LINKS_FOOTER } from '../constants/urls'
+import HeaderLink from './HeaderLink.astro'
+import GithubIcon from '@/components/icons/GithubIcon'
+import Facebook from './icons/Facebook.astro'
+import Instagram from './icons/Instagram.astro'
+
 const today = new Date()
 ---
 
-<footer class='flex text-center items-center w-full px-16 h-28 border-t-2 justify-center'>
+<footer class='flex text-center items-center w-full px-16 h-28 border-t-2 justify-center flex-col'>
 	&copy; {today.getFullYear()} تكنودرويد. جميع الحقوق محفوظة
+
+	<div id='social-icons-footer' class='flex my-4'>
+		{
+			SOCIAL_LINKS_FOOTER.map((network) => {
+				const icon =
+					network.icon === 'facebook' ? (
+						<Facebook />
+					) : network.icon === 'github' ? (
+						<GithubIcon />
+					) : network.icon === 'instagram' ? (
+						<Instagram />
+					) : null
+
+				return (
+					<HeaderLink
+						class='mx-4'
+						href={network.url}
+						target={network.target}
+						aria-label={network.name}
+					>
+						{icon}
+					</HeaderLink>
+				)
+			})
+		}
+	</div>
 </footer>
