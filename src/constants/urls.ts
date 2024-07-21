@@ -1,11 +1,21 @@
 export const URLS = {
 	home: {
 		builder: ({ currentPage = 1 }) => {
-			const x = new URLSearchParams({
+			const param = new URLSearchParams({
 				page: String(currentPage)
 			})
 
-			return `/?${x.toString()}`
+			return `/?${param.toString()}`
+		}
+	},
+
+	categories: {
+		builder: ({ currentPage = 1, slug }) => {
+			// return `/category/${slug}/`
+			const param = new URLSearchParams({
+				page: String(currentPage)
+			})
+			return `category/${slug}/?${param.toString()}`
 		}
 	}
 }
