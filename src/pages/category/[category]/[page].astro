@@ -15,34 +15,34 @@ const currentCategory =
 
 const articles = await fetchArticles(currentPage, 5, 'createdAt:desc', Astro.params.category)
 
-console.log(articles, 'correct?')
-
 const allArticles = articles.data.map((article) => {
 	return article
 })
 
-const filteredArticles = categoriesData.data
-	.map((category) => {
-		const currentPath = Astro.url.pathname
-		const categoryName = category.attributes.name
-		const categorySlug = category.attributes.slug
-		const currentArticlesCategory = 'attributes.category.data.attributes.name'
+const pagination = articles.meta.pagination
 
-		const paginationOfCurrentCategory = allArticles.filter((article) => article.id)
+// const filteredArticles = categoriesData.data
+// 	.map((category) => {
+// 		const currentPath = Astro.url.pathname
+// 		const categoryName = category.attributes.name
+// 		const categorySlug = category.attributes.slug
+// 		const currentArticlesCategory = 'attributes.category.data.attributes.name'
 
-		const matchingArticles = allArticles.filter(
-			(article) =>
-				article + currentArticlesCategory === categoryName && currentPath.includes(categorySlug)
-		)
+// 		const paginationOfCurrentCategory = allArticles.filter((article) => article.id)
 
-		return matchingArticles.length > 0 ? matchingArticles : null // Return null if no matching articles found
-	})
-	.filter((articles) => articles !== null) // Filter out null entries from the result
+// 		const matchingArticles = allArticles.filter(
+// 			(article) =>
+// 				article + currentArticlesCategory === categoryName && currentPath.includes(categorySlug)
+// 		)
+
+// 		return matchingArticles.length > 0 ? matchingArticles : null // Return null if no matching articles found
+// 	})
+// 	.filter((articles) => articles !== null) // Filter out null entries from the result
 ---
 
 <BaseLayout title={currentCategory}>
 	<TitlePage title={currentCategory} />
 	<ListCategories categoriesData={categoriesData} />
-	<ListPosts articles={filteredArticles[0]} />
-	<!-- <Pagination isCategory={true} pagination={'asdasd'} categorySlug='slug' /> -->
+	<ListPosts articles={allArticles} />
+	<Pagination isCategory={true} pagination={pagination} categorySlug='slug' />
 </BaseLayout>
