@@ -1,17 +1,24 @@
 import fetchApi from 'src/lib/strapi'
+export const fetchArticles = async (
+	page = 1,
+	pageSize = 5,
+	sort = 'createdAt:desc',
+	categorySlug: string = '/'
+) => {
+	const query = {
+		populate: ['category', 'cover'].join(','),
+		'pagination[page]': String(page),
+		'pagination[pageSize]': String(pageSize),
+		sort: sort
+	}
+	if (categorySlug) {
+		query['filters[category][slug][$eq]'] = categorySlug
+	}
 
-export const fetchArticles = async (page = 1, pageSize = 5, sort = 'createdAt:desc') => {
 	const articles = await fetchApi<Article>({
 		endpoint: 'articles',
-		query: {
-			populate: ['category', 'cover'].join(','),
-			'pagination[page]': String(page),
-			'pagination[pageSize]': String(pageSize),
-			sort: sort
-		}
+		query: query
 	})
-
-	// console.log(articles.meta.pagination)
 
 	return articles
 }

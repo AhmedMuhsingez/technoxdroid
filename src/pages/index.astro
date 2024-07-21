@@ -15,7 +15,8 @@ const page = Astro.url.searchParams.get('page')
 let currentPage = page ? Number(page) : 1
 
 //fetch articles of the x page pagination:
-const articles = await fetchArticles(currentPage, 5)
+const articles = await fetchArticles(currentPage, 5, 'createdAt:desc', '')
+
 //extract pagination from the response
 let pagination = articles.meta.pagination
 
