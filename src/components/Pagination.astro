@@ -1,8 +1,10 @@
 ---
-const { pagination } = Astro.props
+const { pagination, isCategory, categorySlug } = Astro.props
 import { URLS } from '../constants/urls'
 interface Props {
 	pagination: Pagination
+	isCategory: boolean
+	categorySlug?: string
 }
 
 const currentPage = pagination.page
@@ -10,6 +12,9 @@ const allArticles = pagination.total
 const allPagesCount = pagination.pageCount
 
 const lastPage = allPagesCount === currentPage
+
+const categoryURL = URLS.categories.builder
+const homeURL = URLS.home.builder
 ---
 
 <div class='flex justify-evenly text-md white'>
@@ -20,7 +25,9 @@ const lastPage = allPagesCount === currentPage
 				href={
 					currentPage === 1
 						? 'javascript:void(0)'
-						: URLS.home.builder({ currentPage: currentPage - 1 })
+						: isCategory
+							? categoryURL({ currentPage: 1, slug: categorySlug })
+							: homeURL({ currentPage: currentPage - 1 })
 				}
 			>
 				&laquo; السابق
@@ -38,7 +45,13 @@ const lastPage = allPagesCount === currentPage
 		currentPage < pagination.total && (
 			<a
 				class={`mx-2 ${lastPage ? 'text-gray-400 cursor-default' : 'text-black dark:text-white'}`}
-				href={lastPage ? 'javascript:void(0)' : URLS.home.builder({ currentPage: currentPage + 1 })}
+				href={
+					lastPage
+						? 'javascript:void(0)'
+						: isCategory
+							? categoryURL({ currentPage: 1, slug: categorySlug })
+							: homeURL({ currentPage: currentPage + 1 })
+				}
 			>
 				التالي &raquo;
 			</a>
