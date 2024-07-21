@@ -7,36 +7,32 @@ import Swiper from 'src/components/swiper/Swiper'
 import { fetchArticles, fetchCategories } from 'src/utils/fetchApiData'
 import Pagination from '@/components/Pagination'
 
-const page = Astro.url.searchParams.get('page')
-
 const categoriesData = await fetchCategories()
 
+//get current "page" parameter from the url if it has it
+const page = Astro.url.searchParams.get('page')
+//assign it to the state of the current page
 let currentPage = page ? Number(page) : 1
 
-const articles = await fetchArticles(currentPage, 5)
+//fetch articles of the x page pagination:
+const articles = await fetchArticles(currentPage, 5, 'createdAt:desc', '')
 
-let totalPages = articles.meta.pagination.pageCount
-
-let pages = articles.meta.pagination
+//extract pagination from the response
+let pagination = articles.meta.pagination
 
 const allArticles = articles.data.map((article) => article)
-
 const swiperContent = allArticles.slice(0, 4)
 ---
 
 <BaseLayout title=''>
 	<Swiper client:load swiperContent={swiperContent} />
-	<!-- <div
-		class='w-full md:sticky top-0 z-50 bg-[#f0f2f5] dark:bg-[#18181a] px-6 shadow-lightCardHover dark:shadow-darkCard px-6 py-3'
-	> -->
+
 	<TitlePage title={'جميع المقالات'} />
-	<!-- <div id='separator' class='py-4'></div> -->
 	<ListCategories categoriesData={categoriesData} />
-	<!-- </div> -->
 
 	<ListPosts FirstBig={true} articles={allArticles} />
 
-	<Pagination pages={pages} />
+	<Pagination pagination={pagination} isCategory={false} />
 
 	<script>
 		import { animate } from 'motion'
