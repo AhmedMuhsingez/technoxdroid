@@ -12,7 +12,8 @@ module.exports = {
 			colors: {
 				background: {
 					dark: '#18181a',
-					light: '#f0f2f5'
+					light: '#f0f2f5',
+					disabled: 'rgb(156 163 175)'
 				},
 				paper: {
 					dark: '#242527'

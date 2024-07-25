@@ -5,6 +5,7 @@ import ListCategories from '@/components/ListCategories'
 import TitlePage from '@/components/TitlePage'
 import Pagination from '@/components/Pagination'
 import { fetchArticles, fetchCategories } from 'src/utils/fetchApiData'
+import EmptyPage from '@/components/EmptyPage'
 
 const categoriesData = await fetchCategories()
 const currentCategory =
@@ -19,12 +20,28 @@ const articlesData = articles.data.map((article) => {
 	return article
 })
 
+const noArticles = articlesData.length === 0
+
 const pagination = articles.meta.pagination
 ---
 
 <BaseLayout title={currentCategory}>
 	<TitlePage title={currentCategory} />
 	<ListCategories categoriesData={categoriesData} />
-	<ListPosts articles={articlesData} />
-	<Pagination isCategory={true} pagination={pagination} categorySlug={Astro.params.category} />
+	{
+		noArticles ? (
+			<EmptyPage />
+		) : (
+			<>
+				<>
+					<ListPosts articles={articlesData} />
+					<Pagination
+						isCategory={true}
+						pagination={pagination}
+						categorySlug={Astro.params.category}
+					/>
+				</>
+			</>
+		)
+	}
 </BaseLayout>
