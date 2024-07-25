@@ -1,9 +1,8 @@
 interface Props {
-	endpoint: string //https://technodroid-dashboard-38b3922bb6c2.herokuapp.com/api/articles
+	endpoint: string
 	query?: Record<string, string>
 	wrappedByKey?: string
 	wrappedByList?: boolean
-	// pagination?: Pagination
 }
 
 /**
@@ -31,7 +30,6 @@ export default async function fetchApi<T>({
 			url.searchParams.append(key, value)
 		})
 	}
-	// console.log(url)
 	const res = await fetch(url.toString())
 	let data = await res.json()
 
