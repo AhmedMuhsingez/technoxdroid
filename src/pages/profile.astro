@@ -1,11 +1,20 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout'
+import { fetchAboutPage } from '../utils/fetchApiData'
+import { marked } from 'marked'
+import LanugageSelector from '@/components/LanguageSelector'
 
-const setEnglish = () => {}
+const profileData = await fetchAboutPage()
+const english = marked(profileData.data.attributes.contentEnglish)
+const arabic = marked(profileData.data.attributes.contentArabic)
+
+const lang = 'ar'
 ---
 
 <BaseLayout title={'Profile'} description={'Hello World!'}>
-	<div class='flex justify-center'>
-		<h1>Hello World!</h1>
-	</div>
+	<LanugageSelector />
+	<div
+		set:html={lang == 'ar' ? arabic : english}
+		class={`prose dark:prose-invert max-w-none prose-p:text-lg prose-img:m-auto prose-img:max-h-[720px] text-center ${lang === 'ar' ? 'forceRTL' : 'forceLTR'}`}
+	/>
 </BaseLayout>
