@@ -42,7 +42,7 @@ const homeURL = URLS.home.builder
 		<div class='mx-2' title='عدد الصفحات الكلّي'>{allPagesCount}</div>
 	</div>
 	{
-		currentPage < pagination.total && (
+		(
 			<a
 				class={`mx-2 ${lastPage ? 'text-gray-400 cursor-default' : 'text-black dark:text-white'}`}
 				href={
