@@ -41,7 +41,7 @@ export default function App(props: Props) {
 					</a>
 					<a
 						href={`/articles/${article.id}`}
-						className='md:text-lg text-sm text-center cursor-pointer leading-6'
+						className='text-white md:text-lg text-sm text-center cursor-pointer leading-6'
 					>
 						{details}
 					</a>
