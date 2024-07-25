@@ -24,15 +24,15 @@ export default function App(props: Props) {
 					className='flex flex-col justify-center items-center'
 					style={{
 						color: 'white',
-						background: 'linear-gradient(0deg, rgba(0,0,0,1) 20%, rgba(255,255,255,0) 100%)',
+						background: 'linear-gradient(180deg, rgba(0, 0, 0, 0.16) 0%, rgba(0, 0, 0, 0.86) 100%)',
 						padding: '8px',
 						width: '100%',
 						position: 'absolute',
 						bottom: 0,
-						height: '35%',
-						zIndex: 98
+						height: '100%'
 					}}
-				>
+				></div>
+				<div className='flex flex-col absolute bottom-0 w-full mb-12 px-4'>
 					<a
 						href={`/articles/${article.id}`}
 						className='md:text-2xl text-md font-bold text-center mb-4 cursor-pointer'
@@ -41,7 +41,7 @@ export default function App(props: Props) {
 					</a>
 					<a
 						href={`/articles/${article.id}`}
-						className='md:text-lg text-sm text-center mb-10 md:mb-2 cursor-pointer leading-6'
+						className='md:text-lg text-sm text-center cursor-pointer leading-6'
 					>
 						{details}
 					</a>
