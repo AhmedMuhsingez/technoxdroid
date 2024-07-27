@@ -33,11 +33,15 @@ interface ArticleAttributes {
 		updatedAt: string // Assuming ISO 8601 date format
 	}
 	author: {
-		id: number
-		name: string
-		email: string
-		createdAt: string // Assuming ISO 8601 date format
-		updatedAt: string // Assuming ISO 8601 date format
+		data: {
+			id: number
+			attributes: {
+				name: string
+				email: string
+				createdAt: string // Assuming ISO 8601 date format
+				updatedAt: string // Assuming ISO 8601 date format
+			}
+		}
 	}
 	category: {
 		id: number

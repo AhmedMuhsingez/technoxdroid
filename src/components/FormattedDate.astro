@@ -1,6 +1,7 @@
 ---
 import { format, parseISO, formatDistanceToNow } from 'date-fns'
 import { ar } from 'date-fns/locale'
+import { cn } from 'src/utils/utils'
 
 export interface Props {
 	date: string
@@ -9,9 +10,11 @@ export interface Props {
 const { date, insidePost } = Astro.props
 const publishDate = date
 const sinceTime = formatDistanceToNow(new Date(date), { locale: ar })
+
+const containerStyle = 'text-md flex flex-col forceLTR'
 ---
 
-<div class='text-sm font-bold text-opacity-60 flex flex-col forceLTR'>
+<div class={cn(containerStyle, !insidePost && 'font-bold text-opacity-60 text-sm')}>
 	<span class='flex w-full'>
 		{format(parseISO(publishDate), 'yyyy, MMMM dd', { locale: ar })}
 	</span>

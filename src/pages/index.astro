@@ -9,15 +9,10 @@ import Pagination from '@/components/Pagination'
 
 const categoriesData = await fetchCategories()
 
-//get current "page" parameter from the url if it has it
 const page = Astro.url.searchParams.get('page')
-//assign it to the state of the current page
 let currentPage = page ? Number(page) : 1
-
-//fetch articles of the x page pagination:
 const articles = await fetchArticles(currentPage, 5, 'createdAt:desc', '')
 
-//extract pagination from the response
 let pagination = articles.meta.pagination
 
 const allArticles = articles.data.map((article) => article)

@@ -15,16 +15,9 @@ const coverImage = cover.data.attributes.formats.large.url
 ---
 
 <BaseLayout title={title} description={description} image={coverImage} articleDate={publishedAt}>
-	<article class='min-w-full md:py-4 sm:max-w-none md:max-w-none'>
+	<article class='min-w-full sm:max-w-none md:max-w-none'>
 		<header class='mb-3 flex flex-col justify-center items-center gap-6'>
 			<div class='flex flex-col gap-2'>
-				<div class='flex items-center justify-center gap-x-1'>
-					<p class='text-center text-sm text-opacity-50'>
-						<time class='text-sm font-bold text-opacity-60'>
-							تم النشر في <FormattedDate date={publishedAt} insidePost={true} /></time
-						>
-					</p>
-				</div>
 				<h1 class='text-center text-4xl md:text-6xl font-semibold' style={{ lineHeight: 1.4 }}>
 					{title}
 				</h1>
@@ -52,9 +45,28 @@ const coverImage = cover.data.attributes.formats.large.url
 
 		<hr />
 
-		<div class='pt-4'>
+		<div class='py-6'>
 			<slot />
 		</div>
+
+		<footer
+			class='flex md:flex-col justify-between md:justify-start py-4 gap-2 border-t-2 dark:border-t px-3'
+		>
+			<div class='flex gap-x-1'>
+				<p class='text-center text-sm'>
+					<time class='text-sm'>
+						تم النشر في <FormattedDate date={publishedAt} insidePost={true} /></time
+					>
+				</p>
+			</div>
+
+			<div class='flex'>
+				<div>كاتب المقال:</div>
+				<div class='font-bold text-action-active dark:text-action-activeDark px-1 cursor-no-drop'>
+					{data.author.data.attributes.name}
+				</div>
+			</div>
+		</footer>
 	</article>
 </BaseLayout>
 

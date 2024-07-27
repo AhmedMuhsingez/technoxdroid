@@ -18,6 +18,10 @@ try {
 }
 
 const markdownBlock = marked(article.data.attributes.RichTextEditor)
+
+const writerInfo = article.data.attributes.author.data.attributes.name
+
+console.log(writerInfo)
 ---
 
 <BlogPost data={article.data.attributes}>
