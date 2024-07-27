@@ -11,10 +11,10 @@ const { date, insidePost } = Astro.props
 const publishDate = date
 const sinceTime = formatDistanceToNow(new Date(date), { locale: ar })
 
-const containerStyle = 'text-md flex flex-col forceLTR'
+const containerStyle = 'text-md flex flex-col forceLTR px-1'
 ---
 
-<div class={cn(containerStyle, !insidePost && 'font-bold text-opacity-60 text-sm')}>
+<div class={cn(containerStyle, !insidePost && 'font-bold text-opacity-60 text-sm px-0')}>
 	<span class='flex w-full'>
 		{format(parseISO(publishDate), 'yyyy, MMMM dd', { locale: ar })}
 	</span>

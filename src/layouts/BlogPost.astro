@@ -50,13 +50,11 @@ const coverImage = cover.data.attributes.formats.large.url
 		</div>
 
 		<footer
-			class='flex md:flex-col justify-between md:justify-start py-4 gap-2 border-t-2 dark:border-t px-3'
+			class='text-md flex md:flex-row-reverse flex-col justify-between items-center md:items-start py-4 gap-2 border-t-2 dark:border-t px-4'
 		>
 			<div class='flex gap-x-1'>
-				<p class='text-center text-sm'>
-					<time class='text-sm'>
-						تم النشر في <FormattedDate date={publishedAt} insidePost={true} /></time
-					>
+				<p class='text-center flex'>
+					تم النشر في <FormattedDate date={publishedAt} insidePost={true} />
 				</p>
 			</div>
 
