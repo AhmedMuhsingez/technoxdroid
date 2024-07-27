@@ -21,7 +21,7 @@ module.exports = {
 
 				action: {
 					active: '#7D4B94',
-					activeDark: '#834F8C',
+					activeDark: '#7b3dad',
 					disabled: '#9ca3af'
 				}
 			},

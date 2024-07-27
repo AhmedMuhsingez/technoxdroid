@@ -21,7 +21,7 @@ const homeURL = URLS.home.builder
 	{
 		(
 			<a
-				class={`mx-2 ${currentPage === 1 ? 'text-action-disabled cursor-default' : 'text-black dark:text-white'}`}
+				class={`mx-2 ${currentPage === 1 ? 'text-action-disabled cursor-default' : 'text-black dark:text-white hover:text-action-active dark:hover:text-action-activeDark'}`}
 				href={
 					currentPage === 1
 						? 'javascript:void(0)'
@@ -47,7 +47,7 @@ const homeURL = URLS.home.builder
 	{
 		(
 			<a
-				class={`mx-2 ${lastPage ? 'text-action-disabled cursor-default' : 'text-black dark:text-white'}`}
+				class={`mx-2 ${lastPage ? 'text-action-disabled cursor-default' : 'text-black dark:text-white hover:text-action-active dark:hover:text-action-activeDark'}`}
 				href={
 					lastPage
 						? 'javascript:void(0)'
