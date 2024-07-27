@@ -21,7 +21,7 @@ const homeURL = URLS.home.builder
 	{
 		(
 			<a
-				class={`mx-2 ${currentPage === 1 ? 'text-gray-400 cursor-default' : 'text-black dark:text-white'}`}
+				class={`mx-2 ${currentPage === 1 ? 'text-action-disabled cursor-default' : 'text-black dark:text-white'}`}
 				href={
 					currentPage === 1
 						? 'javascript:void(0)'
@@ -35,7 +35,10 @@ const homeURL = URLS.home.builder
 		)
 	}
 	<div class='flex'>
-		<div class='mx-2 text-[#7D4B94] dark:text-[#834F8C] font-bold' title='الصفحة الحالية'>
+		<div
+			class='mx-2 text-action-active dark:text-action-activeDark font-bold'
+			title='الصفحة الحالية'
+		>
 			{currentPage}
 		</div>
 		<div class='mx-1'>من</div>
@@ -44,7 +47,7 @@ const homeURL = URLS.home.builder
 	{
 		(
 			<a
-				class={`mx-2 ${lastPage ? 'text-gray-400 cursor-default' : 'text-black dark:text-white'}`}
+				class={`mx-2 ${lastPage ? 'text-action-disabled cursor-default' : 'text-black dark:text-white'}`}
 				href={
 					lastPage
 						? 'javascript:void(0)'

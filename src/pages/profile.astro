@@ -2,28 +2,39 @@
 import BaseLayout from '@/layouts/BaseLayout'
 import { fetchAboutPage } from '../utils/fetchApiData'
 import { marked } from 'marked'
+import { cn } from 'src/utils/utils'
 
 const profileData = await fetchAboutPage()
 const english = marked(profileData.data.attributes.contentEnglish)
 const arabic = marked(profileData.data.attributes.contentArabic)
 
 const currentPath = Astro.url.searchParams.get('lang')
+const buttonStyle =
+	'text-xl cursor-pointer flex w-fit px-4 py-2 rounded-t-lg border border-b-0 md:border-2 md:border-b-0 border-action-disabled'
+const activeButton = 'border-action-active dark:border-action-activeDark py-3 cursor-default'
 ---
 
-<BaseLayout title={'Profile'} description={'Hello World!'}>
-	<div class='flex justify-end'>
-		<a
-			href={`?lang=` + (currentPath === 'ar' ? 'en' : 'ar')}
-			class='text-xl border cursor-pointer flex w-fit px-4 py-2 rounded-lg'
-		>
-			{currentPath === 'ar' ? 'English' : 'العربية'}
-		</a>
+<BaseLayout title={'Profile'} description={'TechnoXDroid Profile'}>
+	<div class='min-h-[calc(100vh-20rem)] text-center flex flex-col justify-center'>
+		<div class='flex justify-between px-4'>
+			<a
+				href={`?lang=` + 'ar'}
+				class={cn(buttonStyle, currentPath === 'ar' ? activeButton : 'border-action-disabled')}
+				>العربية</a
+			>
+
+			<a
+				href={`?lang=` + 'en'}
+				class={cn(
+					buttonStyle,
+					currentPath === 'en' || currentPath === null ? activeButton : 'border-action-disabled'
+				)}>English</a
+			>
+		</div>
+
+		<div
+			set:html={currentPath == 'ar' ? arabic : english}
+			class={`prose dark:prose-invert max-w-none prose-p:text-lg prose-img:m-auto prose-img:max-h-[720px] text-center ${currentPath === 'ar' ? 'forceRTL' : 'forceLTR'}  rounded-xl md:p-8 p-4 shadow-profileShadow`}
+		/>
 	</div>
-	<div
-		set:html={currentPath == 'ar' ? arabic : english}
-		class={`prose dark:prose-invert max-w-none prose-p:text-lg prose-img:m-auto prose-img:max-h-[720px] text-center 
-		min-h-[calc(100vh-25rem)]
-		 ${currentPath === 'ar' ? 'forceRTL' : 'forceLTR'}
-		 `}
-	/>
 </BaseLayout>
