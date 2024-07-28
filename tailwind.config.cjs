@@ -13,7 +13,8 @@ module.exports = {
 				background: {
 					dark: '#18181a',
 					light: '#f0f2f5',
-					disabled: 'rgb(156 163 175)'
+					disabled: 'rgb(156 163 175)',
+					muted: '#222224'
 				},
 				paper: {
 					dark: '#242527'

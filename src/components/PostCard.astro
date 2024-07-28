@@ -3,75 +3,99 @@ import { Image } from 'astro:assets'
 import FormattedDate from '@/components/FormattedDate'
 import ArrowUp from '@/components/icons/ArrowUp'
 import { cn } from 'src/utils/utils'
-const { id, title, description, pubDate, heroImage, category, slug, isShortNews } = Astro.props
+const { id, title, description, pubDate, heroImage, category, slug, isShortNews, author } =
+	Astro.props
 
 const currentPath = Astro.url.pathname
 const isMovies = currentPath.includes('movies-and-shows')
 const activeMovies = 'group-hover:text-movies-active group-hover:dark:text-movies-active'
-
-const containerStyle =
-	'flex flex-col justify-evenly gap-2 md:gap-0 py-6 ease-in duration-200 shadow-lightCard hover:shadow-lightCardHover dark:shadow-darkCard dark:hover:shadow-darkCardHover rounded-b-lg px-4 dark:bg-paper-dark flex flex-col'
 ---
 
-<article class='grid grid-rows-[300px_auto] md:grid-rows-[300px_220px] min-h-full group'>
-	<a
-		class={cn('relative overflow-hidden', isShortNews && 'cursor-default')}
-		href={isShortNews ? 'javascript:void(0);' : `/articles/${id}`}
-		onclick={isShortNews && false}
-	>
-		{
-			heroImage && (
-				<Image
-					src={heroImage}
-					width={600}
-					height={200}
-					format='webp'
-					class='h-full min-w-full object-cover hover:scale-[101%] transition-all duration-200 rounded-[2px]'
-					alt={`صورة ${title}`}
-				/>
-			)
-		}
+{
+	isShortNews ? (
+		<article class='flex relative col-span-3 max-h-[300px] min-h-[300px] w-full'>
+			<Image
+				src={heroImage}
+				width={400}
+				height={200}
+				class='object-cover rounded-[2px]'
+				alt={`صورة ${title}`}
+			/>
 
-		<div class='z-30 absolute bottom-0 w-full'>
-			<div
-				class='flex items-center justify-between gap-x-1 text-white px-6 py-4 -z-10 absolute bottom-0 glass w-full min-h-full'
-			>
-				<span class='pb-5'>{category}</span>
-				<div class='flex flex-col gap-1 items-center justify-center'>
-					<FormattedDate date={pubDate} />
+			<div id='context' class='flex flex-col relative gap-2 p-6 rounded-lg w-full justify-between'>
+				<div class='text-white text-3xl font-bold  '>
+					<span class='text-black dark:text-white' id='title'>
+						{title}
+					</span>
+				</div>
+				<div class='text-gray-300 max-w-[80%]'>{description}</div>
+				<div class='text-gray-400 text-sm'>
+					<div id='date'>{pubDate}</div>
+					<div id='author'>{author}</div>
+				</div>
+
+				<div
+					id='hero-name'
+					style={{ clipPath: 'polygon(0 0, 100% 0, 100% 97%, 0 94%)' }}
+					class='rotate-90 absolute -left-0 ml-14 transform text-background-muted origin-top-left text-3xl md:text-5xl font-extrabold'
+				>
+					أخبار قصيرة
 				</div>
 			</div>
-		</div>
-	</a>
-
-	<div class={cn(containerStyle, isShortNews && 'text-center bg-white dark:bg-black')}>
-		<div class='flex flex-col gap-2'>
-			<a
-				class={cn(
-					'lg:text-xl md:text-base font-semibold -tracking-wider',
-					isShortNews && 'cursor-default'
+		</article>
+	) : (
+		<article class='grid grid-rows-[300px_auto] md:grid-rows-[300px_220px] min-h-full group'>
+			<a class='relative overflow-hidden' href={`/articles/${id}`}>
+				{heroImage && (
+					<Image
+						src={heroImage}
+						width={600}
+						height={200}
+						format='webp'
+						class='h-full min-w-full object-cover hover:scale-[101%] transition-all duration-200 rounded-[2px]'
+						alt={`صورة ${title}`}
+					/>
 				)}
-				href={isShortNews ? 'javascript:void(0);' : `/articles/${id}`}
-			>
-				{title}
+
+				<div class='z-30 absolute bottom-0 w-full'>
+					<div class='flex items-center justify-between gap-x-1 text-white px-6 py-4 -z-10 absolute bottom-0 glass w-full min-h-full'>
+						<span class='pb-5'>{category}</span>
+						<div class='flex flex-col gap-1 items-center justify-center'>
+							<FormattedDate date={pubDate} />
+						</div>
+					</div>
+				</div>
 			</a>
-		</div>
 
-		<p
-			class={cn(
-				'overflow-hidden line-clamp-3 text-gray-700 dark:text-white mb-5 font-extralight',
-				isShortNews && 'mb-0'
-			)}
-		>
-			<>{description}{!isShortNews && <p>...</p>}</>
-		</p>
+			<div
+				class='flex justify-between
+		flex-col gap-2 md:gap-0 py-6 px-2
+		ease-in duration-200
+		shadow-lightCard
+		hover:shadow-lightCardHover
+		dark:shadow-darkCard
+		dark:hover:shadow-darkCardHover
+		rounded-b-lg px-4
+		dark:bg-paper-dark'
+			>
+				<div class='flex flex-col gap-3'>
+					<div class='flex flex-col gap-2'>
+						<a
+							class='lg:text-xl md:text-base font-semibold -tracking-wider'
+							href={`/articles/${id}/`}
+						>
+							{title}
+						</a>
+					</div>
 
-		{
-			!isShortNews && (
+					<p class='overflow-hidden line-clamp-3 text-gray-700 dark:text-white mb-5 font-extralight'>
+						{description}...
+					</p>
+				</div>
+
 				<footer class='flex justify-between items-center'>
 					<a
-						href={isShortNews ? 'javascript:void(0);' : `/articles/${id}`}
-						onclick={isShortNews && false}
+						href={`/articles/${id}/`}
 						class={cn(
 							'flex justify-center items-center dark:text-white rounded-full hover:translate-x-1 transition-transform duration-150 ease-in-out font-semibold gap-1 group group-hover:text-action-active dark:group-hover:text-action-activeDark',
 							isMovies && activeMovies
@@ -89,10 +113,10 @@ const containerStyle =
 						</span>
 					</a>
 				</footer>
-			)
-		}
-	</div>
-</article>
+			</div>
+		</article>
+	)
+}
 
 <script>
 	import { animate } from 'motion'
@@ -118,3 +142,16 @@ const containerStyle =
 		}
 	})
 </script>
+<style>
+	#title {
+		position: relative;
+		padding: 0 0.5em;
+		background-image: linear-gradient(
+			0,
+			transparent 25%,
+			#7b3dad 25%,
+			#7b3dad 45%,
+			transparent 20%
+		);
+	}
+</style>
