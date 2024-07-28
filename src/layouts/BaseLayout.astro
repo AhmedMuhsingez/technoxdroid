@@ -6,7 +6,9 @@ import ProviderTheme from '@/components/ProviderTheme'
 import ProviderAnimations from '@/components/ProviderAnimations'
 import TwSizeIndicator from '@/components/TwSizeIndicator'
 import ScrollCircle from '@/components/ScrollCircle'
+import { cn } from 'src/utils/utils'
 const { title, description, image, articleDate } = Astro.props
+const homePage = Astro.url.pathname === '/'
 ---
 
 <html lang='en' class='scroll-smooth'>
@@ -20,7 +22,7 @@ const { title, description, image, articleDate } = Astro.props
 			class='forceRTL px-5 sm:mx-auto sm:max-w-2xl sm:px-8 lg:px-0 antialiased md:max-w-6xl grid overflow-hidden md:overflow-visible'
 		>
 			<Header />
-			<div class='pt-12'></div>
+			<div class={cn(homePage ? 'pt-12' : 'pt-0')} '></div>
 			<slot />
 			<ScrollCircle />
 			<Footer />
