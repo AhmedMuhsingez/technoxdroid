@@ -17,6 +17,7 @@ interface ArticleAttributes {
 	RichTextEditor: string
 	category: CategoryResponse
 	cover: ImageResponse
+	isShortNews: boolean
 }
 
 interface ArticleData {

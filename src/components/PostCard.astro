@@ -3,7 +3,7 @@ import { Image } from 'astro:assets'
 import FormattedDate from '@/components/FormattedDate'
 import ArrowUp from '@/components/icons/ArrowUp'
 import { cn } from 'src/utils/utils'
-const { id, title, description, pubDate, heroImage, category, slug } = Astro.props
+const { id, title, description, pubDate, heroImage, category, slug, isShortNews } = Astro.props
 
 const currentPath = Astro.url.pathname
 const isMovies = currentPath.includes('movies-and-shows')

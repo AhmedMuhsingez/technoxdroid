@@ -28,6 +28,7 @@ const response = articles?.map((article) => article)
 						category={articleData.category.data.attributes.name}
 						slug={articleData.slug}
 						heroImage={articleData.cover.data?.attributes.formats.medium.url}
+						isShortNews={articleData.isShortNews}
 					/>
 				</>
 			)

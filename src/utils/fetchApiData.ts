@@ -24,13 +24,11 @@ export const fetchArticles = async (
 }
 
 export const fetchCategories = async () => {
-	const categories = await fetchApi<Categories>({ endpoint: 'categories' })
+	const categories = await fetchApi<CategoriesResponse>({ endpoint: 'categories' })
 	return categories
 }
 
 export const fetchAboutPage = async () => {
 	const aboutPage = await fetchApi<AboutPage>({ endpoint: 'about' })
-	// GET /api/users?fields[0]=title&fields[1]=body
-
 	return aboutPage
 }

@@ -15,6 +15,7 @@ interface ArticleAttributes {
 	title: string
 	description: string | null
 	slug: string
+	isShortNews: boolean
 	createdAt: string // Assuming ISO 8601 date format
 	updatedAt: string // Assuming ISO 8601 date format
 	publishedAt: string // Assuming ISO 8601 date format
