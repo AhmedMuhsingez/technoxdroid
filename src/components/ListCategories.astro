@@ -2,15 +2,16 @@
 import Category from '@/components/Category'
 const homePage = Astro.url.pathname === '/'
 const { categoriesData } = Astro.props
+const customWrap = 'min-[500px]:flex-wrap'
 ---
 
 <div
-	class=`${homePage ? 'max-[720px]:animate-scaleToLeftAndBack': ''} gap-5 flex overflow whitespace-nowrap overflow-x-auto no-scrollbar py-6`
+	class=`${homePage ? 'max-[720px]:animate-scaleToLeftAndBack': ''} gap-5 flex overflow whitespace-nowrap overflow-x-auto no-scrollbar py-6 ${customWrap}`
 >
 	<Category />
 
 	{
-		categoriesData?.data.map((category) => (
+		categoriesData?.data.map((category: Category) => (
 			<Category name={category.attributes.name} categorySlug={category.attributes.slug} />
 		))
 	}

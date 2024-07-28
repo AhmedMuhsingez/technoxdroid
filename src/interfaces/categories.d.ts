@@ -1,3 +1,16 @@
+interface CategoryAttributes {
+	name: string
+	slug: string
+	description: string | null
+	createdAt: string
+	updatedAt: string
+}
+
+interface Category {
+	id: number
+	attributes: CategoryAttributes
+}
+
 interface Pagination {
 	page: number
 	pageSize: number
@@ -5,24 +18,11 @@ interface Pagination {
 	total: number
 }
 
-interface Attributes {
-	name: string
-	slug: string
-	description: string | null
-	createdAt: string // Assuming ISO 8601 date format
-	updatedAt: string // Assuming ISO 8601 date format
-}
-
-interface DataItem {
-	id: number
-	attributes: Attributes
-}
-
 interface Meta {
 	pagination: Pagination
 }
 
-interface Categories {
-	data: DataItem[]
+interface CategoriesResponse {
+	data: Category[]
 	meta: Meta
 }

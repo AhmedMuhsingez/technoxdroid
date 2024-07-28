@@ -12,6 +12,7 @@ const { data } = Astro.props
 const { title, description, publishedAt, cover, Tags } = data
 const category = data.category.data.attributes.name
 const coverImage = cover.data.attributes.formats.large.url
+const articleAuthor = data.author.data.attributes.name
 ---
 
 <BaseLayout title={title} description={description} image={coverImage} articleDate={publishedAt}>
@@ -61,7 +62,7 @@ const coverImage = cover.data.attributes.formats.large.url
 			<div class='flex'>
 				<div>كاتب المقال:</div>
 				<div class='font-bold text-action-active dark:text-action-activeDark px-1 cursor-no-drop'>
-					{data.author.data.attributes.name}
+					{articleAuthor}
 				</div>
 			</div>
 		</footer>
