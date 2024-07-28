@@ -23,6 +23,10 @@ module.exports = {
 					active: '#7D4B94',
 					activeDark: '#7b3dad',
 					disabled: '#9ca3af'
+				},
+				movies: {
+					active: '#d63131',
+					disabled: '#9ca3af'
 				}
 			},
 			boxShadow: {

@@ -1,6 +1,7 @@
 ---
 const { pagination, isCategory } = Astro.props
 import { URLS } from '../constants/urls'
+import { cn } from 'src/utils/utils'
 interface Props {
 	pagination: Pagination
 	isCategory: boolean
@@ -8,20 +9,30 @@ interface Props {
 }
 
 const currentPage = pagination.page
-const allArticles = pagination.total
 const allPagesCount = pagination.pageCount
 
 const lastPage = allPagesCount === currentPage
 
 const categoryURL = URLS.categories.builder
 const homeURL = URLS.home.builder
+
+const currentPath = Astro.url.pathname
+const isMovies = currentPath.includes('movies-and-shows')
+const activeMovies = 'text-movies-active dark:text-movies-active'
 ---
 
 <div class='flex justify-evenly text-md white py-8'>
 	{
 		(
 			<a
-				class={`mx-2 ${currentPage === 1 ? 'text-action-disabled cursor-default' : 'text-black dark:text-white hover:text-action-active dark:hover:text-action-activeDark'}`}
+				class={cn(
+					'mx-2',
+					currentPage === 1
+						? 'text-action-disabled cursor-default'
+						: isMovies
+							? 'hover:text-movies-active dark:hover:text-movies-activeDark'
+							: 'text-black dark:text-white hover:text-action-active dark:hover:text-action-activeDark'
+				)}
 				href={
 					currentPage === 1
 						? 'javascript:void(0)'
@@ -36,7 +47,10 @@ const homeURL = URLS.home.builder
 	}
 	<div class='flex'>
 		<div
-			class='mx-2 text-action-active dark:text-action-activeDark font-bold'
+			class={cn(
+				'mx-2 text-action-active dark:text-action-activeDark font-bold',
+				isMovies && activeMovies
+			)}
 			title='الصفحة الحالية'
 		>
 			{currentPage}
@@ -47,7 +61,14 @@ const homeURL = URLS.home.builder
 	{
 		(
 			<a
-				class={`mx-2 ${lastPage ? 'text-action-disabled cursor-default' : 'text-black dark:text-white hover:text-action-active dark:hover:text-action-activeDark'}`}
+				class={cn(
+					'mx-2',
+					lastPage
+						? 'text-action-disabled cursor-default'
+						: isMovies
+							? 'hover:text-movies-active dark:hover:text-movies-activeDark'
+							: 'text-black dark:text-white hover:text-action-active dark:hover:text-action-activeDark'
+				)}
 				href={
 					lastPage
 						? 'javascript:void(0)'

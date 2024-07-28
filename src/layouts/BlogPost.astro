@@ -3,6 +3,7 @@ import BaseLayout from '@/layouts/BaseLayout'
 import Tag from '@/components/Tag'
 import { Image } from 'astro:assets'
 import FormattedDate from '@/components/FormattedDate'
+import { cn } from 'src/utils/utils'
 
 type Props = {
 	data: ArticleAttributes
@@ -13,10 +14,11 @@ const { title, description, publishedAt, cover, Tags } = data
 const category = data.category.data.attributes.name
 const coverImage = cover.data.attributes.formats.large.url
 const articleAuthor = data.author.data.attributes.name
+const isMovies = data.category.data.attributes.slug.includes('movies-and-shows')
 ---
 
 <BaseLayout title={title} description={description} image={coverImage} articleDate={publishedAt}>
-	<article class='min-w-full sm:max-w-none md:max-w-none'>
+	<article class='min-w-full sm:max-w-none md:max-w-none mt-8'>
 		<header class='mb-3 flex flex-col justify-center items-center gap-6'>
 			<div class='flex flex-col gap-2'>
 				<h1 class='text-center text-4xl md:text-6xl font-semibold' style={{ lineHeight: 1.4 }}>
@@ -27,7 +29,10 @@ const articleAuthor = data.author.data.attributes.name
 
 		<div class='flex flex-wrap justify-center items-center gap-2 gap-y-4 md:gap-5'>
 			<div
-				class='cursor-no-drop select-none bg-action-active dark:bg-action-activeDark font-semibold text-white dark:text-white shadow text-sm w-fit px-2 py-1 md:px-5 md:py-2 rounded-full'
+				class={cn(
+					'cursor-no-drop select-none bg-action-active dark:bg-action-activeDark font-semibold text-white dark:text-white shadow text-sm w-fit px-4 py-1 rounded-full',
+					isMovies && 'bg-movies-active dark:bg-movies-activeDark'
+				)}
 			>
 				{category}
 			</div>
@@ -55,13 +60,26 @@ const articleAuthor = data.author.data.attributes.name
 		>
 			<div class='flex gap-x-1'>
 				<p class='text-center flex'>
-					تم النشر في <FormattedDate date={publishedAt} insidePost={true} />
+					تم النشر في
+					<!-- <div
+						class={cn(
+							'text-action-active dark:text-action-activeDark cursor-no-drop',
+							isMovies && 'text-movies-active dark:text-movies-activeDark'
+						)}
+					> -->
+					<FormattedDate date={publishedAt} insidePost={true} />
+					<!-- </div> -->
 				</p>
 			</div>
 
 			<div class='flex'>
 				<div>كاتب المقال:</div>
-				<div class='font-bold text-action-active dark:text-action-activeDark px-1 cursor-no-drop'>
+				<div
+					class={cn(
+						'font-bold text-action-active dark:text-action-activeDark px-1 cursor-no-drop',
+						isMovies && 'text-movies-active dark:text-movies-activeDark'
+					)}
+				>
 					{articleAuthor}
 				</div>
 			</div>

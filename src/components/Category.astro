@@ -1,12 +1,16 @@
 ---
 import { cn } from 'src/utils/utils'
 const { name = 'جميع المقالات', categorySlug } = Astro.props
-const currentPath = Astro.url.pathname
 let activeCategory = Astro.params.category
+const currentPath = Astro.url.pathname
+const isMovies = currentPath.includes('movies-and-shows')
 const isActive = name !== 'جميع المقالات' ? activeCategory === categorySlug : currentPath === '/'
 
 const buttonStyle =
 	'pb-2.5 font-medium border-b-2 border-opacity-0 dark:border-opacity-0 border-black dark:border-action-activeDark dark:hover:border-white hover:border-opacity-100 transition-colors duration-150 ease-linear'
+
+const activeMovies =
+	'text-movies-active border-movies-active hover:border-movies-active dark:text-movies-active dark:border-movies-active dark:hover:border-movies-active'
 ---
 
 <a
@@ -15,7 +19,8 @@ const buttonStyle =
 	class={cn(
 		buttonStyle,
 		isActive &&
-			'border-b-2 z-10 dark:border-opacity-100 border-opacity-100 activeCategory text-action-active dark:text-action-activeDark border-action-active dark:border-action-activeDark dark:hover:border-action-activeDark cursor-default'
+			'border-b-2 z-10 dark:border-opacity-100 border-opacity-100 activeCategory text-action-active dark:text-action-activeDark border-action-active dark:border-action-activeDark dark:hover:border-action-activeDark cursor-default',
+		isMovies && isActive && activeMovies
 	)}
 >
 	{name}
