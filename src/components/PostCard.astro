@@ -8,10 +8,17 @@ const { id, title, description, pubDate, heroImage, category, slug, isShortNews 
 const currentPath = Astro.url.pathname
 const isMovies = currentPath.includes('movies-and-shows')
 const activeMovies = 'group-hover:text-movies-active group-hover:dark:text-movies-active'
+
+const containerStyle =
+	'flex flex-col justify-evenly gap-2 md:gap-0 py-6 ease-in duration-200 shadow-lightCard hover:shadow-lightCardHover dark:shadow-darkCard dark:hover:shadow-darkCardHover rounded-b-lg px-4 dark:bg-paper-dark flex flex-col'
 ---
 
 <article class='grid grid-rows-[300px_auto] md:grid-rows-[300px_220px] min-h-full group'>
-	<a class='relative overflow-hidden' href={`/articles/${id}`}>
+	<a
+		class={cn('relative overflow-hidden', isShortNews && 'cursor-default')}
+		href={isShortNews ? 'javascript:void(0);' : `/articles/${id}`}
+		onclick={isShortNews && false}
+	>
 		{
 			heroImage && (
 				<Image
@@ -37,47 +44,53 @@ const activeMovies = 'group-hover:text-movies-active group-hover:dark:text-movie
 		</div>
 	</a>
 
-	<div
-		class='flex justify-between
-		flex-col gap-2 md:gap-0 py-6 px-2
-		ease-in duration-200
-		shadow-lightCard
-		hover:shadow-lightCardHover
-		dark:shadow-darkCard
-		dark:hover:shadow-darkCardHover
-		rounded-b-lg px-4
-		dark:bg-paper-dark'
-	>
-		<div class='flex flex-col gap-3'>
-			<div class='flex flex-col gap-2'>
-				<a class='lg:text-xl md:text-base font-semibold -tracking-wider' href={`/articles/${id}/`}>
-					{title}
-				</a>
-			</div>
-
-			<p class='overflow-hidden line-clamp-3 text-gray-700 dark:text-white mb-5 font-extralight'>
-				{description}...
-			</p>
+	<div class={cn(containerStyle, isShortNews && 'text-center bg-white dark:bg-black')}>
+		<div class='flex flex-col gap-2'>
+			<a
+				class={cn(
+					'lg:text-xl md:text-base font-semibold -tracking-wider',
+					isShortNews && 'cursor-default'
+				)}
+				href={isShortNews ? 'javascript:void(0);' : `/articles/${id}`}
+			>
+				{title}
+			</a>
 		</div>
 
-		<footer class='flex justify-between items-center'>
-			<a
-				href={`/articles/${id}/`}
-				class={cn(
-					'flex justify-center items-center dark:text-white rounded-full hover:translate-x-1 transition-transform duration-150 ease-in-out font-semibold gap-1 group group-hover:text-action-active dark:group-hover:text-action-activeDark',
-					isMovies && activeMovies
-				)}
-				aria-label={`go to ${title}`}
-			>
-				قراءة المقال
-				<span
-					class={cn(
-						'mt-[1px] group-hover:rotate-45 transition-transform duration-250 ease-in-out hover:text-action-active dark:hover:text-action-activeDark',
-						isMovies && activeMovies
-					)}><ArrowUp width='18' height='18' /></span
-				>
-			</a>
-		</footer>
+		<p
+			class={cn(
+				'overflow-hidden line-clamp-3 text-gray-700 dark:text-white mb-5 font-extralight',
+				isShortNews && 'mb-0'
+			)}
+		>
+			<>{description}{!isShortNews && <p>...</p>}</>
+		</p>
+
+		{
+			!isShortNews && (
+				<footer class='flex justify-between items-center'>
+					<a
+						href={isShortNews ? 'javascript:void(0);' : `/articles/${id}`}
+						onclick={isShortNews && false}
+						class={cn(
+							'flex justify-center items-center dark:text-white rounded-full hover:translate-x-1 transition-transform duration-150 ease-in-out font-semibold gap-1 group group-hover:text-action-active dark:group-hover:text-action-activeDark',
+							isMovies && activeMovies
+						)}
+						aria-label={`go to ${title}`}
+					>
+						قراءة المقال
+						<span
+							class={cn(
+								'mt-[1px] group-hover:rotate-45 transition-transform duration-250 ease-in-out hover:text-action-active dark:hover:text-action-activeDark',
+								isMovies && activeMovies
+							)}
+						>
+							<ArrowUp width='18' height='18' />
+						</span>
+					</a>
+				</footer>
+			)
+		}
 	</div>
 </article>
 
