@@ -1,0 +1,56 @@
+---
+import { Image } from 'astro:assets'
+import FormattedDate from '../FormattedDate.astro'
+import { cn } from 'src/utils/utils'
+const { id, title, description, pubDate, heroImage, category, author, isMovies } = Astro.props
+---
+
+<article class='flex relative col-span-3 max-h-[300px] min-h-[300px] w-full'>
+	<Image
+		src={heroImage}
+		width={400}
+		height={200}
+		class='object-cover rounded-[2px]'
+		alt={`صورة ${title}`}
+	/>
+
+	<div id='context' class='flex flex-col relative gap-2 p-6 rounded-lg w-full justify-between'>
+		<div class='text-white text-3xl font-bold'>
+			<span
+				class={cn(
+					'text-black dark:text-white bg-normal-gradient',
+					isMovies && 'bg-movies-gradient'
+				)}
+				id='title'
+			>
+				{title}
+			</span>
+		</div>
+		<div class='text-gray-300 max-w-[80%]'>{description}</div>
+		<div class='text-gray-400 text-sm'>
+			<div id='date'><FormattedDate date={pubDate} className='forceRTL' /></div>
+			<div id='author'>{author}</div>
+		</div>
+
+		<div
+			id='hero-name'
+			style={{ clipPath: 'polygon(0 0, 100% 0, 100% 97%, 0 94%)' }}
+			class='rotate-90 absolute -left-0 ml-14 transform text-background-muted origin-top-left text-3xl md:text-5xl font-extrabold'
+		>
+			أخبار قصيرة
+		</div>
+	</div>
+</article>
+<style>
+	#title {
+		position: relative;
+		padding: 0 0.5em;
+		/* background-image: linear-gradient(
+			0,
+			transparent 25%,
+			#7b3dad 25%,
+			#7b3dad 45%,
+			transparent 20%
+		); */
+	}
+</style>

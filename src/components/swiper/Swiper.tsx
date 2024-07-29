@@ -19,7 +19,7 @@ export default function App(props: Props) {
 
 		return (
 			<SwiperSlide key={article.id}>
-				<img src={picture} style={{ height: '100%', objectFit: 'cover', filter: 'blur(3px)' }} />
+				<img src={picture} style={{ height: '100%', objectFit: 'cover' }} />
 				<div
 					className='flex flex-col justify-center items-center'
 					style={{
@@ -59,7 +59,7 @@ export default function App(props: Props) {
 					hide: true
 				}}
 				className='mySwiper'
-				style={{ borderRadius: '8px', width: '100%', maxHeight: '85vh', minHeight: '55vh' }}
+				style={{ borderRadius: '8px', width: '100%', maxHeight: '65vh', minHeight: '55vh' }}
 				autoplay={{ delay: 4500, disableOnInteraction: false }}
 			>
 				{swiperData}

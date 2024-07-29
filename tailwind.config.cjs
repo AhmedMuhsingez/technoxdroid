@@ -56,6 +56,12 @@ module.exports = {
 			},
 			animation: {
 				scaleToLeftAndBack: 'scaleToLeftAndBack 1s ease-in-out forwards'
+			},
+			backgroundImage: {
+				'normal-gradient':
+					'linear-gradient(0deg, transparent 25%, #7b3dad 25%, #7b3dad 45%, transparent 45%)',
+				'movies-gradient':
+					'linear-gradient(0deg, transparent 25%, #d63131 25%, #d63131 45%, transparent 45%)'
 			}
 		}
 	},

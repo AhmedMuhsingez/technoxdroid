@@ -1,5 +1,5 @@
 ---
-import PostCard from '@/components/PostCard'
+import PostCard from '@/components/cards/PostCard'
 
 type Props = {
 	FirstBig?: boolean
@@ -29,6 +29,7 @@ const response = articles?.map((article) => article)
 					heroImage={articleData.cover.data?.attributes.formats.medium.url}
 					author={articleData.author.data.attributes.name}
 					isShortNews={articleData.isShortNews}
+					isMovies={articleData.category.data.attributes.slug.includes('movies-and-shows')}
 				/>
 			)
 		})
