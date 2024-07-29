@@ -20,42 +20,60 @@ const response = shortNews?.map((article) => article)
 
 			const isLastItem = response.indexOf(article) === response.length - 1
 			return (
-				<article class={cn('flex relative w-full mb-6', isLastItem && 'mb-0')}>
-					<Image
-						src={heroImage}
-						width={300}
-						height={200}
-						class='object-cover rounded-[2px]'
-						alt={`صورة ${articleData.title}`}
-					/>
+				<article
+					class={cn(
+						'flex relative w-full mb-6 flex-col md:flex-row items-center',
+						isLastItem && 'mb-0'
+					)}
+				>
+					<div class='w-full h-full md:w-[400px] md:h-[200px]'>
+						<Image
+							src={heroImage}
+							loading={'lazy'}
+							width={300}
+							height={200}
+							class='object-cover rounded-[2px] rounded-lg w-[full] h-[full] md:w-[300px] md:h-[200px]'
+							alt={`صورة ${articleData.title}`}
+						/>
+
+						<div
+							id='hero-name'
+							style={{ clipPath: 'polygon(0 0, 100% 0, 100% 80%, 0 90%)' }}
+							class='visible md:hidden absolute bottom-0 left-0 text-background-disabled dark:text-background-muted text-3xl font-extrabold'
+						>
+							أخبار قصيرة
+						</div>
+					</div>
 
 					<div
 						id='context'
-						class='flex flex-col relative gap-2 p-6 rounded-lg w-full justify-between'
+						class='flex flex-col relative gap-2 px-6 py-1 rounded-lg w-full justify-between'
 					>
-						<div class='text-white text-3xl font-bold max-w-[90%]'>
+						<div class='text-white text-2xl md:text-3xl font-black md:max-w-[90%] -mt-[30px] md:mt-0'>
 							<span
 								class={cn(
-									'text-black dark:text-white bg-normal-gradient',
-									isMovies && 'bg-movies-gradient'
+									'text-black dark:text-white md:bg-normal-gradient hover:bg-normal-gradient',
+									isMovies && 'md:bg-movies-gradient hover:bg-movies-gradient'
 								)}
 								id='title'
 							>
 								{articleData.title}
 							</span>
 						</div>
-						<div class='text-gray-300 max-w-[80%]'>{articleData.description}</div>
-						<div class='text-gray-400 text-sm'>
-							<div id='date'>
-								<FormattedDate date={articleData.createdAt} className='forceRTL' />
-							</div>
-							<div id='author'>{author}</div>
+
+						<div class='text-action-disabledLightText dark:text-action-disabled text-lg md:text-xl font-semibold md:max-w-[80%]'>
+							{articleData.description}
+						</div>
+
+						<div class='hidden md:flex flex text-action-disabledLightText dark:text-action-disabled text-sm'>
+							<FormattedDate date={articleData.createdAt} className='flex-row' insidePost /> -{' '}
+							{author}
 						</div>
 
 						<div
 							id='hero-name'
 							style={{ clipPath: 'polygon(0 0, 100% 0, 100% 80%, 0 90%)' }}
-							class='rotate-90 absolute -left-0 ml-14 transform text-background-muted origin-top-left text-3xl md:text-4xl font-extrabold'
+							class='hidden md:block rotate-90 absolute -left-0 ml-14 transform text-background-disabled dark:text-background-muted origin-top-left text-4xl font-extrabold'
 						>
 							أخبار قصيرة
 						</div>
@@ -69,12 +87,5 @@ const response = shortNews?.map((article) => article)
 	#title {
 		position: relative;
 		padding: 0 0.5em;
-		/* background-image: linear-gradient(
-			0,
-			transparent 25%,
-			#7b3dad 25%,
-			#7b3dad 45%,
-			transparent 20%
-		); */
 	}
 </style>

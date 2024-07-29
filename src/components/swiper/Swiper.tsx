@@ -58,7 +58,7 @@ export default function App(props: Props) {
 				scrollbar={{
 					hide: true
 				}}
-				className='mySwiper'
+				className='mySwiper mb-12 md:mb-0'
 				style={{
 					borderRadius: '8px',
 					width: '100%',

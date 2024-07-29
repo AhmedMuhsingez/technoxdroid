@@ -13,7 +13,7 @@ module.exports = {
 				background: {
 					dark: '#18181a',
 					light: '#f0f2f5',
-					disabled: 'rgb(156 163 175)',
+					disabled: '#d2d5d9',
 					muted: '#222224'
 				},
 				paper: {
@@ -23,7 +23,8 @@ module.exports = {
 				action: {
 					active: '#7D4B94',
 					activeDark: '#7b3dad',
-					disabled: '#9ca3af'
+					disabled: '#9ca3af',
+					disabledLightText: '#5b5f66'
 				},
 				movies: {
 					active: '#d63131',
