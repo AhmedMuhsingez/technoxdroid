@@ -6,7 +6,7 @@ import Title from '@/components/Title'
 import Pagination from '@/components/Pagination'
 import { fetchArticles, fetchCategories } from 'src/utils/fetchApiData'
 import EmptyPage from '@/components/EmptyPage'
-import ShortNews from '@/components/cards/ShortNewsCard'
+import ShortNewsCard from '@/components/cards/ShortNewsCard'
 
 const categoriesData = await fetchCategories()
 const currentCategory =
@@ -21,7 +21,9 @@ const articles = await fetchArticles(currentPage, 5, 'createdAt:desc', Astro.par
 const articlesData = articles.data.map((article) => {
 	return article
 })
-const noArticles = articlesData.length === 0
+
+const normalArticles = articlesData.filter((article) => article.attributes.isShortNews === false)
+const noArticles = normalArticles.length === 0
 
 const shortNews = articlesData.filter((article) => article.attributes.isShortNews === true)
 const noShortNews = shortNews.length === 0
@@ -37,7 +39,7 @@ const pagination = articles.meta.pagination
 		!noShortNews && (
 			<div>
 				<Title title={'أخبار قصيرة'} />
-				<ShortNews shortNews={shortNews} />
+				<ShortNewsCard shortNews={shortNews} />
 			</div>
 		)
 	}
@@ -52,7 +54,7 @@ const pagination = articles.meta.pagination
 						<Title title={currentCategory} />
 					</div>
 				)}
-				<ListPosts articles={articlesData} />
+				<ListPosts articles={normalArticles} />
 				<Pagination
 					isCategory={true}
 					pagination={pagination}
