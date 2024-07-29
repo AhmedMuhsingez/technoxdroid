@@ -6,7 +6,7 @@ export const fetchArticles = async (
 	categorySlug: string = '/'
 ) => {
 	const query = {
-		populate: ['category', 'cover'].join(','),
+		populate: ['category', 'cover', 'author'].join(','),
 		'pagination[page]': String(page),
 		'pagination[pageSize]': String(pageSize),
 		sort: sort

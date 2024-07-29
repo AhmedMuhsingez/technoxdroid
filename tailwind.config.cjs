@@ -13,7 +13,8 @@ module.exports = {
 				background: {
 					dark: '#18181a',
 					light: '#f0f2f5',
-					disabled: 'rgb(156 163 175)'
+					disabled: '#d2d5d9',
+					muted: '#222224'
 				},
 				paper: {
 					dark: '#242527'
@@ -22,7 +23,8 @@ module.exports = {
 				action: {
 					active: '#7D4B94',
 					activeDark: '#7b3dad',
-					disabled: '#9ca3af'
+					disabled: '#9ca3af',
+					disabledLightText: '#5b5f66'
 				},
 				movies: {
 					active: '#d63131',
@@ -55,6 +57,12 @@ module.exports = {
 			},
 			animation: {
 				scaleToLeftAndBack: 'scaleToLeftAndBack 1s ease-in-out forwards'
+			},
+			backgroundImage: {
+				'normal-gradient':
+					'linear-gradient(0deg, transparent 25%, #7b3dad 25%, #7b3dad 45%, transparent 45%)',
+				'movies-gradient':
+					'linear-gradient(0deg, transparent 25%, #d63131 25%, #d63131 45%, transparent 45%)'
 			}
 		}
 	},
