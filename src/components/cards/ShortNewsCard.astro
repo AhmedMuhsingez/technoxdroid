@@ -2,45 +2,69 @@
 import { Image } from 'astro:assets'
 import FormattedDate from '../FormattedDate.astro'
 import { cn } from 'src/utils/utils'
-const { id, title, description, pubDate, heroImage, category, author, isMovies } = Astro.props
+const { shortNews } = Astro.props
+
+interface Props {
+	shortNews: ArticleData[]
+}
+const response = shortNews?.map((article) => article)
 ---
 
-<article class='flex relative col-span-3 max-h-[300px] min-h-[300px] w-full'>
-	<Image
-		src={heroImage}
-		width={400}
-		height={200}
-		class='object-cover rounded-[2px]'
-		alt={`صورة ${title}`}
-	/>
+<div class='pt-6'>
+	{
+		response.map(async (article) => {
+			const articleData = article.attributes
+			const heroImage = articleData.cover.data?.attributes.formats.medium.url
+			const author = articleData.author.data.attributes.name
+			const isMovies = articleData.category.data.attributes.slug.includes('movies-and-shows')
 
-	<div id='context' class='flex flex-col relative gap-2 p-6 rounded-lg w-full justify-between'>
-		<div class='text-white text-3xl font-bold'>
-			<span
-				class={cn(
-					'text-black dark:text-white bg-normal-gradient',
-					isMovies && 'bg-movies-gradient'
-				)}
-				id='title'
-			>
-				{title}
-			</span>
-		</div>
-		<div class='text-gray-300 max-w-[80%]'>{description}</div>
-		<div class='text-gray-400 text-sm'>
-			<div id='date'><FormattedDate date={pubDate} className='forceRTL' /></div>
-			<div id='author'>{author}</div>
-		</div>
+			const isLastItem = response.indexOf(article) === response.length - 1
+			return (
+				<article class={cn('flex relative w-full mb-6', isLastItem && 'mb-0')}>
+					<Image
+						src={heroImage}
+						width={300}
+						height={200}
+						class='object-cover rounded-[2px]'
+						alt={`صورة ${articleData.title}`}
+					/>
 
-		<div
-			id='hero-name'
-			style={{ clipPath: 'polygon(0 0, 100% 0, 100% 97%, 0 94%)' }}
-			class='rotate-90 absolute -left-0 ml-14 transform text-background-muted origin-top-left text-3xl md:text-5xl font-extrabold'
-		>
-			أخبار قصيرة
-		</div>
-	</div>
-</article>
+					<div
+						id='context'
+						class='flex flex-col relative gap-2 p-6 rounded-lg w-full justify-between'
+					>
+						<div class='text-white text-3xl font-bold max-w-[90%]'>
+							<span
+								class={cn(
+									'text-black dark:text-white bg-normal-gradient',
+									isMovies && 'bg-movies-gradient'
+								)}
+								id='title'
+							>
+								{articleData.title}
+							</span>
+						</div>
+						<div class='text-gray-300 max-w-[80%]'>{articleData.description}</div>
+						<div class='text-gray-400 text-sm'>
+							<div id='date'>
+								<FormattedDate date={articleData.createdAt} className='forceRTL' />
+							</div>
+							<div id='author'>{author}</div>
+						</div>
+
+						<div
+							id='hero-name'
+							style={{ clipPath: 'polygon(0 0, 100% 0, 100% 80%, 0 90%)' }}
+							class='rotate-90 absolute -left-0 ml-14 transform text-background-muted origin-top-left text-3xl md:text-4xl font-extrabold'
+						>
+							أخبار قصيرة
+						</div>
+					</div>
+				</article>
+			)
+		})
+	}
+</div>
 <style>
 	#title {
 		position: relative;

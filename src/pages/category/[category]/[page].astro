@@ -2,10 +2,11 @@
 import BaseLayout from '@/layouts/BaseLayout'
 import ListPosts from '@/components/ListPosts'
 import ListCategories from '@/components/ListCategories'
-import TitlePage from '@/components/TitlePage'
+import Title from '@/components/Title'
 import Pagination from '@/components/Pagination'
 import { fetchArticles, fetchCategories } from 'src/utils/fetchApiData'
 import EmptyPage from '@/components/EmptyPage'
+import ShortNews from '@/components/cards/ShortNewsCard'
 
 const categoriesData = await fetchCategories()
 const currentCategory =
@@ -16,23 +17,41 @@ const page = Astro.url.searchParams.get('page')
 let currentPage = page ? Number(page) : 1
 
 const articles = await fetchArticles(currentPage, 5, 'createdAt:desc', Astro.params.category)
+
 const articlesData = articles.data.map((article) => {
 	return article
 })
-
 const noArticles = articlesData.length === 0
+
+const shortNews = articlesData.filter((article) => article.attributes.isShortNews === true)
+const noShortNews = shortNews.length === 0
 
 const pagination = articles.meta.pagination
 ---
 
 <BaseLayout title={currentCategory}>
-	<TitlePage title={currentCategory} />
+	{noShortNews && <Title title={currentCategory} />}
 	<ListCategories categoriesData={categoriesData} />
+
+	{
+		!noShortNews && (
+			<div>
+				<Title title={'أخبار قصيرة'} />
+				<ShortNews shortNews={shortNews} />
+			</div>
+		)
+	}
+
 	{
 		noArticles ? (
 			<EmptyPage />
 		) : (
 			<>
+				{!noShortNews && (
+					<div class='mt-12 mb-6'>
+						<Title title={currentCategory} />
+					</div>
+				)}
 				<ListPosts articles={articlesData} />
 				<Pagination
 					isCategory={true}

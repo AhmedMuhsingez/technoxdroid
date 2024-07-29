@@ -59,7 +59,13 @@ export default function App(props: Props) {
 					hide: true
 				}}
 				className='mySwiper'
-				style={{ borderRadius: '8px', width: '100%', maxHeight: '65vh', minHeight: '55vh' }}
+				style={{
+					borderRadius: '8px',
+					width: '100%',
+					maxHeight: '65vh',
+					minHeight: '55vh',
+					marginTop: '1.5rem'
+				}}
 				autoplay={{ delay: 4500, disableOnInteraction: false }}
 			>
 				{swiperData}

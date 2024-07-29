@@ -1,31 +1,45 @@
 ---
 import ListCategories from '@/components/ListCategories'
 import ListPosts from '@/components/ListPosts'
-import TitlePage from '@/components/TitlePage'
+import Title from '@/components/Title'
 import BaseLayout from '@/layouts/BaseLayout'
 import Swiper from 'src/components/swiper/Swiper'
 import { fetchArticles, fetchCategories } from 'src/utils/fetchApiData'
 import Pagination from '@/components/Pagination'
+import PostCard from '@/components/cards/PostCard'
+import Category from '@/components/Category'
+import ShortNewsCard from '@/components/cards/ShortNewsCard'
 
 const categoriesData = await fetchCategories()
 
 const page = Astro.url.searchParams.get('page')
 let currentPage = page ? Number(page) : 1
+
 const articles = await fetchArticles(currentPage, 5, 'createdAt:desc', '')
 
 let pagination = articles.meta.pagination
 
-const allArticles = articles.data.map((article) => article)
+const allArticles = articles.data
+
+const normalArticles: ArticleData[] = articles.data.filter(
+	(e) => e.attributes.isShortNews === false
+)
+
+const shortNews: ArticleData[] = allArticles.filter((e) => e.attributes.isShortNews === true)
+
 const swiperContent = allArticles.slice(0, 4)
+console.log(shortNews)
 ---
 
 <BaseLayout title=''>
+	<Title title={'أخبار قصيرة'} />
+	<ShortNewsCard shortNews={shortNews} />
+
 	<Swiper client:load swiperContent={swiperContent} />
 
-	<TitlePage title={'جميع المقالات'} />
+	<Title title={'جميع المقالات'} />
 	<ListCategories categoriesData={categoriesData} />
-
-	<ListPosts FirstBig={true} articles={allArticles} />
+	<ListPosts FirstBig={true} articles={normalArticles} />
 
 	<Pagination pagination={pagination} isCategory={false} />
 

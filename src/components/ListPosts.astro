@@ -18,18 +18,22 @@ const response = articles?.map((article) => article)
 		response?.map(async (article) => {
 			const id = article.id
 			const articleData = article.attributes
+			const categoryName = articleData.category.data.attributes.name
+			const heroImage = articleData.cover.data?.attributes.formats.medium.url
+			const author = articleData.author.data.attributes.name
+			const isMovies = articleData.category.data.attributes.slug.includes('movies-and-shows')
 			return (
 				<PostCard
 					id={id}
 					title={articleData.title}
 					description={articleData.description}
 					pubDate={articleData.createdAt}
-					category={articleData.category.data.attributes.name}
+					category={categoryName}
 					slug={articleData.slug}
-					heroImage={articleData.cover.data?.attributes.formats.medium.url}
-					author={articleData.author.data.attributes.name}
+					heroImage={heroImage}
+					author={author}
 					isShortNews={articleData.isShortNews}
-					isMovies={articleData.category.data.attributes.slug.includes('movies-and-shows')}
+					isMovies={isMovies}
 				/>
 			)
 		})
