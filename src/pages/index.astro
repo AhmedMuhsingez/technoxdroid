@@ -6,8 +6,6 @@ import BaseLayout from '@/layouts/BaseLayout'
 import Swiper from 'src/components/swiper/Swiper'
 import { fetchArticles, fetchCategories } from 'src/utils/fetchApiData'
 import Pagination from '@/components/Pagination'
-import PostCard from '@/components/cards/PostCard'
-import Category from '@/components/Category'
 import ShortNewsCard from '@/components/cards/ShortNewsCard'
 
 const categoriesData = await fetchCategories()
@@ -27,8 +25,7 @@ const normalArticles: ArticleData[] = articles.data.filter(
 
 const shortNews: ArticleData[] = allArticles.filter((e) => e.attributes.isShortNews === true)
 
-const swiperContent = allArticles.slice(0, 4)
-console.log(shortNews)
+const swiperContent = normalArticles.slice(0, 4)
 ---
 
 <BaseLayout title=''>

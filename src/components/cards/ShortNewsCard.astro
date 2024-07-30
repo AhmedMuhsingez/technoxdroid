@@ -27,14 +27,16 @@ const response = shortNews?.map((article) => article)
 					)}
 				>
 					<div class='w-full h-full md:w-[400px] md:h-[200px]'>
-						<Image
-							src={heroImage}
-							loading={'lazy'}
-							width={300}
-							height={200}
-							class='object-cover rounded-[2px] rounded-lg w-[full] h-[full] md:w-[300px] md:h-[200px]'
-							alt={`صورة ${articleData.title}`}
-						/>
+						<div class='bg-pic-gradient w-full h-full rounded-lg'>
+							<Image
+								src={heroImage}
+								loading='lazy'
+								width={300}
+								height={200}
+								class='relative -z-10 object-cover rounded-lg w-full h-full md:w-[300px] md:h-[200px]'
+								alt={`صورة ${articleData.title}`}
+							/>
+						</div>
 
 						<div
 							id='hero-name'
@@ -52,8 +54,8 @@ const response = shortNews?.map((article) => article)
 						<div class='text-white text-2xl md:text-3xl font-black md:max-w-[90%] -mt-[30px] md:mt-0'>
 							<span
 								class={cn(
-									'text-black dark:text-white md:bg-normal-gradient hover:bg-normal-gradient',
-									isMovies && 'md:bg-movies-gradient hover:bg-movies-gradient'
+									'text-action-active dark:text-white md:bg-normal-gradient dark:bg-normal-gradient',
+									isMovies && 'md:bg-movies-gradient text-movies-active dark:bg-movies-gradient'
 								)}
 								id='title'
 							>
@@ -61,7 +63,7 @@ const response = shortNews?.map((article) => article)
 							</span>
 						</div>
 
-						<div class='text-action-disabledLightText dark:text-action-disabled text-lg md:text-xl font-semibold md:max-w-[80%]'>
+						<div class='text-action-disabledLightText dark:text-action-disabled text-lg md:text-xl font-semibold md:max-w-[80%] mb-4 md:mb-0'>
 							{articleData.description}
 						</div>
 

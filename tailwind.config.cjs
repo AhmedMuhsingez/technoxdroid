@@ -59,6 +59,7 @@ module.exports = {
 				scaleToLeftAndBack: 'scaleToLeftAndBack 1s ease-in-out forwards'
 			},
 			backgroundImage: {
+				'pic-gradient': 'linear-gradient(180deg, rgba(0, 0, 0, 0.16) 0%, rgba(0, 0, 0, 0.86) 100%)',
 				'normal-gradient':
 					'linear-gradient(0deg, transparent 25%, #7b3dad 25%, #7b3dad 45%, transparent 45%)',
 				'movies-gradient':

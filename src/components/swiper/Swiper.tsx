@@ -21,10 +21,10 @@ export default function App(props: Props) {
 			<SwiperSlide key={article.id}>
 				<img src={picture} style={{ height: '100%', objectFit: 'cover' }} />
 				<div
-					className='flex flex-col justify-center items-center'
+					className='flex flex-col justify-center items-center bg-pic-gradient'
 					style={{
 						color: 'white',
-						background: 'linear-gradient(180deg, rgba(0, 0, 0, 0.16) 0%, rgba(0, 0, 0, 0.86) 100%)',
+						// background: '',
 						padding: '8px',
 						width: '100%',
 						position: 'absolute',
