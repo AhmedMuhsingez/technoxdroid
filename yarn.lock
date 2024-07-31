@@ -1563,6 +1563,11 @@ astro-eslint-parser@^0.16.3:
     espree "^9.0.0"
     semver "^7.3.8"
 
+astro-loading-indicator@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/astro-loading-indicator/-/astro-loading-indicator-0.5.0.tgz#d5c60312a848ed2d61797e2a45a95842ba6293e3"
+  integrity sha512-NU06AzJEzvlzXLac8ODFgHjzTDyaF/GV+nQQ7Rq21rCeSifhmLQu219lJukIUS0ySs4ySO4PAwcaHGClOSEufA==
+
 astro@^4.12.2:
   version "4.12.2"
   resolved "https://registry.yarnpkg.com/astro/-/astro-4.12.2.tgz#c92bec880e05577997dd963a423f0ad54e7d6cf4"

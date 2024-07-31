@@ -2,6 +2,7 @@
 import { siteConfig } from '@/site-config'
 import '../styles/global.css'
 import { ViewTransitions } from 'astro:transitions'
+import LoadingIndicator from 'astro-loading-indicator/component'
 
 export interface Props {
 	title: string
@@ -34,6 +35,8 @@ const siteTitle = `${title} ${titleSeparator} ${homepage ? siteConfig.name : 'TD
 
 <!-- ViewTransitions  -->
 <ViewTransitions />
+
+<LoadingIndicator color='#7b3dad' />
 
 <!-- SEO -->
 <meta name='title' content={siteTitle} />
