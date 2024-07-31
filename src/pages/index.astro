@@ -13,7 +13,7 @@ const categoriesData = await fetchCategories()
 const page = Astro.url.searchParams.get('page')
 let currentPage = page ? Number(page) : 1
 
-const articles = await fetchArticles(currentPage, 5, 'createdAt:desc', '')
+const articles = await fetchArticles(currentPage, 7, 'createdAt:desc', '')
 
 let pagination = articles.meta.pagination
 
@@ -25,11 +25,13 @@ const normalArticles: ArticleData[] = articles.data.filter(
 
 const shortNews: ArticleData[] = allArticles.filter((e) => e.attributes.isShortNews === true)
 
+const noShortNews = shortNews.length === 0
+
 const swiperContent = normalArticles.slice(0, 4)
 ---
 
 <BaseLayout title=''>
-	<Title title={'أخبار قصيرة'} />
+	{!noShortNews && <Title title={'أخبار قصيرة'} />}
 	<ShortNewsCard shortNews={shortNews} />
 
 	<Swiper client:load swiperContent={swiperContent} />
