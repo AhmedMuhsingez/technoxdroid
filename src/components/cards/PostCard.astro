@@ -3,18 +3,7 @@ import { Image } from 'astro:assets'
 import FormattedDate from '@/components/FormattedDate'
 import ArrowUp from '@/components/icons/ArrowUp'
 import { cn } from 'src/utils/utils'
-const {
-	id,
-	title,
-	description,
-	pubDate,
-	heroImage,
-	category,
-	slug,
-	isShortNews,
-	author,
-	isMovies
-} = Astro.props
+const { id, title, description, pubDate, heroImage, category, author, isMovies } = Astro.props
 const activeMovies = 'group-hover:text-movies-active group-hover:dark:text-movies-active'
 ---
 
@@ -64,7 +53,7 @@ const activeMovies = 'group-hover:text-movies-active group-hover:dark:text-movie
 			</div>
 
 			<p class='overflow-hidden line-clamp-2 text-gray-700 dark:text-white mb-5 font-extralight'>
-				{description}...
+				{description && description + ' ...'}
 			</p>
 		</div>
 

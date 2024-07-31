@@ -10,11 +10,13 @@ type Props = {
 }
 
 const { data } = Astro.props
-const { title, description, publishedAt, cover, Tags } = data
-const category = data.category.data.attributes.name
+const { title, description, publishedAt, cover } = data
+const hasCategory = data.category.data != null
+
+const category = hasCategory ? data.category.data.attributes.name : 'آخر الأخبار التقنية'
 const coverImage = cover.data.attributes.formats.large.url
 const articleAuthor = data.author.data.attributes.name
-const isMovies = data.category.data.attributes.slug.includes('movies-and-shows')
+const isMovies = hasCategory && data.category.data.attributes.slug.includes('movies-and-shows')
 ---
 
 <BaseLayout title={title} description={description} image={coverImage} articleDate={publishedAt}>

@@ -17,7 +17,9 @@ try {
 	return Astro.redirect('/404')
 }
 
-const markdownBlock = marked(article.data.attributes.RichTextEditor)
+const markdownBlock = marked(
+	article.data.attributes.RichTextEditor !== null ? article.data.attributes.RichTextEditor : ''
+)
 ---
 
 <BlogPost data={article.data.attributes}>
