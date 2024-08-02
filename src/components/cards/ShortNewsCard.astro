@@ -49,27 +49,29 @@ const response = shortNews?.map((article) => article)
 
 					<div
 						id='context'
-						class='flex flex-col relative gap-2 ps-6 py-1 rounded-lg w-full justify-between'
+						class='flex flex-col relative ps-6 py-1 rounded-lg w-full justify-between'
 					>
-						<div class='text-white text-2xl md:text-3xl font-black md:max-w-[90%] -mt-[30px] md:mt-0'>
-							<span
-								class={cn(
-									'text-action-active dark:text-white md:bg-none dark:bg-normal-gradient',
-									isMovies && 'md:bg-movies-gradient text-movies-active dark:bg-movies-gradient'
-								)}
-								id='title'
-							>
-								{articleData.title}
-							</span>
-						</div>
+						<div class='flex flex-col md:h-[200px] gap-3 md:gap-0 md:justify-between' id='content'>
+							<div class='text-white text-2xl md:text-3xl font-black md:max-w-[90%] -mt-[30px] md:mt-0'>
+								<span
+									class={cn(
+										'text-action-active dark:text-white md:bg-none dark:bg-normal-gradient',
+										isMovies && 'md:bg-movies-gradient text-movies-active dark:bg-movies-gradient'
+									)}
+									id='title'
+								>
+									{articleData.title}
+								</span>
+							</div>
 
-						<div class='text-action-disabledLightText dark:text-action-disabled text-lg md:text-xl font-semibold md:max-w-[80%] mb-8 md:mb-0'>
-							{articleData.description}
-						</div>
+							<div class='text-action-disabledLightText dark:text-action-disabled text-lg md:text-xl font-semibold md:max-w-[80%] mb-8 md:mb-0'>
+								{articleData.description}
+							</div>
 
-						<div class='hidden md:flex flex text-action-disabledLightText dark:text-action-disabled text-sm'>
-							<FormattedDate date={articleData.createdAt} className='flex-row' insidePost /> -{' '}
-							{author}
+							<div class='hidden md:flex flex text-action-disabledLightText dark:text-action-disabled text-sm'>
+								<FormattedDate date={articleData.createdAt} className='flex-row' insidePost /> -{' '}
+								{author}
+							</div>
 						</div>
 
 						<div

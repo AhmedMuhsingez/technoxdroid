@@ -45,11 +45,11 @@ const pagination = articles.meta.pagination
 	}
 
 	{
-		noArticles ? (
+		noArticles && noShortNews ? (
 			<EmptyPage />
 		) : (
 			<>
-				{!noShortNews && (
+				{!noArticles && (
 					<div class='mt-12 mb-6'>
 						<Title title={currentCategory} />
 					</div>

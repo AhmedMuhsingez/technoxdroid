@@ -10,11 +10,11 @@ interface SiteConfig {
 }
 
 export const siteConfig: SiteConfig = {
-	author: 'TechnoDroid', // Site author
-	name: 'TechnoDroid', // Site name.
+	author: 'TechnoXDroid', // Site author
+	name: 'تكنو اكس درويد', // Site name.
 	description: '', // Description to display in the meta tags
-	lang: '',
-	ogLocale: 'en_GB',
+	lang: 'ar',
+	ogLocale: 'ar',
 	shareMessage: 'Share this post', // Message to share a post on social media
 	paginationSize: 5, // Number of posts per page
 	liveWebAddress: 'https://technoxdroid.com'
