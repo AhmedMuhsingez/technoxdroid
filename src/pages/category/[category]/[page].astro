@@ -22,6 +22,8 @@ const articlesData = articles.data.map((article) => {
 	return article
 })
 
+const noArticlesAtAll = articlesData.length === 0
+
 const normalArticles = articlesData.filter((article) => article.attributes.isShortNews === false)
 const noArticles = normalArticles.length === 0
 
@@ -32,35 +34,35 @@ const pagination = articles.meta.pagination
 ---
 
 <BaseLayout title={currentCategory}>
-	{noShortNews && <Title title={currentCategory} />}
+	<Title title={currentCategory} />
 	<ListCategories categoriesData={categoriesData} />
-
+	{noArticles && noShortNews && <EmptyPage />}
 	{
 		!noShortNews && (
 			<div>
-				<Title title={'أخبار قصيرة'} />
+				<Title title={'أخبار قصيرة'} styles='pt-0' />
 				<ShortNewsCard shortNews={shortNews} />
 			</div>
 		)
 	}
 
-	{
-		noArticles && noShortNews ? (
-			<EmptyPage />
-		) : (
-			<>
-				{!noArticles && (
-					<div class='mt-12 mb-6'>
-						<Title title={currentCategory} />
-					</div>
-				)}
-				<ListPosts articles={normalArticles} />
+	<>
+		{
+			!noArticles && (
+				<div class='mb-6'>
+					<Title title={'آخر الأخبار'} />
+				</div>
+			)
+		}
+		<ListPosts articles={normalArticles} />
+		{
+			!noArticlesAtAll && (
 				<Pagination
 					isCategory={true}
 					pagination={pagination}
 					categorySlug={Astro.params.category}
 				/>
-			</>
-		)
-	}
+			)
+		}
+	</>
 </BaseLayout>

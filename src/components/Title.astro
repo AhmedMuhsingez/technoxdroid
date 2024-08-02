@@ -3,9 +3,10 @@ import { cn } from 'src/utils/utils'
 import Shape from './icons/Shape.astro'
 type Props = {
 	title: string
+	styles?: string
 }
 
-const { title } = Astro.props
+const { title, styles = '' } = Astro.props
 
 const isHomePage = Astro.url.pathname === '/'
 ---
@@ -13,7 +14,8 @@ const isHomePage = Astro.url.pathname === '/'
 <div
 	class={cn(
 		'flex justify-start items-center gap-2 title pt-6',
-		isHomePage && title === 'جميع المقالات' && 'mt-4 md:mt-0'
+		isHomePage && title === 'جميع المقالات' && 'mt-4 md:mt-0',
+		styles && styles
 	)}
 >
 	<Shape />
