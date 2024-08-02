@@ -22,9 +22,9 @@ const allArticles = articles.data
 const normalArticles: ArticleData[] = articles.data.filter(
 	(e) => e.attributes.isShortNews === false
 )
+const noArticles = normalArticles.length === 0
 
 const shortNews: ArticleData[] = allArticles.filter((e) => e.attributes.isShortNews === true)
-
 const noShortNews = shortNews.length === 0
 
 const swiperContent = normalArticles.slice(0, 4)
@@ -34,11 +34,18 @@ const swiperContent = normalArticles.slice(0, 4)
 	{!noShortNews && <Title title={'أخبار قصيرة'} />}
 	<ShortNewsCard shortNews={shortNews} />
 
-	<Swiper client:load swiperContent={swiperContent} />
-
-	<Title title={'جميع المقالات'} />
-	<ListCategories categoriesData={categoriesData} />
-	<ListPosts FirstBig={true} articles={normalArticles} />
+	{
+		noArticles ? (
+			<div class='flex flex-col justify-center items-center min-h-[50vh]' />
+		) : (
+			<>
+				<Swiper client:load swiperContent={swiperContent} />
+				<Title title={'جميع المقالات'} />
+				<ListCategories categoriesData={categoriesData} />
+				<ListPosts FirstBig={true} articles={normalArticles} />
+			</>
+		)
+	}
 
 	<Pagination pagination={pagination} isCategory={false} />
 
