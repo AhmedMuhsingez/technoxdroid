@@ -44,7 +44,7 @@ module.exports = {
 			},
 
 			fontFamily: {
-				body: ['cairo', ...defaultTheme.fontFamily.sans]
+				body: ['system-ui', ...defaultTheme.fontFamily.sans]
 			},
 			gridTemplateColumns: {
 				list: 'repeat(auto-fill, minmax(400px, max-content))'
