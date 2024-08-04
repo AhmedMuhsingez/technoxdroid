@@ -43,9 +43,6 @@ module.exports = {
 				profileShadow: '0px 4px 12px 0px rgba(131,79,140,0.8)'
 			},
 
-			// fontFamily: {
-			// 	body: [, ...defaultTheme.fontFamily.sans]
-			// },
 			gridTemplateColumns: {
 				list: 'repeat(auto-fill, minmax(400px, max-content))'
 			},

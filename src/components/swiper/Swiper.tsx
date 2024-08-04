@@ -35,7 +35,7 @@ export default function App(props: Props) {
 				<div className='flex flex-col absolute bottom-0 w-full mb-8 md:mb-12 px-4'>
 					<a
 						href={`/articles/${article.id}`}
-						className='text-white md:text-2xl text-md font-bold text-center mb-4 cursor-pointer'
+						className='text-white md:text-2xl text-lg font-bold text-center mb-4 cursor-pointer'
 					>
 						{title}
 					</a>

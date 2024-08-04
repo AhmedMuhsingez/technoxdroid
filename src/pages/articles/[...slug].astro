@@ -25,6 +25,6 @@ const markdownBlock = marked(
 <BlogPost data={article.data.attributes}>
 	<div
 		set:html={markdownBlock}
-		class={`prose dark:prose-invert max-w-none prose-p:text-lg prose-img:m-auto prose-img:max-h-[720px] prose-blockquote:text-center`}
+		class={`prose dark:prose-invert max-w-none prose-p:text-lg prose-p:font-medium prose-img:m-auto prose-img:max-h-[720px] prose-blockquote:text-center prose-p:leading-8`}
 	/>
 </BlogPost>
