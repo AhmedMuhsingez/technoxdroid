@@ -24,7 +24,8 @@ module.exports = {
 					active: '#7D4B94',
 					activeDark: '#7b3dad',
 					disabled: '#9ca3af',
-					disabledLightText: '#5b5f66'
+					disabledLightText: '#5b5f66',
+					stripe: '#18181a'
 				},
 				movies: {
 					active: '#d63131',
@@ -57,8 +58,12 @@ module.exports = {
 			},
 			backgroundImage: {
 				'pic-gradient': 'linear-gradient(180deg, rgba(0, 0, 0, 0.16) 0%, rgba(0, 0, 0, 0.86) 100%)',
+
 				'normal-gradient':
 					'linear-gradient(0deg, transparent 25%, #7b3dad 25%, #7b3dad 45%, transparent 45%)',
+				'white-gradient':
+					'linear-gradient(0deg, transparent 25%, #d2d5d9 25%, #d2d5d9 45%, transparent 45%)',
+
 				'movies-gradient':
 					'linear-gradient(0deg, transparent 25%, #d63131 25%, #d63131 45%, transparent 45%)'
 			}
