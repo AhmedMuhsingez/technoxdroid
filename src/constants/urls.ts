@@ -29,15 +29,13 @@ export const SOCIAL_LINKS_FOOTER = [
 
 	{
 		name: 'Facebook',
-		// url: 'https://www.facebook.com/TechnoxDroid',
-		url: '',
+		url: 'https://www.facebook.com/TechnoxDroid',
 		icon: 'facebook',
 		target: '_blank'
 	},
 	{
 		name: 'Instagram',
-		// url: 'https://www.facebook.com/TechnoxDroid',
-		url: '',
+		url: 'https://www.instagram.com/techno.xdroid/',
 		icon: 'instagram',
 		target: '_blank'
 	}

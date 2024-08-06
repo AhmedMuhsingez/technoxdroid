@@ -11,7 +11,7 @@ interface SiteConfig {
 
 export const siteConfig: SiteConfig = {
 	author: 'TechnoXDroid', // Site author
-	name: 'تكنو درويد', // Site name.
+	name: 'تكنودرويد', // Site name.
 	description: 'صفحة مهتمة بنشر آخر الأخبار التقنية والثقافية - تابعنا لمعرفة كل ما هو جديد دائماً', // Description to display in the meta tags
 	lang: 'ar',
 	ogLocale: 'ar',
