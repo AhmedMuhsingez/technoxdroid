@@ -20,8 +20,8 @@ const isMovies = hasCategory && data.category.data.attributes.slug.includes('mov
 ---
 
 <BaseLayout title={title} description={description} image={coverImage} articleDate={publishedAt}>
-	<article class='min-w-full sm:max-w-none md:max-w-none mt-8'>
-		<header class='mb-3 flex flex-col justify-center items-center gap-6'>
+	<article class='md:max-w-[840px] mt-8 flex flex-col justify-self-center'>
+		<header class='flex flex-col justify-center items-center gap-6'>
 			<div class='flex flex-col gap-2'>
 				<h1 class='text-center text-4xl md:text-6xl font-semibold' style={{ lineHeight: 1.4 }}>
 					{title}
@@ -29,10 +29,10 @@ const isMovies = hasCategory && data.category.data.attributes.slug.includes('mov
 			</div>
 		</header>
 
-		<div class='flex flex-wrap justify-center items-center gap-2 gap-y-4 md:gap-5'>
+		<div id='category' class='flex flex-wrap justify-center items-center gap-2 gap-y-4 md:gap-5'>
 			<div
 				class={cn(
-					'cursor-no-drop select-none bg-action-active dark:bg-action-activeDark font-semibold text-white dark:text-white shadow text-sm w-fit px-4 py-1 rounded-full',
+					'my-6 cursor-no-drop select-none bg-action-active dark:bg-action-activeDark font-semibold text-white dark:text-white shadow text-sm w-fit px-4 py-1 rounded-full',
 					isMovies && 'bg-movies-active dark:bg-movies-activeDark'
 				)}
 			>
@@ -47,30 +47,17 @@ const isMovies = hasCategory && data.category.data.attributes.slug.includes('mov
 			quality={100}
 			format='jpg'
 			loading='eager'
-			class='rounded-md w-full max-h-[300px] md:max-h-[500px] my-8 object-cover'
+			class='rounded-md w-full max-h-[300px] md:max-h-[500px] mb-6 object-cover'
 			alt={`صورة ${title}`}
 		/>
-
-		<hr />
-
-		<div class='py-6'>
-			<slot />
-		</div>
-
-		<footer
+		<info
+			id='article-info'
 			class='text-md flex md:flex-row-reverse flex-col justify-between items-center md:items-start py-4 gap-2 border-t-2 dark:border-t px-4'
 		>
 			<div class='flex gap-x-1'>
 				<p class='text-center flex'>
 					تم النشر في
-					<!-- <div
-						class={cn(
-							'text-action-active dark:text-action-activeDark cursor-no-drop',
-							isMovies && 'text-movies-active dark:text-movies-activeDark'
-						)}
-					> -->
 					<FormattedDate date={publishedAt} insidePost={true} />
-					<!-- </div> -->
 				</p>
 			</div>
 
@@ -85,7 +72,14 @@ const isMovies = hasCategory && data.category.data.attributes.slug.includes('mov
 					{articleAuthor}
 				</div>
 			</div>
-		</footer>
+		</info>
+		<hr />
+
+		<div class='py-6'>
+			<slot />
+		</div>
+
+		<!-- <div id='similar-articles' class='border-t-2 dark:border-t'>items</div> -->
 	</article>
 </BaseLayout>
 

@@ -18,7 +18,7 @@ const containerStyle = 'text-md flex flex-col px-1'
 ---
 
 <div class={cn(containerStyle, !insidePost && 'font-bold text-opacity-60 text-sm px-0', className)}>
-	<span class='flex w-full'>
+	<span class='flex w-full forceLTR'>
 		{format(parseISO(publishDate), 'yyyy, MMMM dd', { locale: ar })}
 	</span>
 	{!insidePost && <span class='flex w-full font-normal'>منذ {sinceTime}</span>}
