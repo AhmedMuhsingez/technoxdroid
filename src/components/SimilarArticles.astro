@@ -22,7 +22,7 @@ const { similarArticles } = Astro.props
 
 					<div id='details' class='flex flex-col justify-center md:justify-between'>
 						<a id='title' href={`/articles/${article.id}`} class=''>
-							<span class='text-lg md:text-xl font-semibold'>{article.attributes.title}</span>
+							<span class='text-md md:text-xl font-semibold'>{article.attributes.title}</span>
 						</a>
 						<a id='description' href={`/articles/${article.id}`} class='hidden md:block'>
 							<p class='text-sm font-normal'>{article.attributes.description}</p>
