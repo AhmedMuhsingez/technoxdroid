@@ -29,4 +29,5 @@ body {
 :root {
 	--swiper-scrollbar-bg-color: #9ca3af;
 	--swiper-scrollbar-drag-bg-color: #7d4b94;
+	--swiper-navigation-color: #6e089a;
 }

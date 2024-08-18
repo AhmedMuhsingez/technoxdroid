@@ -2,8 +2,10 @@
 import BlogPost from '@/layouts/BlogPost'
 import fetchApi from 'src/lib/strapi'
 import { marked } from 'marked'
+import { fetchArticles, fetchSimilarArticles } from 'src/utils/fetchApiData'
 
 const { slug } = Astro.params
+
 let article: SingleArticleData
 
 try {
@@ -20,9 +22,13 @@ try {
 const markdownBlock = marked(
 	article.data.attributes.RichTextEditor !== null ? article.data.attributes.RichTextEditor : ''
 )
+
+const category = article.data.attributes.category.data.attributes.slug
+
+const similarArticles = await fetchArticles(1, 5, 'createdAt:desc', category)
 ---
 
-<BlogPost data={article.data.attributes}>
+<BlogPost data={article.data.attributes} similarArticles={similarArticles.data}>
 	<div
 		set:html={markdownBlock}
 		class={`prose dark:prose-invert max-w-none prose-p:text-lg prose-p:font-medium prose-img:m-auto prose-img:max-h-[720px] prose-blockquote:text-center prose-p:leading-8`}

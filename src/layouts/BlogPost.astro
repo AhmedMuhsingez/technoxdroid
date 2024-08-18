@@ -1,22 +1,27 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout'
-import Tag from '@/components/Tag'
 import { Image } from 'astro:assets'
 import FormattedDate from '@/components/FormattedDate'
 import { cn } from 'src/utils/utils'
-
+import SimilarArticles from '@/components/SimilarArticles'
+import { siteConfig } from '@/data/site.config'
 type Props = {
 	data: ArticleAttributes
+	similarArticles: ArticleData[]
 }
 
-const { data } = Astro.props
-const { title, description, publishedAt, cover } = data
+const { data, similarArticles } = Astro.props
+const { title, description, publishedAt, cover, slug } = data
 const hasCategory = data.category.data != null
 
 const category = hasCategory ? data.category.data.attributes.name : 'آخر الأخبار التقنية'
 const coverImage = cover.data.attributes.formats.large.url
 const articleAuthor = data.author.data.attributes.name
 const isMovies = hasCategory && data.category.data.attributes.slug.includes('movies-and-shows')
+
+const similarArticlesResponse = similarArticles.filter(
+	(article: ArticleData) => !article.attributes.isShortNews && article.attributes.slug !== slug
+)
 ---
 
 <BaseLayout title={title} description={description} image={coverImage} articleDate={publishedAt}>
@@ -41,7 +46,7 @@ const isMovies = hasCategory && data.category.data.attributes.slug.includes('mov
 		</div>
 
 		<Image
-			src={coverImage}
+			src={coverImage || siteConfig.missingImagePlaceHolder}
 			width={1000}
 			height={500}
 			quality={100}
@@ -79,7 +84,14 @@ const isMovies = hasCategory && data.category.data.attributes.slug.includes('mov
 			<slot />
 		</div>
 
-		<!-- <div id='similar-articles' class='border-t-2 dark:border-t'>items</div> -->
+		{
+			similarArticlesResponse.length > 0 && (
+				<div id='similar-articles-footer' class='border-t-2 dark:border-t p-4'>
+					<span class='text-xl font-semibold'>المزيد من مقالات {category}</span>
+					<SimilarArticles similarArticles={similarArticlesResponse} slug={slug} />
+				</div>
+			)
+		}
 	</article>
 </BaseLayout>
 

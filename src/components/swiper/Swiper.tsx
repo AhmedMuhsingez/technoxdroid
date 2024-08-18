@@ -4,6 +4,9 @@ import './styles.css'
 import '../../styles/global.css'
 import 'swiper/css/effect-fade'
 import 'swiper/css/scrollbar'
+import 'swiper/css/navigation'
+import { Navigation } from 'swiper/modules'
+
 import { EffectFade, Autoplay, Scrollbar } from 'swiper/modules'
 
 interface Props {
@@ -24,7 +27,6 @@ export default function App(props: Props) {
 					className='flex flex-col justify-center items-center bg-pic-gradient'
 					style={{
 						color: 'white',
-						// background: '',
 						padding: '8px',
 						width: '100%',
 						position: 'absolute',
@@ -54,7 +56,8 @@ export default function App(props: Props) {
 			<Swiper
 				spaceBetween={30}
 				effect={'fade'}
-				modules={[Scrollbar, Autoplay, EffectFade]}
+				modules={[Scrollbar, Autoplay, EffectFade, Navigation]}
+				navigation={true}
 				scrollbar={{
 					hide: true
 				}}

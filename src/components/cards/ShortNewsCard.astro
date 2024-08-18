@@ -3,7 +3,7 @@ import { Image } from 'astro:assets'
 import FormattedDate from '../FormattedDate.astro'
 import { cn } from 'src/utils/utils'
 const { shortNews } = Astro.props
-
+import { siteConfig } from '@/site-config'
 interface Props {
 	shortNews: ArticleData[]
 }
@@ -14,7 +14,9 @@ const response = shortNews?.map((article) => article)
 	{
 		response.map(async (article) => {
 			const articleData = article.attributes
-			const heroImage = articleData.cover.data?.attributes.formats.medium.url
+			const heroImage =
+				articleData.cover.data?.attributes.formats.medium.url || siteConfig.missingImagePlaceHolder
+
 			const author = articleData.author.data.attributes.name || 'Ahmed'
 			const isMovies = articleData?.category.data.attributes.slug.includes('movies-and-shows')
 

@@ -7,6 +7,7 @@ interface SiteConfig {
 	shareMessage: string
 	paginationSize: number
 	liveWebAddress: string
+	missingImagePlaceHolder: string
 }
 
 export const siteConfig: SiteConfig = {
@@ -17,5 +18,7 @@ export const siteConfig: SiteConfig = {
 	ogLocale: 'ar',
 	shareMessage: 'Share this post', // Message to share a post on social media
 	paginationSize: 5, // Number of posts per page
-	liveWebAddress: 'https://technoxdroid.com'
+	liveWebAddress: 'https://technoxdroid.com',
+	missingImagePlaceHolder:
+		'https://technodroid-strapi.s3.eu-north-1.amazonaws.com/photo_missing_technoxdroid_044d5d228f.jpg'
 }

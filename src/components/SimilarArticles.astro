@@ -1,0 +1,35 @@
+---
+import { Image } from 'astro:assets'
+
+const { similarArticles } = Astro.props
+---
+
+<div id='similar-articles-container' class=''>
+	{
+		similarArticles.slice(0, 3).map((article: ArticleData) => {
+			return (
+				<div class='flex gap-4 p-4 shadow-lightCard dark:shadow-darkCard my-4'>
+					<a href={`/articles/${article.id}`} class='w-[200px] h-[100px] flex'>
+						<Image
+							class='md:min-w-[200px]'
+							id='image'
+							src={article.attributes.cover.data.attributes.formats.small.url}
+							alt={`صورة ${article.attributes.title}`}
+							width={200}
+							height={200}
+						/>
+					</a>
+
+					<div id='details' class='flex flex-col justify-center md:justify-between'>
+						<a id='title' href={`/articles/${article.id}`} class=''>
+							<span class='text-lg md:text-xl font-semibold'>{article.attributes.title}</span>
+						</a>
+						<a id='description' href={`/articles/${article.id}`} class='hidden md:block'>
+							<p class='text-sm font-normal'>{article.attributes.description}</p>
+						</a>
+					</div>
+				</div>
+			)
+		})
+	}
+</div>

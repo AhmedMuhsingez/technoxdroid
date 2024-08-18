@@ -23,6 +23,22 @@ export const fetchArticles = async (
 	return articles
 }
 
+export const fetchSimilarArticles = async (category: string = '/') => {
+	const query = {
+		populate: ['category', 'cover', 'author'].join(','),
+		'pagination[page]': String(1),
+		'pagination[pageSize]': String(3)
+	}
+	if (category) {
+		query['filters[category][slug][$eq]'] = category
+	}
+	const articles = await fetchApi<Article>({
+		endpoint: 'articles',
+		query: query
+	})
+	return articles
+}
+
 export const fetchCategories = async () => {
 	const categories = await fetchApi<CategoriesResponse>({ endpoint: 'categories' })
 	return categories
