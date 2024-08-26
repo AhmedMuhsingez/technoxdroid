@@ -47,7 +47,10 @@ const activeMovies = 'group-hover:text-movies-active group-hover:dark:text-movie
 	>
 		<div class='flex flex-col gap-3'>
 			<div class='flex flex-col gap-2'>
-				<a class='lg:text-xl md:text-base font-semibold -tracking-wider' href={`/articles/${id}/`}>
+				<a
+					class='lg:text-xl md:text-base font-semibold -tracking-wider line-clamp-2'
+					href={`/articles/${id}/`}
+				>
 					{title}
 				</a>
 			</div>
