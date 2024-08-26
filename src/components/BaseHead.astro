@@ -10,6 +10,13 @@ export interface Props {
 	ogImage?: string | undefined
 	articleDate?: string | undefined
 }
+
+declare global {
+	interface Window {
+		dataLayer: any[]
+	}
+}
+
 const homepage = Astro.url.pathname === '/'
 
 const { title, description = siteConfig.description, ogImage, articleDate } = Astro.props
@@ -89,6 +96,18 @@ const siteTitle = `${title}`
 	gtag('js', new Date())
 
 	gtag('config', 'G-B7HT56WQE3')
+</script>
+
+<!-- Google tag (gtag.js) -->
+<script async src='https://www.googletagmanager.com/gtag/js?id=AW-16617965637'></script>
+<script>
+	window.dataLayer = window.dataLayer || []
+	function gtag(p0?: string, p1?: Date | string) {
+		window.dataLayer.push(arguments)
+	}
+	gtag('js', new Date())
+
+	gtag('config', 'AW-16617965637')
 </script>
 
 <!-- Clarity -->
