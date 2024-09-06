@@ -1,7 +1,7 @@
 ---
 import { Image } from 'astro:assets'
-
-const { similarArticles } = Astro.props
+import { cn } from 'src/utils/utils'
+const { similarArticles, isMovies } = Astro.props
 ---
 
 <div id='similar-articles-container' class='flex flex-col gap-4'>
@@ -29,7 +29,10 @@ const { similarArticles } = Astro.props
 						</a>
 					</div>
 					<div
-						class={`w-40 h-24 absolute bg-[#7D4B94] dark:bg-[#7b3dad] rounded-full blur-2xl opacity-50 -z-50 right-8 top-4`}
+						class={cn(
+							'w-40 h-24 absolute bg-action-active dark:bg-action-activeDark  rounded-full blur-2xl opacity-50 -z-50 right-8 top-4`',
+							isMovies && 'bg-movies-active'
+						)}
 					/>
 				</div>
 			)
