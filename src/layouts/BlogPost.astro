@@ -86,7 +86,7 @@ const similarArticlesResponse = similarArticles.filter(
 
 		{
 			similarArticlesResponse.length > 0 && (
-				<div id='similar-articles-footer' class='border-t-2 dark:border-t py-4'>
+				<div id='similar-articles-footer' class='border-t-2 dark:border-t py-4 flex flex-col gap-4'>
 					<span class='text-xl font-semibold'>المزيد من مقالات {category}</span>
 					<SimilarArticles similarArticles={similarArticlesResponse} slug={slug} />
 				</div>
