@@ -1,8 +1,4 @@
 type DataAttributes = {
-	english_pp(english_pp: any): unknown
-	arabic_pp(arabic_pp: any): unknown
-	[x: string]: string
-	arabic_pp: string
 	createdAt: string
 	updatedAt: string
 	contentArabic: string
