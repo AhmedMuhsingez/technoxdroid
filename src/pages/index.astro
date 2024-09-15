@@ -7,6 +7,7 @@ import Swiper from 'src/components/swiper/Swiper'
 import { fetchArticles, fetchCategories } from 'src/utils/fetchApiData'
 import Pagination from '@/components/Pagination'
 import ShortNewsCard from '@/components/cards/ShortNewsCard'
+import PrivacyPolicy from 'src/components/privacy/PrivacyPolicy'
 
 const categoriesData = await fetchCategories()
 
@@ -28,9 +29,14 @@ const shortNews: ArticleData[] = allArticles.filter((e) => e.attributes.isShortN
 const noShortNews = shortNews.length === 0
 
 const swiperContent = normalArticles.slice(0, 4)
+
+Astro.cookies.get('privacyPolicyAccepted') === undefined &&
+	Astro.cookies.set('privacyPolicyAccepted', 'true')
 ---
 
 <BaseLayout title=''>
+	<PrivacyPolicy client:load />
+
 	{!noShortNews && <Title title={'أخبار قصيرة'} />}
 	<ShortNewsCard shortNews={shortNews} />
 
