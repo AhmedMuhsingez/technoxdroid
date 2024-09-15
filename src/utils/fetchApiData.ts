@@ -48,3 +48,8 @@ export const fetchAboutPage = async () => {
 	const aboutPage = await fetchApi<AboutPage>({ endpoint: 'about' })
 	return aboutPage
 }
+
+export const fetchPrivacyPolicy = async () => {
+	const privacyPolicy = await fetchApi<PrivacyPolicy>({ endpoint: 'privacy-policy' })
+	return privacyPolicy
+}

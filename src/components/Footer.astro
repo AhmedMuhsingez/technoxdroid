@@ -4,16 +4,20 @@ import HeaderLink from './HeaderLink.astro'
 import GithubIcon from '@/components/icons/GithubIcon'
 import Facebook from './icons/Facebook.astro'
 import Instagram from './icons/Instagram.astro'
+import { siteConfig } from '../data/site.config'
 
 const today = new Date()
 ---
 
 <footer
-	class='flex text-center items-center w-full px-8 md:px-16 py-6 border-t-2 dark:border-t justify-center flex-col'
+	class='flex gap-4 text-center items-center w-full px-8 md:px-16 py-6 border-t-2 dark:border-t justify-center flex-col'
 >
-	&copy; {today.getFullYear()} تكنودرويد. جميع الحقوق محفوظة
+	<span> &copy; {today.getFullYear()} تكنودرويد. جميع الحقوق محفوظة</span>
+	<span class='text-xl'
+		><a href={`${siteConfig.liveWebAddress}/privacy-policy`}>سياسة الخصوصية</a></span
+	>
 
-	<div id='social-icons-footer' class='flex mt-4'>
+	<div id='social-icons-footer' class='flex'>
 		{
 			SOCIAL_LINKS_FOOTER.map((network) => {
 				const icon =

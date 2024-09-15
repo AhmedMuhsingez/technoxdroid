@@ -1,3 +1,40 @@
 ---
+import BaseLayout from '@/layouts/BaseLayout'
+import { fetchPrivacyPolicy } from '../utils/fetchApiData'
+import { marked } from 'marked'
+import { cn } from 'src/utils/utils'
 
+const privacyPolicyData: PrivacyPolicy = await fetchPrivacyPolicy()
+const english = marked(privacyPolicyData.data.attributes.english_pp)
+const arabic = marked(privacyPolicyData.data.attributes.arabic_pp)
+
+const currentPath = Astro.url.searchParams.get('lang')
+const buttonStyle =
+	'text-xl cursor-pointer flex w-fit px-4 py-2 rounded-t-lg border border-b-0 md:border-2 md:border-b-0 border-action-disabled'
+const activeButton = 'border-action-active dark:border-action-activeDark py-3 cursor-default'
 ---
+
+<BaseLayout title={'Profile'} description={'TechnoXDroid Privacy Policy'}>
+	<div class='min-h-[calc(100vh-20rem)] flex flex-col justify-center my-8'>
+		<div class='flex justify-between px-4'>
+			<a
+				href={`?lang=` + 'ar'}
+				class={cn(buttonStyle, currentPath === 'ar' ? activeButton : 'border-action-disabled')}
+				>العربية</a
+			>
+
+			<a
+				href={`?lang=` + 'en'}
+				class={cn(
+					buttonStyle,
+					currentPath === 'en' || currentPath === null ? activeButton : 'border-action-disabled'
+				)}>English</a
+			>
+		</div>
+
+		<div
+			set:html={currentPath == 'ar' ? arabic : english}
+			class={`prose dark:prose-invert max-w-none prose-p:text-lg prose-img:m-auto prose-img:max-h-[720px]  ${currentPath === 'ar' ? 'forceRTL' : 'forceLTR'}  rounded-xl md:p-8 p-4 shadow-profileShadow`}
+		/>
+	</div>
+</BaseLayout>
