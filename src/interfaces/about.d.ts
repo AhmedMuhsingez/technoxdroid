@@ -1,9 +1,12 @@
 type DataAttributes = {
 	createdAt: string
 	updatedAt: string
-	contentArabic: string
-	contentEnglish: string
+	// contentArabic: string
+	// contentEnglish: string
 	publishedAt: string
+
+	english_pp: string
+	arabic_pp: string
 }
 
 type Data = {
