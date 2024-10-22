@@ -16,7 +16,7 @@ export default function App(props: Props) {
 	const { swiperContent } = props
 
 	const swiperData = swiperContent.map((article) => {
-		const picture = article.attributes.cover.data.attributes.formats.medium.url
+		const picture = article.attributes.cover.data.attributes.formats.small.url
 		const title = article.attributes.title
 		const details = article.attributes.description
 

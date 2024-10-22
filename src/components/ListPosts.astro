@@ -22,7 +22,7 @@ const response = articles?.map((article) => article)
 			const categoryName = hasCategory
 				? articleData.category.data.attributes.name
 				: 'آخر الأخبار التقنية'
-			const heroImage = articleData.cover.data?.attributes.formats.medium.url
+			const heroImage = articleData.cover.data?.attributes.formats.thumbnail.url
 			const author = articleData.author.data.attributes.name
 			const isMovies =
 				hasCategory && articleData.category.data.attributes.slug.includes('movies-and-shows')

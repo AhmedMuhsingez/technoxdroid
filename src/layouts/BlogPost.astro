@@ -15,7 +15,7 @@ const { title, description, publishedAt, cover, slug } = data
 const hasCategory = data.category.data != null
 
 const category = hasCategory ? data.category.data.attributes.name : 'آخر الأخبار التقنية'
-const coverImage = cover.data.attributes.formats.large.url
+const coverImage = cover.data.attributes.formats.medium.url
 const articleAuthor = data.author.data.attributes.name
 const isMovies = hasCategory && data.category.data.attributes.slug.includes('movies-and-shows')
 
