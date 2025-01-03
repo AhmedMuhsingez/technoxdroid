@@ -5,6 +5,8 @@ import ToggleTheme from './ToggleTheme.astro'
 import Profile from './icons/Profile.astro'
 import ArrowLeft from './icons/ArrowLeft.astro'
 import Logo from './icons/Logo.astro'
+import authConfig from 'auth:config'
+
 const SOCIAL_NETWORKS = [
 	{
 		name: 'Profile',
@@ -53,6 +55,9 @@ const isAllArticles = Astro.url.pathname === '/'
 		<button id='astro-header-drawer-button' type='button' class='md:ml-6 md:hidden'>
 			<MenuIcon />
 		</button>
+
+		<button id='login'>Login</button>
+		<button id='logout'>Logout</button>
 	</div>
 	<script>
 		document.addEventListener('click', (event) => {
@@ -68,5 +73,11 @@ const isAllArticles = Astro.url.pathname === '/'
 				menu?.classList.add('translate-x-96')
 			}
 		})
+
+		const { signIn, signOut } = await import('auth-astro/client')
+		//@ts-ignore
+		document.querySelector('#login').onclick = () => signIn('google')
+		//@ts-ignore
+		document.querySelector('#logout').onclick = () => signOut()
 	</script>
 </header>

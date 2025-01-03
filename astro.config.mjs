@@ -23,5 +23,7 @@ export default defineConfig({
             entrypoint: 'astro/assets/services/noop'
         }
     },
-    integrations: [sitemap(), tailwind(), react(), auth()]
+    integrations: [sitemap(), tailwind(), react(), auth()],
+   
+    
 })
