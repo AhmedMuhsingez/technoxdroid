@@ -1,7 +1,7 @@
 ---
 import { siteConfig } from '@/site-config'
 import '../styles/global.css'
-import { ViewTransitions } from 'astro:transitions'
+import { ClientRouter } from 'astro:transitions'
 import LoadingIndicator from 'astro-loading-indicator/component'
 
 export interface Props {
@@ -41,7 +41,7 @@ const siteTitle = title
 <title>{homepage ? siteConfig.name : siteTitle}</title>
 
 <!-- ViewTransitions  -->
-<ViewTransitions />
+<ClientRouter />
 
 <LoadingIndicator color='#7b3dad' />
 
@@ -131,3 +131,10 @@ const siteTitle = title
 	async
 	src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6434848624698324'
 	crossorigin='anonymous'></script>
+
+<!-- Google Auth -->
+<!-- <script src='https://apis.google.com/js/platform.js' async defer></script>
+<meta
+	name='google-signin-client_id'
+	content='67153549192-qj809n99tc1sctli1m1sq9k31hl4ee1c.apps.googleusercontent.com'
+/> -->
