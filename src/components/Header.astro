@@ -5,8 +5,9 @@ import ToggleTheme from './ToggleTheme.astro'
 import Profile from './icons/Profile.astro'
 import ArrowLeft from './icons/ArrowLeft.astro'
 import Logo from './icons/Logo.astro'
-import authConfig from 'auth:config'
+import { getSession } from 'auth-astro/server'
 
+const session = await getSession(Astro.request)
 const SOCIAL_NETWORKS = [
 	{
 		name: 'Profile',
@@ -15,6 +16,7 @@ const SOCIAL_NETWORKS = [
 		target: ''
 	}
 ]
+
 const isAllArticles = Astro.url.pathname === '/'
 ---
 
@@ -56,8 +58,8 @@ const isAllArticles = Astro.url.pathname === '/'
 			<MenuIcon />
 		</button>
 
-		<button id='login'>Login</button>
-		<button id='logout'>Logout</button>
+		<!-- <button id='login'>Login</button>
+		<button id='logout'>Logout</button> -->
 	</div>
 	<script>
 		document.addEventListener('click', (event) => {
